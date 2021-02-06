@@ -1,5 +1,17 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":pinOnlyDevDependencies",
+    ":prHourlyLimit4",
+    ":prConcurrentLimit10",
+    ":automergeLinters",
+    ":automergeTesters",
+    ":semanticCommits"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["estree-walker"],
+      "allowedVersions": "<=3.0.0"
+    }
   ]
 }
