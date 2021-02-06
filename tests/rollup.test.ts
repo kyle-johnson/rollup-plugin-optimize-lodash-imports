@@ -2,7 +2,7 @@ import { OutputOptions, rollup } from "rollup";
 
 import optimizeLodashImports, { OptimizeLodashOptions } from "../src";
 
-// shush auto-external warnings by providing a simple auto-external test
+// quiet auto-external warnings by providing a simple auto-external test
 const external = (id: string): boolean => /^[^./]/.test(id);
 
 /**
@@ -16,7 +16,7 @@ const external = (id: string): boolean => /^[^./]/.test(id);
 const wrapper = async (
   input: string,
   pluginOptions: OptimizeLodashOptions | false,
-  rollupOutputFormat: Required<OutputOptions["format"]> = "cjs"
+  rollupOutputFormat: OutputOptions["format"] = "cjs"
 ): Promise<string> => {
   const bundle = await rollup({
     input,
@@ -52,29 +52,20 @@ describe("rollup", () => {
       expect(code).toMatchSnapshot();
     });
 
-    test("with plugin & CJS output", async () => {
-      expect.assertions(3);
-      const code = await wrapper(STANDARD_AND_FP, {}, "cjs");
+    test.each<[OutputOptions["format"]]>([["cjs"], ["es"]])(
+      "with plugin & %s output",
+      async (outputFormat) => {
+        expect.assertions(3);
+        const code = await wrapper(STANDARD_AND_FP, {}, outputFormat);
 
-      // ensure all imports became more specific
-      expect(code).not.toMatch(/["']lodash["']/g);
-      expect(code).not.toMatch(/["']lodash\/fp["']/g);
+        // ensure all imports became more specific
+        expect(code).not.toMatch(/["']lodash["']/g);
+        expect(code).not.toMatch(/["']lodash\/fp["']/g);
 
-      // full snapshot
-      expect(code).toMatchSnapshot();
-    });
-
-    test("with plugin & ES output", async () => {
-      expect.assertions(3);
-      const code = await wrapper(STANDARD_AND_FP, {}, "es");
-
-      // ensure all imports became more specific
-      expect(code).not.toMatch(/["']lodash["']/g);
-      expect(code).not.toMatch(/["']lodash\/fp["']/g);
-
-      // full snapshot
-      expect(code).toMatchSnapshot();
-    });
+        // full snapshot
+        expect(code).toMatchSnapshot();
+      }
+    );
 
     test("with plugin, ES output, & useLodashEs", async () => {
       expect.assertions(4);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`rollup named lodash and lodash/fp imports with plugin & CJS output 1`] = `
+exports[`rollup named lodash and lodash/fp imports with plugin & cjs output 1`] = `
 "'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -25,7 +25,7 @@ exports.isNonNilArray = isNonNilArray;
 "
 `;
 
-exports[`rollup named lodash and lodash/fp imports with plugin & ES output 1`] = `
+exports[`rollup named lodash and lodash/fp imports with plugin & es output 1`] = `
 "import isNil from 'lodash/isNil';
 import negate from 'lodash/negate';
 import every from 'lodash/fp/every';

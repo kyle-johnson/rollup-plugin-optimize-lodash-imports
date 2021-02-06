@@ -19,7 +19,9 @@
     "lint": "eslint",
     "test": "jest",
     "dedupe": "yarn-deduplicate yarn.lock",
-    "build": "rm -rf dist && tsc -p tsconfig.dist.json"
+    "build": "rm -rf dist && tsc -p tsconfig.dist.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "jest": {
     "testEnvironment": "node",
@@ -32,7 +34,6 @@
     "rollup": "2.x"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "17.x",
     "@tsconfig/node10": "1.x",
     "@types/estree": "0.0.46",
     "@types/jest": "26.x",
@@ -51,7 +52,7 @@
     "rollup": "2.x",
     "ts-jest": "26.x",
     "typescript": "4.1.x",
-    "yarn-deduplicate": "2.x"
+    "yarn-deduplicate": "3.1.0"
   },
   "dependencies": {
     "@rollup/pluginutils": "4.x",
