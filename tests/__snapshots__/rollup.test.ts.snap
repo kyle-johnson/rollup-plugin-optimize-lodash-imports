@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rollup named lodash and lodash/fp imports with plugin & CJS output 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var isNil = require('lodash/isNil');
+var negate = require('lodash/negate');
+var every = require('lodash/fp/every');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var isNil__default = /*#__PURE__*/_interopDefaultLegacy(isNil);
+var negate__default = /*#__PURE__*/_interopDefaultLegacy(negate);
+var every__default = /*#__PURE__*/_interopDefaultLegacy(every);
+
+const everyNonNil = every__default['default'](negate__default['default'](isNil__default['default']));
+
+function isNonNilArray(input) {
+  return Array.isArray(input) && everyNonNil(input);
+}
+
+exports.isNonNilArray = isNonNilArray;
+"
+`;
+
+exports[`rollup named lodash and lodash/fp imports with plugin & ES output 1`] = `
+"import isNil from 'lodash/isNil';
+import negate from 'lodash/negate';
+import every from 'lodash/fp/every';
+
+const everyNonNil = every(negate(isNil));
+
+function isNonNilArray(input) {
+  return Array.isArray(input) && everyNonNil(input);
+}
+
+export { isNonNilArray };
+"
+`;
+
+exports[`rollup named lodash and lodash/fp imports with plugin, ES output, & useLodashEs 1`] = `
+"import { negate, isNil } from 'lodash-es';
+import { every } from 'lodash-es/fp';
+
+const everyNonNil = every(negate(isNil));
+
+function isNonNilArray(input) {
+  return Array.isArray(input) && everyNonNil(input);
+}
+
+export { isNonNilArray };
+"
+`;
+
+exports[`rollup named lodash and lodash/fp imports without plugin 1`] = `
+"'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var lodash = require('lodash');
+var fp = require('lodash/fp');
+
+const everyNonNil = fp.every(lodash.negate(lodash.isNil));
+
+function isNonNilArray(input) {
+  return Array.isArray(input) && everyNonNil(input);
+}
+
+exports.isNonNilArray = isNonNilArray;
+"
+`;

@@ -1,0 +1,61 @@
+{
+  "name": "rollup-plugin-optimize-lodash-imports",
+  "version": "1.0.0",
+  "description": "Rewrites lodash imports to be specific for easier tree-shaking.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "author": "Kyle Johnson",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10",
+    "yarn": "1.x"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "lint": "eslint",
+    "test": "jest",
+    "dedupe": "yarn-deduplicate yarn.lock",
+    "build": "rm -rf dist && tsc -p tsconfig.dist.json"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {}
+    }
+  },
+  "peerDependencies": {
+    "rollup": "2.x"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "17.x",
+    "@tsconfig/node10": "1.x",
+    "@types/estree": "0.0.46",
+    "@types/jest": "26.x",
+    "@types/lodash": "4.14.x",
+    "@types/node": "10.x",
+    "@typescript-eslint/eslint-plugin": "4.x",
+    "@typescript-eslint/parser": "4.x",
+    "acorn": "8.x",
+    "eslint": "7.x",
+    "eslint-config-prettier": "7.2.x",
+    "eslint-plugin-jest": "24.x",
+    "eslint-plugin-unicorn": "27.0.x",
+    "jest": "26.x",
+    "lodash": "4.17.x",
+    "prettier": "2.2.1",
+    "rollup": "2.x",
+    "ts-jest": "26.x",
+    "typescript": "4.1.x",
+    "yarn-deduplicate": "2.x"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "4.x",
+    "estree-walker": "2.x",
+    "magic-string": "0.25.x"
+  }
+}
