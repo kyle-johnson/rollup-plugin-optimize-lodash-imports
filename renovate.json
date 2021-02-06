@@ -11,7 +11,7 @@
   "packageRules": [
     {
       "matchPackageNames": ["estree-walker"],
-      "allowedVersions": "<=3.0.0"
+      "allowedVersions": "< 3.0.0"
     }
   ]
 }
