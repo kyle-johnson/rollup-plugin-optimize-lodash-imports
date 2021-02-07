@@ -59,7 +59,7 @@ const UNCHANGED = null;
  * @param exclude files/globs to exclude from this plugin (optional)
  * @param useLodashEs set `true` to convert imports to use "lodash-es" (optional; default false)
  */
-export default function optimizeLodash({
+export default function optimizeLodashImports({
   include,
   exclude,
   useLodashEs,

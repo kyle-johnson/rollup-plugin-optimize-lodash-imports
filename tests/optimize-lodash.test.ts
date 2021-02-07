@@ -29,7 +29,7 @@ describe("optimizeLodash", () => {
       [`import { isNil } from 'lodash';`, `import isNil from "lodash/isNil";`],
       [
         `import { isNil as nil } from 'lodash';`,
-        `import isNil as nil from "lodash/isNil";`,
+        `import nil from "lodash/isNil";`,
       ],
       [
         `import { isNil, isString } from 'lodash';`,
@@ -41,7 +41,7 @@ describe("optimizeLodash", () => {
       ],
       [
         `import { isNil, isString as str } from 'lodash';`,
-        `import isNil from "lodash/isNil";\nimport isString as str from "lodash/isString";`,
+        `import isNil from "lodash/isNil";\nimport str from "lodash/isString";`,
       ],
       [
         `import { some } from 'lodash/fp';`,
