@@ -66,3 +66,23 @@ jobs:
       - uses: bahmutov/npm-install@v1
       - name: prettier
         run: yarn format:check
+  release:
+    if: github.ref == 'refs/heads/main'
+    needs: ["prettier", "lint", "type-check", "build", "test"]
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 10
+      - uses: bahmutov/npm-install@v1
+      - name: Build
+        run: yarn build
+      - name: Release
+        run: npx semantic-release@17.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

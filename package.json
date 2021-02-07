@@ -1,7 +1,16 @@
 {
   "name": "rollup-plugin-optimize-lodash-imports",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Rewrites lodash imports to be specific for easier tree-shaking.",
+  "keywords": [
+    "lodash",
+    "rollup"
+  ],
+  "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
