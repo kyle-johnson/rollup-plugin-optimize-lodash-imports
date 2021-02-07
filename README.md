@@ -1,5 +1,5 @@
-Optimize `lodash` imports with Rollup.js
-========================================
+# Optimize `lodash` imports with Rollup.js
+
 ![npm](https://img.shields.io/npm/v/rollup-plugin-optimize-lodash-imports)
 ![node-current](https://img.shields.io/node/v/rollup-plugin-optimize-lodash-imports)
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/rollup-plugin-optimize-lodash-imports/peer/rollup)
@@ -36,10 +36,13 @@ import { isNil } from "lodash";
 ### Your Rollup Outputs
 
 #### CommonJS
+
 ```javascript
 import isNil from "lodash/isNil";
 ```
+
 #### ES (with `useLodashEs: true`)
+
 ```javascript
 import { isNil } from "lodash-es";
 ```
@@ -53,12 +56,10 @@ export default {
   input: "src/index.js",
   output: {
     dir: "dist",
-    format: "cjs"
+    format: "cjs",
   },
-  plugins: [
-    optimizeLodashImports()        
-  ]
-}
+  plugins: [optimizeLodashImports()],
+};
 ```
 
 ## Options
@@ -84,9 +85,9 @@ A [minimatch pattern](https://github.com/isaacs/minimatch), or array of patterns
 Type: `boolean`<br>
 Default: `false`
 
-If `true`, the plugin will rewrite *lodash* imports to use *lodash-es*.
+If `true`, the plugin will rewrite _lodash_ imports to use _lodash-es_.
 
-*Note: the build will fail if your Rollup output format is not also set to `es`!*
+_Note: the build will fail if your Rollup output format is not also set to `es`!_
 
 ## Limitations
 
