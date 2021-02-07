@@ -1,3 +1,4 @@
+import * as acorn from "acorn";
 import { OutputOptions, rollup } from "rollup";
 
 import optimizeLodashImports, { OptimizeLodashOptions } from "../src";
@@ -41,12 +42,17 @@ describe("rollup", () => {
 
   describe("named lodash and lodash/fp imports", () => {
     test("without plugin", async () => {
-      expect.assertions(3);
+      expect.assertions(4);
       const code = await wrapper(STANDARD_AND_FP, false, "cjs");
 
       // ensure all imports remained untouched
       expect(code).toMatch(/["']lodash["']/g);
       expect(code).toMatch(/["']lodash\/fp["']/g);
+
+      // valid output
+      expect(() =>
+        acorn.parse(code, { ecmaVersion: "latest", sourceType: "script" })
+      ).not.toThrow();
 
       // full snapshot
       expect(code).toMatchSnapshot();
@@ -55,12 +61,20 @@ describe("rollup", () => {
     test.each<[OutputOptions["format"]]>([["cjs"], ["es"]])(
       "with plugin & %s output",
       async (outputFormat) => {
-        expect.assertions(3);
+        expect.assertions(4);
         const code = await wrapper(STANDARD_AND_FP, {}, outputFormat);
 
         // ensure all imports became more specific
         expect(code).not.toMatch(/["']lodash["']/g);
         expect(code).not.toMatch(/["']lodash\/fp["']/g);
+
+        // valid output
+        expect(() =>
+          acorn.parse(code, {
+            ecmaVersion: "latest",
+            sourceType: outputFormat === "cjs" ? "script" : "module",
+          })
+        ).not.toThrow();
 
         // full snapshot
         expect(code).toMatchSnapshot();
@@ -68,13 +82,18 @@ describe("rollup", () => {
     );
 
     test("with plugin, ES output, & useLodashEs", async () => {
-      expect.assertions(4);
+      expect.assertions(5);
       const code = await wrapper(STANDARD_AND_FP, { useLodashEs: true }, "es");
 
       // ensure all imports became more specific
       expect(code).not.toMatch(/["']lodash["']/g);
       expect(code).not.toMatch(/["']lodash\/fp["']/g);
       expect(code).toMatch(/["']lodash-es["']/g);
+
+      // valid output
+      expect(() =>
+        acorn.parse(code, { ecmaVersion: "latest", sourceType: "module" })
+      ).not.toThrow();
 
       // full snapshot
       expect(code).toMatchSnapshot();

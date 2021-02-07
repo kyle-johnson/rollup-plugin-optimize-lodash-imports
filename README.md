@@ -1,10 +1,11 @@
 # Optimize `lodash` imports with Rollup.js
 
-![npm](https://img.shields.io/npm/v/rollup-plugin-optimize-lodash-imports)
+[![npm](https://img.shields.io/npm/v/rollup-plugin-optimize-lodash-imports)](https://www.npmjs.com/package/rollup-plugin-optimize-lodash-imports)
 ![node-current](https://img.shields.io/node/v/rollup-plugin-optimize-lodash-imports)
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/rollup-plugin-optimize-lodash-imports/peer/rollup)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/CI)
-![NPM](https://img.shields.io/npm/l/rollup-plugin-optimize-lodash-imports)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/CI)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
+![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/kyle-johnson/rollup-plugin-optimize-lodash-imports)
+[![license](https://img.shields.io/npm/l/rollup-plugin-optimize-lodash-imports)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/LICENSE)
 
 Like [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) but runs in [rollup.js](https://rollupjs.org/) without Babel. Also includes an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for cases where you're outputting CommonJS and ES builds and want your ES builds to transparently use lodash-es.
 
@@ -106,7 +107,7 @@ export function testX(x) {
 
 The above code will not be optimized, and Rollup will print a warning.
 
-To avoid this, always import the specific methods you need:
+To avoid this, always import the specific method(s) you need:
 
 ```javascript
 // this import will be optimized
@@ -119,8 +120,10 @@ export function testX(x) {
 
 ## Why?
 
-Mostly to support [Typescript with Rollup](https://www.npmjs.com/package/@rollup/plugin-typescript) when building reusable libraries. With `tsc` doing all the transpiling, it seemed a waste to add Babel to the mix just to use `babel-plugin-lodash`.
+There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash.
 
-Other alternatives include `eslint-plugin-lodash` with the [`import-scope` rule enabled](https://github.com/wix/eslint-plugin-lodash/blob/HEAD/docs/rules/import-scope.md).
+[`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash) solves the issue, but it requires Babel. Many projects use [@rollup/plugin-typescript](https://www.npmjs.com/package/@rollup/plugin-typescript) which offloads transpiling to `tsc`. It seems a waste to add Babel to the mix just to use `babel-plugin-lodash`.
 
-`lodah-es` support was inspired by [`tsdx`](https://github.com/formium/tsdx/blob/462af2d002987f985695b98400e0344b8f2754b7/README.md#using-lodash).
+Other alternatives include `eslint-plugin-lodash` with the [`import-scope` rule enabled](https://github.com/wix/eslint-plugin-lodash/blob/HEAD/docs/rules/import-scope.md). This works, but requires your time to fix all of those imports.
+
+The `lodash-es` support was inspired by [`tsdx`](https://github.com/formium/tsdx/blob/462af2d002987f985695b98400e0344b8f2754b7/README.md#using-lodash). It can be used to solve an issue where toolchains view `lodash-es` and `lodash` as separate packages, doubling up on the individual lodash methods shipped to browsers.
