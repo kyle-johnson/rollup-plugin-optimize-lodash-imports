@@ -1,26 +1,47 @@
 import * as acorn from "acorn";
-import type { SourceDescription, TransformPluginContext } from "rollup";
 
-import optimizeLodash, { OptimizeLodashOptions } from "../src";
+import { CodeWithSourcemap, transform, UNCHANGED } from "../src";
 
-const UNCHANGED = null;
-type UNCHANGED = null;
+const warnMock = jest.fn<void, [string]>();
+beforeEach(() => {
+  warnMock.mockReset();
+});
 
-describe("optimizeLodash", () => {
-  const warnMock = jest.fn<ReturnType<TransformPluginContext["warn"]>, any>();
-  const wrapper = (input: string, options?: OptimizeLodashOptions) =>
-    optimizeLodash(options).transform.call(
-      {
-        parse: (code) =>
-          acorn.parse(code, { sourceType: "module", ecmaVersion: 9 }),
-        warn: warnMock as TransformPluginContext["warn"],
-      } as TransformPluginContext,
-      input,
-      "irrelevant-input-identifier"
-    );
+// implementors must supply their own parse method
+const parse = (code: string) =>
+  acorn.parse(code, { sourceType: "module", ecmaVersion: "latest" });
 
-  beforeEach(() => {
-    warnMock.mockReset();
+// save us from repeatedly setting parse/warn/id
+const transformWrapper = (code: string, useLodashEs?: true) =>
+  transform({
+    code,
+    id: "id-only-matters-for-sourcemap",
+    parse,
+    warn: warnMock,
+    useLodashEs,
+  });
+
+test("when parse throws, transform throws", () => {
+  const parseMock = jest.fn(() => {
+    throw new Error("expected exception");
+  });
+  expect(() =>
+    transform({
+      code: "import { isNil } from 'lodash';",
+      warn: warnMock,
+      id: "random-code-id",
+      parse: parseMock,
+    })
+  ).toThrow();
+});
+
+describe("lodash transforms", () => {
+  test("code without lodash is not parsed", () => {
+    const parseMock = jest.fn();
+    expect(
+      transform({ code: "hello world", parse: parseMock, id: "my-id" })
+    ).toEqual(UNCHANGED);
+    expect(parseMock).not.toHaveBeenCalled();
   });
 
   test.each<[string, { cjs: string; es: string } | UNCHANGED]>([
@@ -86,16 +107,17 @@ describe("optimizeLodash", () => {
     [`import { extend } from "lodash-es/fp";`, UNCHANGED],
   ])("%s", (input, expectedOutput) => {
     const output = {
-      cjs: wrapper(input),
-      es: wrapper(input, { useLodashEs: true }),
+      cjs: transformWrapper(input),
+      es: transformWrapper(input, true),
     };
+
     if (expectedOutput === UNCHANGED) {
       expect(output.cjs).toBeNull();
       expect(output.es).toBeNull();
     } else {
       for (const key of ["cjs", "es"] as const) {
-        expect(output[key]).not.toBeNull();
-        const code = (output[key] as SourceDescription).code;
+        expect(output[key]).not.toEqual(UNCHANGED);
+        const { code, map } = output[key] as CodeWithSourcemap;
 
         // verify actual output matches our expectation
         expect(code).toEqual(expectedOutput[key]);
@@ -104,6 +126,9 @@ describe("optimizeLodash", () => {
         expect(() =>
           acorn.parse(code, { ecmaVersion: "latest", sourceType: "module" })
         ).not.toThrow();
+
+        // verify sourcemap exists
+        expect(map.toString().length).toBeGreaterThan(0);
       }
     }
   });
@@ -120,7 +145,7 @@ describe("optimizeLodash", () => {
       [`import { isNil } from "lodash-es";`, 0],
       [`import { every } from "lodash/fp";`, 0],
     ])("%s", (input, expectWarnings) => {
-      void wrapper(input);
+      void transformWrapper(input);
       expect(warnMock).toHaveBeenCalledTimes(expectWarnings);
     });
   });

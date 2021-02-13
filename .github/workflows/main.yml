@@ -1,74 +1,91 @@
 name: CI
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # allow manual runs
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     strategy:
       matrix:
-        node: ["10", "12", "14"]
+        node: [10]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-      - uses: bahmutov/npm-install@v1
+      - name: install pnpm
+        run: npm install -g pnpm@5.17.1
+      - name: Month and Year (for cache busting)
+        id: month-and-year
+        shell: bash
+        run: |
+          echo "::set-output name=date::$(/bin/date -u "+%Y%m")"
+      - uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-
+      - name: install deps
+        run: pnpm install --frozen-lockfile
       - name: build
-        run: yarn build
+        run: pnpm run -r build
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     strategy:
+      max-parallel: 4
       matrix:
-        node: ["10", "12", "14"]
+        package: ["rollup-plugin", "transform"]
+        command: ["type-check", "lint", "test", "format:check", "depcheck"]
+        node: [ 10 ]
+        include:
+          - package: "rollup-plugin"
+            command: test
+            node: 12
+          - package: "rollup-plugin"
+            command: test
+            node: 14
+          - package: "transform"
+            command: test
+            node: 12
+          - package: "transform"
+            command: test
+            node: 14
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-      - uses: bahmutov/npm-install@v1
-      - name: test
-        run: yarn test
-  type-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: install pnpm
+        run: npm install -g pnpm@5.17.1
+      - name: Month and Year (for cache busting)
+        id: month-and-year
+        shell: bash
+        run: |
+          echo "::set-output name=date::$(/bin/date -u "+%Y%m")"
+      - uses: actions/cache@v2
         with:
-          node-version: "10.x"
-      - uses: bahmutov/npm-install@v1
-      - name: type-check
-        run: yarn type-check
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "10.x"
-      - uses: bahmutov/npm-install@v1
-      - name: lint
-        run: yarn lint
-  prettier:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "10.x"
-      - uses: bahmutov/npm-install@v1
-      - name: prettier
-        run: yarn format:check
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-10-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-10-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-
+      - name: install deps
+        run: pnpm install --frozen-lockfile --filter {./packages/${{ matrix.package }}}...
+      - name: build deps
+        run: pnpm run build --filter {./packages/${{ matrix.package }}}^...
+      - name: ${{ matrix.command }}
+        run: pnpm run ${{ matrix.command }} --filter {./packages/${{ matrix.package }}}
   release:
     if: github.ref == 'refs/heads/main'
-    needs: ["prettier", "lint", "type-check", "build", "test"]
+    needs: ["test", "build"]
     name: Release
     runs-on: ubuntu-latest
     steps:
@@ -78,11 +95,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 10
-      - uses: bahmutov/npm-install@v1
-      - name: Build
-        run: yarn build
+      - name: install pnpm
+        run: npm install -g pnpm@5.17.1
+      - name: install deps
+        run: pnpm install --frozen-lockfile
+      - name: build
+        run: pnpm run -r build
       - name: Release
-        run: npx semantic-release@17.3
+        run: pnpm -r exec -- pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 semantic-release --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

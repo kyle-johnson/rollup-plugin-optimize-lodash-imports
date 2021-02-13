@@ -7,7 +7,9 @@
 ![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/kyle-johnson/rollup-plugin-optimize-lodash-imports)
 [![license](https://img.shields.io/npm/l/rollup-plugin-optimize-lodash-imports)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/LICENSE)
 
-Like [babel-plugin-lodash](https://github.com/lodash/babel-plugin-lodash) but runs in [rollup.js](https://rollupjs.org/) without Babel. Also includes an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for cases where you're outputting CommonJS and ES builds and want your ES builds to transparently use lodash-es.
+There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash. Minifiers, even with dead-code elimination, cannot currently solve this problem. Check out the test showing that even with terser as a minifier, [this plugin can still reduce bundle size by 70%](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/bundle-size.test.ts) for [an example input](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/fixtures/standard-and-fp.js). With this plugin, bundled code output will _only_ include the specific lodash methods your code requires.
+
+There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship CommonJS and ES builds: the ES build will be transformed to import from `lodash-es`.
 
 ### This input
 
@@ -26,23 +28,23 @@ import padStartFp from "lodash/fp/padStart";
 
 ## `useLodashEs` for ES Module Output
 
-`lodash-es` is not usable from CommonJS modules, but sometimes you'll use Rollup for a project with two outputs: one for ES and one for CommonJS. In this case, you can offer your users the best of both worlds:
+While `lodash-es` is not usable from CommonJS modules, some projects use Rollup to create two outputs: one for ES and one for CommonJS.
 
-### Your source
+In this case, you can offer your users the best of both:
+
+### Your source input
 
 ```javascript
 import { isNil } from "lodash";
 ```
 
-### Your Rollup Outputs
-
-#### CommonJS
+#### CommonJS output
 
 ```javascript
 import isNil from "lodash/isNil";
 ```
 
-#### ES (with `useLodashEs: true`)
+#### ES output (with `useLodashEs: true`)
 
 ```javascript
 import { isNil } from "lodash-es";
@@ -118,12 +120,8 @@ export function testX(x) {
 }
 ```
 
-## Why?
+## Alternatives
 
-There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash.
+[`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash) solves the issue for CommonJS outputs and modifies default imports as well. However, it doesn't enable transparent `lodash-es` use and may not make sense for projects using [@rollup/plugin-typescript](https://www.npmjs.com/package/@rollup/plugin-typescript) which don't wish to add a Babel step.
 
-[`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash) solves the issue, but it requires Babel. Many projects use [@rollup/plugin-typescript](https://www.npmjs.com/package/@rollup/plugin-typescript) which offloads transpiling to `tsc`. It seems a waste to add Babel to the mix just to use `babel-plugin-lodash`.
-
-Other alternatives include `eslint-plugin-lodash` with the [`import-scope` rule enabled](https://github.com/wix/eslint-plugin-lodash/blob/HEAD/docs/rules/import-scope.md). This works, but requires your time to fix all of those imports.
-
-The `lodash-es` support was inspired by [`tsdx`](https://github.com/formium/tsdx/blob/462af2d002987f985695b98400e0344b8f2754b7/README.md#using-lodash). It can be used to solve an issue where toolchains view `lodash-es` and `lodash` as separate packages, doubling up on the individual lodash methods shipped to browsers.
+Other alternatives include `eslint-plugin-lodash` with the [`import-scope` rule enabled](https://github.com/wix/eslint-plugin-lodash/blob/HEAD/docs/rules/import-scope.md). This works for CommonJS outputs, but may require manual effort to stay on top of imports.
