@@ -102,7 +102,7 @@ jobs:
       - name: build
         run: pnpm run -r build
       - name: Release
-        run: pnpm -r exec -- pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 semantic-release --dry-run
+        run: pnpm -r exec -- pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
