@@ -25,6 +25,9 @@
   "engines": {
     "node": ">= 10"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
