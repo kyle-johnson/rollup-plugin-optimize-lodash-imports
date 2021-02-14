@@ -1,10 +1,14 @@
 {
   "name": "rollup-plugin-optimize-lodash-imports",
   "version": "0.1.0",
-  "description": "Rewrites lodash imports to be specific for easier tree-shaking.",
+  "description": "Rewrite lodash imports with Rollup for improved tree-shaking.",
   "keywords": [
     "lodash",
-    "rollup"
+    "rollup",
+    "rollup-plugin",
+    "optimize",
+    "minify",
+    "tree-shake"
   ],
   "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports",
   "repository": {
@@ -14,35 +18,36 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "author": "Kyle Johnson",
   "license": "MIT",
   "engines": {
-    "node": ">= 10",
-    "yarn": "1.x"
+    "node": ">= 10"
   },
   "scripts": {
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "test": "jest",
-    "dedupe": "yarn-deduplicate yarn.lock",
     "build": "rm -rf dist && tsc -p tsconfig.dist.json",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "depcheck": "depcheck"
   },
   "jest": {
     "testEnvironment": "node",
     "preset": "ts-jest",
     "globals": {
       "ts-jest": {}
-    }
+    },
+    "testTimeout": 10000
   },
   "peerDependencies": {
     "rollup": "2.x"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "17.1.0",
+    "@rollup/plugin-node-resolve": "11.1.1",
     "@tsconfig/node10": "1.0.7",
     "@types/estree": "0.0.46",
     "@types/jest": "26.0.20",
@@ -50,7 +55,7 @@
     "@types/node": "10.17.51",
     "@typescript-eslint/eslint-plugin": "4.15.0",
     "@typescript-eslint/parser": "4.15.0",
-    "acorn": "8.0.5",
+    "depcheck": "^1.3.1",
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-jest": "24.1.3",
@@ -59,13 +64,12 @@
     "lodash": "4.17.20",
     "prettier": "2.2.1",
     "rollup": "2.39.0",
+    "rollup-plugin-terser": "7.0.2",
     "ts-jest": "26.5.1",
-    "typescript": "4.1.5",
-    "yarn-deduplicate": "3.1.0"
+    "typescript": "4.1.5"
   },
   "dependencies": {
-    "@rollup/pluginutils": "4.x",
-    "estree-walker": "2.x",
-    "magic-string": "0.25.x"
+    "@optimize-lodash/transformer": "workspace:*",
+    "@rollup/pluginutils": "4.x"
   }
 }

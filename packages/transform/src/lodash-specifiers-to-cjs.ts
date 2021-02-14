@@ -1,11 +1,11 @@
 import type { ImportSpecifier } from "estree";
 
 /**
- * Turns a generic lodash import into a specific import using the CJS
+ * Turns a generic lodash import into a specific import using the CommonJS
  * lodash package.
  *
  * @param base "lodash" or "lodash/fp"
- * @param specifiers from an AST, assumes they are all ImportSpecifiers
+ * @param specifiers from an AST; assumes they are all ImportSpecifiers
  */
 export function lodashSpecifiersToCjs(
   base: string,
