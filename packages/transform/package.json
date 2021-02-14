@@ -6,7 +6,7 @@
     "lodash",
     "optimize"
   ],
-  "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports",
+  "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/transform",
   "repository": {
     "type": "git",
     "url": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports.git"

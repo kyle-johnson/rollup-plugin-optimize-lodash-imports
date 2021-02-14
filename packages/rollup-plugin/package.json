@@ -10,7 +10,7 @@
     "minify",
     "tree-shake"
   ],
-  "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports",
+  "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/rollup-plugin",
   "repository": {
     "type": "git",
     "url": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports.git"
