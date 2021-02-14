@@ -4,7 +4,12 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    "@semantic-release/npm",
+    ["@semantic-release/exec",{
+      "shell": "bash",
+      "verifyRelease": "[[ ! -v \"${NPM_TOKEN}\" ]] && [[ ! -z \"${NPM_TOKEN}\" ]] && pnpm whoami",
+      "prepareCmd": "pnpm version --no-tag-version ${nextRelease.version} && pnpm pack",
+      "publishCmd": "pnpm publish --no-git-checks"
+    }],
     "@semantic-release/github"
   ]
 }
