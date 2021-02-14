@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-optimize-lodash-imports",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Rewrite lodash imports with Rollup for improved tree-shaking.",
   "keywords": [
     "lodash",
