@@ -6,7 +6,7 @@
     "@semantic-release/release-notes-generator",
     ["@semantic-release/exec",{
       "shell": "bash",
-      "prepareCmd": "pnpm version --no-tag-version ${nextRelease.version} && pnpm pack",
+      "prepareCmd": "pnpm version --no-tag-version --allow-same-version ${nextRelease.version} && pnpm pack",
       "publishCmd": "pnpm publish --no-git-checks"
     }],
     "@semantic-release/github"
