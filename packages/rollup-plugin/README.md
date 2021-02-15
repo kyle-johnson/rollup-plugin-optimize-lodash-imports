@@ -1,11 +1,11 @@
 # Optimize `lodash` imports with Rollup.js
 
-[![npm](https://img.shields.io/npm/v/rollup-plugin-optimize-lodash-imports)](https://www.npmjs.com/package/rollup-plugin-optimize-lodash-imports)
-![node-current](https://img.shields.io/node/v/rollup-plugin-optimize-lodash-imports)
-![npm peer dependency version](https://img.shields.io/npm/dependency-version/rollup-plugin-optimize-lodash-imports/peer/rollup)
+[![npm](https://img.shields.io/npm/v/@optimize-lodash/rollup-plugin)](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin)
+![node-current](https://img.shields.io/node/v/@optimize-lodash/rollup-plugin)
+![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/rollup-plugin/peer/rollup)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/CI)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
 ![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/kyle-johnson/rollup-plugin-optimize-lodash-imports)
-[![license](https://img.shields.io/npm/l/rollup-plugin-optimize-lodash-imports)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/@optimize-lodash/rollup-plugin)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/LICENSE)
 
 There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash. Minifiers, even with dead-code elimination, cannot currently solve this problem. Check out the test showing that even with terser as a minifier, [this plugin can still reduce bundle size by 70%](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/bundle-size.test.ts) for [an example input](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/fixtures/standard-and-fp.js). With this plugin, bundled code output will _only_ include the specific lodash methods your code requires.
 
@@ -53,7 +53,7 @@ import { isNil } from "lodash-es";
 ## Usage
 
 ```javascript
-import optimizeLodashImports from "rollup-plugin-optimize-lodash-imports";
+import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
 
 export default {
   input: "src/index.js",

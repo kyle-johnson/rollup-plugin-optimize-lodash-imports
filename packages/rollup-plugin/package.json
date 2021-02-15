@@ -1,14 +1,13 @@
 {
-  "name": "rollup-plugin-optimize-lodash-imports",
-  "version": "0.1.0",
+  "name": "@optimize-lodash/rollup-plugin",
+  "version": "1.0.0",
   "description": "Rewrite lodash imports with Rollup for improved tree-shaking.",
   "keywords": [
     "lodash",
     "rollup",
     "rollup-plugin",
     "optimize",
-    "minify",
-    "tree-shake"
+    "minify"
   ],
   "homepage": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/rollup-plugin",
   "repository": {
@@ -72,7 +71,7 @@
     "typescript": "4.1.5"
   },
   "dependencies": {
-    "@optimize-lodash/transformer": "workspace:*",
+    "@optimize-lodash/transform": "workspace:1.x",
     "@rollup/pluginutils": "4.x"
   }
 }

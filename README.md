@@ -8,13 +8,14 @@ Plugins can reduce final bundle sizes with minimal or no manual code changes. Se
 
 # Packages:
 
-### [rollup-plugin-optimize-lodash-imports](https://www.npmjs.com/package/rollup-plugin-optimize-lodash-imports)
-[![npm](https://img.shields.io/npm/v/rollup-plugin-optimize-lodash-imports)](https://www.npmjs.com/package/rollup-plugin-optimize-lodash-imports)
-![node-current](https://img.shields.io/node/v/rollup-plugin-optimize-lodash-imports)
-![npm peer dependency version](https://img.shields.io/npm/dependency-version/rollup-plugin-optimize-lodash-imports/peer/rollup)
+## [@optimize-lodash/rollup-plugin](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin)
+[![npm](https://img.shields.io/npm/v/@optimize-lodash/rollup-plugin)](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin)
+![node-current](https://img.shields.io/node/v/@optimize-lodash/rollup-plugin)
+![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/rollup-plugin/peer/rollup)
 
-A fast, lightweight plugin for Rollup bundling. Uses [@optimize-lodash/transformer](https://www.npmjs.com/package/@optimize-lodash/transformer).
+A fast, lightweight plugin for Rollup bundling.
 
-### [@optimize-lodash/transformer](https://www.npmjs.com/package/@optimize-lodash/transformer)
+## [@optimize-lodash/transform](https://www.npmjs.com/package/@optimize-lodash/transform)
+[![npm](https://img.shields.io/npm/v/@optimize-lodash/transform)](https://www.npmjs.com/package/@optimize-lodash/transform)
 
-Code transforms for lodash imports. Reusable in other packages for a shared core.
+Code transforms for lodash imports. Used by bundler plugins for a consistent, well-tested, shared set of transforms.

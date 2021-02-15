@@ -1,6 +1,6 @@
 import type { Plugin } from "rollup";
 import { createFilter, FilterPattern } from "@rollup/pluginutils";
-import { transform as lodashTransform } from "@optimize-lodash/transformer";
+import { transform as lodashTransform } from "@optimize-lodash/transform";
 
 export type OptimizeLodashOptions = {
   /**
