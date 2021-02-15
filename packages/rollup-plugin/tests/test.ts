@@ -1,9 +1,9 @@
 import type { TransformPluginContext } from "rollup";
-import { ParseFunction, transform } from "@optimize-lodash/transformer";
+import { ParseFunction, transform } from "@optimize-lodash/transform";
 
 import { optimizeLodashImports, OptimizeLodashOptions } from "../src";
 
-jest.mock("@optimize-lodash/transformer");
+jest.mock("@optimize-lodash/transform");
 const sourceTransformerMock = transform as jest.Mock<
   ReturnType<typeof transform>,
   Parameters<typeof transform>
@@ -12,7 +12,6 @@ const sourceTransformerMock = transform as jest.Mock<
 const UNCHANGED = null;
 type UNCHANGED = null;
 
-// these tests are a bit repetitive with source-transformer tests
 describe("optimizeLodashImports", () => {
   const warnMock = jest.fn<
     ReturnType<TransformPluginContext["warn"]>,

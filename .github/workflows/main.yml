@@ -105,7 +105,8 @@ jobs:
         run: printf "//registry.npmjs.org/:_authToken=%s" "$NPM_TOKEN" > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # release order matters for resolving proper versions (semantic-release is likely to have issues with the multiple packages)
+      # release order matters for resolving proper versions
+      # (semantic-release is likely to have issues with the multiple packages; consider using changesets)
       - name: Release transform
         run: |
           cd packages/transform
