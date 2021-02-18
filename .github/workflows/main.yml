@@ -15,6 +15,7 @@ jobs:
     strategy:
       matrix:
         node: [10]
+        package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -34,16 +35,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-
       - name: install deps
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --filter {./packages/${{ matrix.package }}}...
       - name: build
-        run: pnpm run -r build
+        run: pnpm run build --filter {./packages/${{ matrix.package }}}...
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     strategy:
       max-parallel: 4
       matrix:
-        package: ["rollup-plugin", "transform"]
+        package: ["rollup-plugin", "transform", "esbuild-plugin"]
         command: ["type-check", "lint", "test", "format:check", "depcheck"]
         node: [ 10 ]
         include:
