@@ -10,7 +10,7 @@ importers:
       '@rollup/pluginutils': 4.x
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.20
+      '@types/jest': 26.0.23
       '@types/lodash': 4.14.170
       '@types/node': 10.17.51
       '@typescript-eslint/eslint-plugin': 4.15.0
@@ -35,7 +35,7 @@ importers:
       '@rollup/plugin-node-resolve': 11.1.1_rollup@2.39.0
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.20
+      '@types/jest': 26.0.23
       '@types/lodash': 4.14.170
       '@types/node': 10.17.51
       '@typescript-eslint/eslint-plugin': 4.15.0_1e790e83c007786aa4055203e9656318
@@ -57,7 +57,7 @@ importers:
     specifiers:
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.20
+      '@types/jest': 26.0.23
       '@types/lodash': 4.14.170
       '@types/node': 10.17.51
       '@typescript-eslint/eslint-plugin': 4.15.0
@@ -80,7 +80,7 @@ importers:
     devDependencies:
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.20
+      '@types/jest': 26.0.23
       '@types/lodash': 4.14.170
       '@types/node': 10.17.51
       '@typescript-eslint/eslint-plugin': 4.15.0_1e790e83c007786aa4055203e9656318
@@ -787,6 +787,13 @@ packages:
 
   /@types/jest/26.0.20:
     resolution: {integrity: sha512-9zi2Y+5USJRxd0FsahERhBwlcvFh6D2GLQnY2FH2BzK8J9s9omvNHIbvABwIluXa0fD8XVKMLTO0aOEuUfACAA==}
+    dependencies:
+      jest-diff: 26.6.2
+      pretty-format: 26.6.2
+    dev: true
+
+  /@types/jest/26.0.23:
+    resolution: {integrity: sha512-ZHLmWMJ9jJ9PTiT58juykZpL7KjwJywFN3Rr2pTSkyQfydf/rk22yS7W8p5DaVUMQ2BQC7oYiU3FjbTM/mYrOA==}
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
