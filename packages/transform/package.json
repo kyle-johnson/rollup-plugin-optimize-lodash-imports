@@ -41,7 +41,7 @@
     }
   },
   "devDependencies": {
-    "@tsconfig/node10": "1.0.7",
+    "@tsconfig/node10": "1.0.8",
     "@types/estree": "0.0.46",
     "@types/jest": "26.0.20",
     "@types/lodash": "4.14.168",
