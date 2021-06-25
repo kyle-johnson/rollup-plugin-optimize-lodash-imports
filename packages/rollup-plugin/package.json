@@ -50,7 +50,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "17.1.0",
     "@rollup/plugin-node-resolve": "11.1.1",
-    "@tsconfig/node10": "1.0.7",
+    "@tsconfig/node10": "1.0.8",
     "@types/estree": "0.0.46",
     "@types/jest": "26.0.20",
     "@types/lodash": "4.14.168",

@@ -8,7 +8,7 @@ importers:
       '@rollup/plugin-commonjs': 17.1.0
       '@rollup/plugin-node-resolve': 11.1.1
       '@rollup/pluginutils': 4.x
-      '@tsconfig/node10': 1.0.7
+      '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.46
       '@types/jest': 26.0.20
       '@types/lodash': 4.14.168
@@ -33,7 +33,7 @@ importers:
     devDependencies:
       '@rollup/plugin-commonjs': 17.1.0_rollup@2.39.0
       '@rollup/plugin-node-resolve': 11.1.1_rollup@2.39.0
-      '@tsconfig/node10': 1.0.7
+      '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.46
       '@types/jest': 26.0.20
       '@types/lodash': 4.14.168
@@ -55,7 +55,7 @@ importers:
 
   packages/transform:
     specifiers:
-      '@tsconfig/node10': 1.0.7
+      '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.46
       '@types/jest': 26.0.20
       '@types/lodash': 4.14.168
@@ -78,7 +78,7 @@ importers:
       estree-walker: 2.0.2
       magic-string: 0.25.7
     devDependencies:
-      '@tsconfig/node10': 1.0.7
+      '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.46
       '@types/jest': 26.0.20
       '@types/lodash': 4.14.168
@@ -718,8 +718,8 @@ packages:
       '@sinonjs/commons': 1.8.2
     dev: true
 
-  /@tsconfig/node10/1.0.7:
-    resolution: {integrity: sha512-aBvUmXLQbayM4w3A8TrjwrXs4DZ8iduJnuJLLRGdkWlyakCf1q6uHZJBzXoRA/huAEknG5tcUyQxN3A+In5euQ==}
+  /@tsconfig/node10/1.0.8:
+    resolution: {integrity: sha512-6XFfSQmMgq0CFLY1MslA/CPUfhIL919M1rMsa5lP2P097N2Wd1sSX0tx1u4olM16fLNhtHZpRhedZJphNJqmZg==}
     dev: true
 
   /@types/babel__core/7.1.12:
