@@ -45,7 +45,7 @@
     "@types/estree": "0.0.48",
     "@types/jest": "26.0.23",
     "@types/lodash": "4.14.170",
-    "@types/node": "10.17.51",
+    "@types/node": "10.17.60",
     "@typescript-eslint/eslint-plugin": "4.15.0",
     "@typescript-eslint/parser": "4.15.0",
     "acorn": "8.0.5",
