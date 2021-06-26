@@ -15,7 +15,7 @@ importers:
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 4.28.0
       '@typescript-eslint/parser': 4.28.0
-      depcheck: 1.4.1
+      depcheck: 1.4.2
       eslint: 7.29.0
       eslint-config-prettier: 7.2.0
       eslint-plugin-jest: 24.1.10
@@ -40,7 +40,7 @@ importers:
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 4.28.0_31be823a7a58fdb98c4aa8c3e580110b
       '@typescript-eslint/parser': 4.28.0_eslint@7.29.0+typescript@4.1.6
-      depcheck: 1.4.1
+      depcheck: 1.4.2
       eslint: 7.29.0
       eslint-config-prettier: 7.2.0_eslint@7.29.0
       eslint-plugin-jest: 24.1.10_eslint@7.29.0+typescript@4.1.6
@@ -63,7 +63,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.28.0
       '@typescript-eslint/parser': 4.28.0
       acorn: 8.0.5
-      depcheck: 1.4.1
+      depcheck: 1.4.2
       eslint: 7.29.0
       eslint-config-prettier: 7.2.0
       eslint-plugin-jest: 24.1.10
@@ -86,7 +86,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 4.28.0_31be823a7a58fdb98c4aa8c3e580110b
       '@typescript-eslint/parser': 4.28.0_eslint@7.29.0+typescript@4.1.6
       acorn: 8.0.5
-      depcheck: 1.4.1
+      depcheck: 1.4.2
       eslint: 7.29.0
       eslint-config-prettier: 7.2.0_eslint@7.29.0
       eslint-plugin-jest: 24.1.10_eslint@7.29.0+typescript@4.1.6
@@ -378,11 +378,11 @@ packages:
       '@babel/generator': 7.12.15
       '@babel/helper-function-name': 7.12.13
       '@babel/helper-split-export-declaration': 7.12.13
-      '@babel/parser': 7.12.16
-      '@babel/types': 7.12.13
+      '@babel/parser': 7.14.7
+      '@babel/types': 7.14.5
       debug: 4.3.1
       globals: 11.12.0
-      lodash: 4.17.20
+      lodash: 4.17.21
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1498,7 +1498,7 @@ packages:
     dependencies:
       anymatch: 3.1.1
       braces: 3.0.2
-      glob-parent: 5.1.1
+      glob-parent: 5.1.2
       is-binary-path: 2.1.0
       is-glob: 4.0.1
       normalize-path: 3.0.0
@@ -1771,12 +1771,12 @@ packages:
     engines: {node: '>=0.4.0'}
     dev: true
 
-  /depcheck/1.4.1:
-    resolution: {integrity: sha512-ecX8zIXE9TlVu14ebnZTwgIeP/t/Rq2WpowjWbMuqG6ayozVVf9zKW4EBEQ/HsS1dxhY+J9+UiRetu2UMxG9ww==}
+  /depcheck/1.4.2:
+    resolution: {integrity: sha512-oYaBLRbF5NMkYxc5rltnqtuPAn25Lx5xPBIJXy5oUVBgrEDDtotCoYUfFH8lvcmSWzgk1Ts9H+f4Rk0oWL51LQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      '@babel/parser': 7.12.16
+      '@babel/parser': 7.14.7
       '@babel/traverse': 7.12.13
       '@vue/compiler-sfc': 3.1.2
       camelcase: 6.2.0
@@ -1784,9 +1784,10 @@ packages:
       debug: 4.3.1
       deps-regex: 0.1.4
       ignore: 5.1.8
+      is-core-module: 2.4.0
       js-yaml: 3.14.1
       json5: 2.2.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       minimatch: 3.0.4
       multimatch: 5.0.0
       please-upgrade-node: 3.2.0
@@ -1796,7 +1797,7 @@ packages:
       resolve: 1.20.0
       sass: 1.32.7
       scss-parser: 1.0.4
-      semver: 7.3.4
+      semver: 7.3.5
       yargs: 16.2.0
     transitivePeerDependencies:
       - supports-color
@@ -2375,13 +2376,6 @@ packages:
       assert-plus: 1.0.0
     dev: true
 
-  /glob-parent/5.1.1:
-    resolution: {integrity: sha512-FnI+VGOpnlGHWZxthPGR+QhR78fuiK0sNLkHQv+bL9fQi57lNNdquIbna/WrfROrolq8GK5Ek6BiMwqL/voRYQ==}
-    engines: {node: '>= 6'}
-    dependencies:
-      is-glob: 4.0.1
-    dev: true
-
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -2663,6 +2657,12 @@ packages:
 
   /is-core-module/2.2.0:
     resolution: {integrity: sha512-XRAfAdyyY5F5cOXn7hYQDqh2Xmii+DEfIcQGxK/uNwMHhIkPWO0g8msXcbzLe+MpGoR951MlqM/2iIlU4vKDdQ==}
+    dependencies:
+      has: 1.0.3
+    dev: true
+
+  /is-core-module/2.4.0:
+    resolution: {integrity: sha512-6A2fkfq1rfeQZjxrZJGerpLCTHRNEBiSgnu0+obeJpEPZRUooHgsizvzv0ZjJwOz3iWIHdJtVWJ/tmPr3D21/A==}
     dependencies:
       has: 1.0.3
     dev: true
@@ -4084,7 +4084,7 @@ packages:
     resolution: {integrity: sha512-k7z4jilpZCujhiJ+QeKSwYXHc9HxqiVKlVE7/em0zBfPpcqnXKUP8F7ld7XaAkO6oXeAD7yonqcNJWqOF2pSGA==}
     dependencies:
       invariant: 2.2.2
-      lodash: 4.17.20
+      lodash: 4.17.21
     dev: true
 
   /queue-microtask/1.2.2:
@@ -4368,7 +4368,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       invariant: 2.2.4
-      lodash: 4.17.20
+      lodash: 4.17.21
     dev: true
 
   /semver-compare/1.0.0:
