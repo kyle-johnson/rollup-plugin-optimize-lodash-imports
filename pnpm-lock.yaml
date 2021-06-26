@@ -5,7 +5,7 @@ importers:
   packages/rollup-plugin:
     specifiers:
       '@optimize-lodash/transform': workspace:1.x
-      '@rollup/plugin-commonjs': 17.1.0
+      '@rollup/plugin-commonjs': 19.0.0
       '@rollup/plugin-node-resolve': 11.1.1
       '@rollup/pluginutils': 4.x
       '@tsconfig/node10': 1.0.8
@@ -31,7 +31,7 @@ importers:
       '@optimize-lodash/transform': link:../transform
       '@rollup/pluginutils': 4.1.0_rollup@2.39.1
     devDependencies:
-      '@rollup/plugin-commonjs': 17.1.0_rollup@2.39.1
+      '@rollup/plugin-commonjs': 19.0.0_rollup@2.39.1
       '@rollup/plugin-node-resolve': 11.1.1_rollup@2.39.1
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
@@ -652,11 +652,11 @@ packages:
       fastq: 1.10.1
     dev: true
 
-  /@rollup/plugin-commonjs/17.1.0_rollup@2.39.1:
-    resolution: {integrity: sha512-PoMdXCw0ZyvjpCMT5aV4nkL0QywxP29sODQsSGeDpr/oI49Qq9tRtAsb/LbYbDzFlOydVEqHmmZWFtXJEAX9ew==}
+  /@rollup/plugin-commonjs/19.0.0_rollup@2.39.1:
+    resolution: {integrity: sha512-adTpD6ATGbehdaQoZQ6ipDFhdjqsTgpOAhFiPwl+dzre4pPshsecptDPyEFb61JMJ1+mGljktaC4jI8ARMSNyw==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
-      rollup: ^2.30.0
+      rollup: ^2.38.3
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.39.1
       commondir: 1.0.1
@@ -753,10 +753,6 @@ packages:
 
   /@types/estree/0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
-    dev: true
-
-  /@types/estree/0.0.46:
-    resolution: {integrity: sha512-laIjwTQaD+5DukBZaygQ79K1Z0jb1bPEMRrkXSLjtCcZm+abyp5YbrqpSLzD42FwWW6gK/aS4NYpJ804nG2brg==}
     dev: true
 
   /@types/estree/0.0.48:
@@ -2677,7 +2673,7 @@ packages:
   /is-reference/1.2.1:
     resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
     dependencies:
-      '@types/estree': 0.0.46
+      '@types/estree': 0.0.48
     dev: true
 
   /is-stream/1.1.0:
