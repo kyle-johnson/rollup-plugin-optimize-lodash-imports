@@ -48,7 +48,7 @@
     "@types/node": "10.17.60",
     "@typescript-eslint/eslint-plugin": "4.28.1",
     "@typescript-eslint/parser": "4.28.1",
-    "acorn": "8.0.5",
+    "acorn": "8.4.1",
     "depcheck": "1.4.2",
     "eslint": "7.30.0",
     "eslint-config-prettier": "7.2.0",
