@@ -61,7 +61,7 @@
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "24.3.6",
-    "eslint-plugin-unicorn": "28.0.2",
+    "eslint-plugin-unicorn": "34.0.1",
     "jest": "27.0.6",
     "lodash": "4.17.21",
     "prettier": "2.2.1",
