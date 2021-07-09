@@ -60,7 +60,7 @@
     "depcheck": "1.4.2",
     "eslint": "7.30.0",
     "eslint-config-prettier": "7.2.0",
-    "eslint-plugin-jest": "24.1.10",
+    "eslint-plugin-jest": "24.3.6",
     "eslint-plugin-unicorn": "28.0.2",
     "jest": "27.0.6",
     "lodash": "4.17.21",
