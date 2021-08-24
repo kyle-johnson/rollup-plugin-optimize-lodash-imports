@@ -19,7 +19,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 24.3.7
-      eslint-plugin-unicorn: 28.0.2
+      eslint-plugin-unicorn: 35.0.0
       jest: 27.0.6
       lodash: 4.17.21
       prettier: 2.2.1
@@ -44,7 +44,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
       eslint-plugin-jest: 24.3.7_492ad8381fcd9284dc898499f9a21602
-      eslint-plugin-unicorn: 28.0.2_eslint@7.32.0
+      eslint-plugin-unicorn: 35.0.0_eslint@7.32.0
       jest: 27.0.6
       lodash: 4.17.21
       prettier: 2.2.1
@@ -67,7 +67,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 24.3.7
-      eslint-plugin-unicorn: 28.0.2
+      eslint-plugin-unicorn: 35.0.0
       estree-walker: 2.x
       jest: 27.0.6
       magic-string: 0.25.x
@@ -90,7 +90,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
       eslint-plugin-jest: 24.3.7_492ad8381fcd9284dc898499f9a21602
-      eslint-plugin-unicorn: 28.0.2_eslint@7.32.0
+      eslint-plugin-unicorn: 35.0.0_eslint@7.32.0
       jest: 27.0.6
       prettier: 2.2.1
       ts-jest: 27.0.5_0a68721aa8f87d72d3205fb2db279ce6
@@ -220,7 +220,7 @@ packages:
       '@babel/helper-replace-supers': 7.14.5
       '@babel/helper-simple-access': 7.14.5
       '@babel/helper-split-export-declaration': 7.14.5
-      '@babel/helper-validator-identifier': 7.14.5
+      '@babel/helper-validator-identifier': 7.14.9
       '@babel/template': 7.14.5
       '@babel/traverse': 7.14.7
       '@babel/types': 7.14.5
@@ -266,8 +266,8 @@ packages:
       '@babel/types': 7.14.5
     dev: true
 
-  /@babel/helper-validator-identifier/7.14.5:
-    resolution: {integrity: sha512-5lsetuxCLilmVGyiLEfoHBRX8UCFD+1m2x3Rj97WrW3V7H3u4RWRXA4evMjImCsin2J2YT0QaVDGf+z8ondbAg==}
+  /@babel/helper-validator-identifier/7.14.9:
+    resolution: {integrity: sha512-pQYxPY0UP6IHISRitNe8bsijHex4TWZXi2HwKVsjPiltzlhse2znVcm9Ace510VT1kxIHjGJCZZQBX2gJDbo0g==}
     engines: {node: '>=6.9.0'}
     dev: true
 
@@ -291,7 +291,7 @@ packages:
     resolution: {integrity: sha512-qf9u2WFWVV0MppaL877j2dBtQIDgmidgjGk5VIMw3OadXvYaXn66U1BFlH2t4+t3i+8PhedppRv+i40ABzd+gg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.14.5
+      '@babel/helper-validator-identifier': 7.14.9
       chalk: 2.4.2
       js-tokens: 4.0.0
     dev: true
@@ -451,7 +451,7 @@ packages:
     resolution: {integrity: sha512-M/NzBpEL95I5Hh4dwhin5JlE7EzO5PHMAuzjxss3tiOBD46KfQvVedN/3jEPZvdRvtsK2222XfdHogNIttFgcg==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.14.5
+      '@babel/helper-validator-identifier': 7.14.9
       to-fast-properties: 2.0.0
     dev: true
 
@@ -1477,10 +1477,6 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /ci-info/2.0.0:
-    resolution: {integrity: sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==}
-    dev: true
-
   /ci-info/3.2.0:
     resolution: {integrity: sha512-dVqRX7fLUm8J6FgHJ418XuIgDLZDkYcDFTeL6TA2gt5WlIZUQrrH6EZrNClwT/H0FateUsZkGIOPRrLbP+PR9A==}
     dev: true
@@ -1818,24 +1814,23 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-unicorn/28.0.2_eslint@7.32.0:
-    resolution: {integrity: sha512-k4AoFP7n8/oq6lBXkdc9Flid6vw2B8j7aXFCxgzJCyKvmaKrCUFb1TFPhG9eSJQFZowqmymMPRtl8oo9NKLUbw==}
-    engines: {node: '>=10'}
+  /eslint-plugin-unicorn/35.0.0_eslint@7.32.0:
+    resolution: {integrity: sha512-FHsaO68tDPQILfs/mGF8eSISJp8RswR4FpUuBDnueK2wyEHC6zmsc9WxjYyldXoIsBuVmru6jQyFCbCWPoW/KQ==}
+    engines: {node: '>=12'}
     peerDependencies:
-      eslint: '>=7.17.0'
+      eslint: '>=7.28.0'
     dependencies:
-      ci-info: 2.0.0
+      '@babel/helper-validator-identifier': 7.14.9
+      ci-info: 3.2.0
       clean-regexp: 1.0.0
       eslint: 7.32.0
       eslint-template-visitor: 2.3.2_eslint@7.32.0
-      eslint-utils: 2.1.0
-      eslint-visitor-keys: 2.1.0
-      import-modules: 2.1.0
+      eslint-utils: 3.0.0_eslint@7.32.0
+      is-builtin-module: 3.1.0
       lodash: 4.17.21
       pluralize: 8.0.0
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.23
-      reserved-words: 0.1.2
       safe-regex: 2.1.1
       semver: 7.3.5
     transitivePeerDependencies:
@@ -2302,11 +2297,6 @@ packages:
       resolve-cwd: 3.0.0
     dev: true
 
-  /import-modules/2.1.0:
-    resolution: {integrity: sha512-8HEWcnkbGpovH9yInoisxaSoIg9Brbul+Ju3Kqe2UsYDUBJD/iQjSgEj0zPcTDPKfPp2fs5xlv1i+JSye/m1/A==}
-    engines: {node: '>=8'}
-    dev: true
-
   /imurmurhash/0.1.4:
     resolution: {integrity: sha1-khi5srkoojixPcT7a21XbyMUU+o=}
     engines: {node: '>=0.8.19'}
@@ -2344,6 +2334,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       binary-extensions: 2.2.0
+    dev: true
+
+  /is-builtin-module/3.1.0:
+    resolution: {integrity: sha512-OV7JjAgOTfAFJmHZLvpSTb4qi0nIILDV1gWPYDnDJUTNFM5aGlRAhk4QcT8i7TuAleeEV5Fdkqn3t4mS+Q11fg==}
+    engines: {node: '>=6'}
+    dependencies:
+      builtin-modules: 3.2.0
     dev: true
 
   /is-ci/3.0.0:
@@ -3608,10 +3605,6 @@ packages:
 
   /require-package-name/2.0.1:
     resolution: {integrity: sha1-wR6XJ2tluOKSP3Xav1+y7ww4Qbk=}
-    dev: true
-
-  /reserved-words/0.1.2:
-    resolution: {integrity: sha1-AKCUD5jNUBrqqsMWQR2a3FKzGrE=}
     dev: true
 
   /resolve-cwd/3.0.0:
