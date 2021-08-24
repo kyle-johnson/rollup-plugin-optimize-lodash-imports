@@ -3,10 +3,13 @@
  *
  * No mocks/stubs, and output is validated.
  */
+import { fileURLToPath } from "url";
+import path from "path";
 import { OutputOptions, rollup } from "rollup";
 
 import { optimizeLodashImports, OptimizeLodashOptions } from "../src";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // quiet auto-external warnings with a simple auto-external test
 const external = (id: string): boolean => /^[^./]/.test(id);
 

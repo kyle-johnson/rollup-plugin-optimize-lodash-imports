@@ -6,6 +6,8 @@
  * These tests can take some time to run, due to additional processing overhead:
  * multiple third-party rollup plugins are required to create the bundle.
  */
+import { fileURLToPath } from "url";
+import path from "path";
 import { rollup } from "rollup";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
@@ -13,6 +15,7 @@ import commonjs from "@rollup/plugin-commonjs";
 
 import { optimizeLodashImports } from "../src";
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STANDARD_AND_FP = `${__dirname}/fixtures/standard-and-fp.js`;
 
 const wrapperRollup = async (
