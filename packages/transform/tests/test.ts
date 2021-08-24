@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import * as acorn from "acorn";
 
 import { CodeWithSourcemap, transform, UNCHANGED } from "../src";
@@ -112,9 +113,7 @@ describe("lodash transforms", () => {
     };
 
     if (expectedOutput === UNCHANGED) {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(output.cjs).toBeNull();
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(output.es).toBeNull();
     } else {
       for (const key of ["cjs", "es"] as const) {
