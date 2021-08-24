@@ -44,7 +44,7 @@
     "@tsconfig/node10": "1.0.8",
     "@types/estree": "0.0.48",
     "@types/jest": "26.0.23",
-    "@types/lodash": "4.14.170",
+    "@types/lodash": "4.14.172",
     "@types/node": "10.17.60",
     "@typescript-eslint/eslint-plugin": "4.28.5",
     "@typescript-eslint/parser": "4.28.5",
