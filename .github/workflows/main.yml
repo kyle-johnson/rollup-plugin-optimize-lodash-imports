@@ -44,9 +44,21 @@ jobs:
       max-parallel: 4
       matrix:
         package: ["rollup-plugin", "transform"]
-        command: ["type-check", "lint", "test", "format:check", "depcheck"]
+        command: ["type-check", "test", "depcheck"]
         node: [ 10 ]
-        include:
+        include:          
+          - package: "rollup-plugin"
+            command: lint
+            node: 14
+          - package: "transform"
+            command: lint
+            node: 14          
+          - package: "rollup-plugin"
+            command: "format:check"
+            node: 14
+          - package: "transform"
+            command: "format:check"
+            node: 14
           - package: "rollup-plugin"
             command: test
             node: 12
