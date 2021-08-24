@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import * as acorn from "acorn";
 
 import { CodeWithSourcemap, transform, UNCHANGED } from "../src";
