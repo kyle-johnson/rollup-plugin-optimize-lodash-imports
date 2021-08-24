@@ -4,7 +4,6 @@
     ":pinOnlyDevDependencies",
     ":dependencyDashboard",
     ":prHourlyLimit4",
-    ":prConcurrentLimitNone",
     ":automergeLinters",
     ":automergeTesters",
     ":automergePr",
@@ -12,6 +11,7 @@
     ":automergeRequireAllStatusChecks",
     ":semanticCommits"
   ],
+  "prConcurrentLimit": 5,
   "stabilityDays": 5,
   "packageRules": [
     {
