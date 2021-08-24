@@ -10,7 +10,7 @@ importers:
       '@rollup/pluginutils': 4.x
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.23
+      '@types/jest': 26.0.24
       '@types/lodash': 4.14.172
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 4.28.5
@@ -35,7 +35,7 @@ importers:
       '@rollup/plugin-node-resolve': 11.2.1_rollup@2.39.1
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.23
+      '@types/jest': 26.0.24
       '@types/lodash': 4.14.172
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 4.28.5_cd6d049998308577a1f12a064cd5f45a
@@ -50,14 +50,14 @@ importers:
       prettier: 2.2.1
       rollup: 2.39.1
       rollup-plugin-terser: 7.0.2_rollup@2.39.1
-      ts-jest: 27.0.5_0a68721aa8f87d72d3205fb2db279ce6
+      ts-jest: 27.0.5_c56f1edf02cccd87447c3a8f061c4064
       typescript: 4.1.6
 
   packages/transform:
     specifiers:
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.23
+      '@types/jest': 26.0.24
       '@types/lodash': 4.14.172
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 4.28.5
@@ -80,7 +80,7 @@ importers:
     devDependencies:
       '@tsconfig/node10': 1.0.8
       '@types/estree': 0.0.48
-      '@types/jest': 26.0.23
+      '@types/jest': 26.0.24
       '@types/lodash': 4.14.172
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 4.28.5_cd6d049998308577a1f12a064cd5f45a
@@ -93,7 +93,7 @@ importers:
       eslint-plugin-unicorn: 35.0.0_eslint@7.32.0
       jest: 27.0.6
       prettier: 2.2.1
-      ts-jest: 27.0.5_0a68721aa8f87d72d3205fb2db279ce6
+      ts-jest: 27.0.5_c56f1edf02cccd87447c3a8f061c4064
       typescript: 4.1.6
 
 packages:
@@ -864,8 +864,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/26.0.23:
-    resolution: {integrity: sha512-ZHLmWMJ9jJ9PTiT58juykZpL7KjwJywFN3Rr2pTSkyQfydf/rk22yS7W8p5DaVUMQ2BQC7oYiU3FjbTM/mYrOA==}
+  /@types/jest/26.0.24:
+    resolution: {integrity: sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==}
     dependencies:
       jest-diff: 26.6.2
       pretty-format: 26.6.2
@@ -3990,7 +3990,7 @@ packages:
       punycode: 2.1.1
     dev: true
 
-  /ts-jest/27.0.5_0a68721aa8f87d72d3205fb2db279ce6:
+  /ts-jest/27.0.5_c56f1edf02cccd87447c3a8f061c4064:
     resolution: {integrity: sha512-lIJApzfTaSSbtlksfFNHkWOzLJuuSm4faFAfo5kvzOiRAuoN4/eKxVJ2zEAho8aecE04qX6K1pAzfH5QHL1/8w==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -4008,7 +4008,7 @@ packages:
       babel-jest:
         optional: true
     dependencies:
-      '@types/jest': 26.0.23
+      '@types/jest': 26.0.24
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 27.0.6
