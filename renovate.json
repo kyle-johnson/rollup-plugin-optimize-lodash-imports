@@ -17,6 +17,10 @@
     {
       "matchPackageNames": ["estree-walker"],
       "allowedVersions": "< 3.0.0"
+    },
+    {
+      "matchPackageNames": ["@types/node"],
+      "extends": [":disableMajorUpdates"]
     }
   ]
 }
