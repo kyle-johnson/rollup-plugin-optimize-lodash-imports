@@ -28,12 +28,14 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "test": "jest",
+    "test:ci": "jest --coverage",
     "build": "rm -rf dist && tsc -p tsconfig.dist.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "depcheck": "depcheck"
   },
   "jest": {
+    "coverageDirectory": "coverage",
     "testEnvironment": "node",
     "preset": "ts-jest",
     "globals": {
