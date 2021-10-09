@@ -119,10 +119,19 @@ jobs:
         run: npm install -g pnpm@$PNPM_VERSION
       - name: install deps
         run: pnpm install --frozen-lockfile
-      - name: build
+      - name: build all
         run: pnpm run -r build
       - name: write .npmrc
         run: printf "//registry.npmjs.org/:_authToken=%s" "$NPM_TOKEN" > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # TODO: release action!
+      - name: Changesets
+        id: Changesets
+        uses: changesets/action@master
+        with:
+          publish: pnpm -r publish --no-git-checks
+          version: pnpm changesets version
+          commit: "chore: update versions"
+          title: "chore: update versions"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
