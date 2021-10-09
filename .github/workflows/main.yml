@@ -47,7 +47,7 @@ jobs:
       matrix:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
         command: ["test:ci"]
-        node: [ 12, 14, 16 ]
+        node: [ 12, 16 ] # if 12 and 16 pass, assume 14 does too!
         include:
           - package: "rollup-plugin"
             command: lint
@@ -119,33 +119,19 @@ jobs:
         run: npm install -g pnpm@$PNPM_VERSION
       - name: install deps
         run: pnpm install --frozen-lockfile
-      - name: build
+      - name: build all
         run: pnpm run -r build
       - name: write .npmrc
         run: printf "//registry.npmjs.org/:_authToken=%s" "$NPM_TOKEN" > ~/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      # release order matters for resolving proper versions
-      # it's also important these all happen in the same runner since pnpm will modify versions within the tree,
-      # but those changes will not neccessarily be committed
-      #
-      # (WARNING: semantic-release is likely to have issues with the multiple packages; consider using changesets
-      # or something else to manage versioning/releases.)
-      - name: Release transform
-        run: |
-          cd packages/transform
-          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release rollup-plugin
-        run: |
-          cd packages/rollup-plugin
-          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release esbuild-plugin
-        run: |
-          cd packages/esbuild-plugin
-          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
+      - name: Changesets
+        id: Changesets
+        uses: changesets/action@master
+        with:
+          publish: pnpm -r publish --no-git-checks
+          version: pnpm changesets version
+          commit: "chore: update versions"
+          title: "chore: update versions"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

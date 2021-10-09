@@ -1,6 +1,6 @@
 {
   "name": "@optimize-lodash/rollup-plugin",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Rewrite lodash imports with Rollup for improved tree-shaking.",
   "keywords": [
     "lodash",
@@ -31,7 +31,7 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "test": "jest",
-    "test:ci": "jest --coverage",
+    "test:ci": "jest --coverage --ci",
     "build": "rm -rf dist && tsc -p tsconfig.dist.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -73,7 +73,7 @@
     "typescript": "4.3.5"
   },
   "dependencies": {
-    "@optimize-lodash/transform": "workspace:^",
+    "@optimize-lodash/transform": "workspace:2.x",
     "@rollup/pluginutils": "4.x"
   }
 }
