@@ -4,23 +4,17 @@ import { ParseFunction, transform } from "@optimize-lodash/transform";
 import { optimizeLodashImports, OptimizeLodashOptions } from "../src";
 
 jest.mock("@optimize-lodash/transform");
-const sourceTransformerMock = transform as jest.Mock<
-  ReturnType<typeof transform>,
-  Parameters<typeof transform>
+const sourceTransformerMock = transform as jest.MockedFunction<
+  typeof transform
 >;
 
 const UNCHANGED = null;
 type UNCHANGED = null;
 
 describe("optimizeLodashImports", () => {
-  const warnMock = jest.fn<
-    ReturnType<TransformPluginContext["warn"]>,
-    Parameters<TransformPluginContext["warn"]>
-  >();
-  const parseMock = jest.fn<
-    ReturnType<ParseFunction>,
-    Parameters<ParseFunction>
-  >();
+  const warnMock: jest.MockedFunction<TransformPluginContext["warn"]> =
+    jest.fn();
+  const parseMock: jest.MockedFunction<ParseFunction> = jest.fn();
   const wrapperPlugin = (
     input: string,
     id: string,

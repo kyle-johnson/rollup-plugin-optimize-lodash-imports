@@ -7,14 +7,15 @@ on:
 
   # allow manual runs
   workflow_dispatch:
-
+env:
+  PNPM_VERSION: 6.16.1
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     strategy:
       matrix:
-        node: [10]
+        node: [12]
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v2
@@ -22,12 +23,12 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: install pnpm
-        run: npm install -g pnpm@5.17.1
+        run: npm install -g pnpm@$PNPM_VERSION
       - name: Month and Year (for cache busting)
         id: month-and-year
         shell: bash
         run: |
-          echo "::set-output name=date::$(/bin/date -u "+%Y%m")"
+          echo "::set-output name=date::$(/bin/date -u \"+%Y%m\")"
       - uses: actions/cache@v2
         with:
           path: ~/.pnpm-store
@@ -45,33 +46,45 @@ jobs:
       max-parallel: 4
       matrix:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
-        command: ["type-check", "lint", "test", "format:check", "depcheck"]
-        node: [ 10 ]
+        command: ["test:ci"]
+        node: [ 12, 14, 16 ]
         include:
           - package: "rollup-plugin"
-            command: test
-            node: 12
+            command: lint
+            node: 16
+          - package: "transform"
+            command: lint
+            node: 16          
           - package: "rollup-plugin"
-            command: test
-            node: 14
+            command: "format:check"
+            node: 16
           - package: "transform"
-            command: test
-            node: 12
+            command: "format:check"
+            node: 16
+          - package: "rollup-plugin"
+            command: "depcheck"
+            node: 16
           - package: "transform"
-            command: test
-            node: 14
+            command: "depcheck"
+            node: 16
+          - package: "rollup-plugin"
+            command: "type-check"
+            node: 16
+          - package: "transform"
+            command: "type-check"
+            node: 16
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: install pnpm
-        run: npm install -g pnpm@5.17.1
+        run: npm install -g pnpm@$PNPM_VERSION
       - name: Month and Year (for cache busting)
         id: month-and-year
         shell: bash
         run: |
-          echo "::set-output name=date::$(/bin/date -u "+%Y%m")"
+          echo "::set-output name=date::$(/bin/date -u \"+%Y%m\")"
       - uses: actions/cache@v2
         with:
           path: ~/.pnpm-store
@@ -84,6 +97,12 @@ jobs:
         run: pnpm run build --filter {./packages/${{ matrix.package }}}^...
       - name: ${{ matrix.command }}
         run: pnpm run ${{ matrix.command }} --filter {./packages/${{ matrix.package }}}
+      - name: coverage
+        uses: codecov/codecov-action@v2
+        if: matrix.command == 'test:ci' && matrix.node == '16'
+        with:
+          flags: ${{ matrix.package }}
+          files: ./packages/${{ matrix.package }}/coverage/coverage-final.json
   release:
     if: github.ref == 'refs/heads/main'
     needs: ["test", "build"]
@@ -95,9 +114,9 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: 12
       - name: install pnpm
-        run: npm install -g pnpm@5.17.1
+        run: npm install -g pnpm@$PNPM_VERSION
       - name: install deps
         run: pnpm install --frozen-lockfile
       - name: build
@@ -111,12 +130,12 @@ jobs:
       - name: Release transform
         run: |
           cd packages/transform
-          pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 -p @semantic-release/exec@5.0 semantic-release
+          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release rollup-plugin
         run: |
           cd packages/rollup-plugin
-          pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 -p @semantic-release/exec@5.0 semantic-release
+          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -4,7 +4,6 @@
     ":pinOnlyDevDependencies",
     ":dependencyDashboard",
     ":prHourlyLimit4",
-    ":prConcurrentLimitNone",
     ":automergeLinters",
     ":automergeTesters",
     ":automergePr",
@@ -12,11 +11,16 @@
     ":automergeRequireAllStatusChecks",
     ":semanticCommits"
   ],
+  "prConcurrentLimit": 5,
   "stabilityDays": 5,
   "packageRules": [
     {
       "matchPackageNames": ["estree-walker"],
       "allowedVersions": "< 3.0.0"
+    },
+    {
+      "matchPackageNames": ["@types/node"],
+      "extends": [":disableMajorUpdates"]
     }
   ]
 }

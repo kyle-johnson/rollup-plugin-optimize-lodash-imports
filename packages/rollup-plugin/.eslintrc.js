@@ -14,11 +14,9 @@ module.exports = {
     "plugin:jest/recommended",
     "plugin:jest/style",
     "prettier",
-    "prettier/@typescript-eslint",
-    "prettier/unicorn",
-    "prettier/prettier",
   ],
   rules: {
     "unicorn/no-null": "off",
+    "unicorn/prefer-module": "off",
   },
 };
