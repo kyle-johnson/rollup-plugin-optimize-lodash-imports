@@ -1,3 +1,4 @@
 tests/fixtures
 dist/
 coverage/
+CHANGELOG.md

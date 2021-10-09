@@ -1,6 +1,6 @@
 {
   "name": "@optimize-lodash/transform",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "Rewrites lodash imports in a given source file to be specific.",
   "keywords": [
     "lodash",
@@ -28,7 +28,7 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
     "test": "jest",
-    "test:ci": "jest --coverage",
+    "test:ci": "jest --coverage --ci",
     "build": "rm -rf dist && tsc -p tsconfig.dist.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
