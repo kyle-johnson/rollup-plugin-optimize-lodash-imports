@@ -12,7 +12,7 @@ importers:
       '@types/estree': 0.0.48
       '@types/jest': 27.0.2
       '@types/lodash': 4.14.172
-      '@types/node': 10.17.60
+      '@types/node': 12.20.28
       '@typescript-eslint/eslint-plugin': 4.28.5
       '@typescript-eslint/parser': 4.28.5
       depcheck: 1.4.2
@@ -36,7 +36,7 @@ importers:
       '@types/estree': 0.0.48
       '@types/jest': 27.0.2
       '@types/lodash': 4.14.172
-      '@types/node': 10.17.60
+      '@types/node': 12.20.28
       '@typescript-eslint/eslint-plugin': 4.28.5_cd6d049998308577a1f12a064cd5f45a
       '@typescript-eslint/parser': 4.28.5_eslint@7.32.0+typescript@4.1.6
       depcheck: 1.4.2
@@ -57,7 +57,7 @@ importers:
       '@types/estree': 0.0.48
       '@types/jest': 27.0.2
       '@types/lodash': 4.14.172
-      '@types/node': 10.17.60
+      '@types/node': 12.20.28
       '@typescript-eslint/eslint-plugin': 4.28.5
       '@typescript-eslint/parser': 4.28.5
       acorn: 8.4.1
@@ -79,7 +79,7 @@ importers:
       '@types/estree': 0.0.48
       '@types/jest': 27.0.2
       '@types/lodash': 4.14.172
-      '@types/node': 10.17.60
+      '@types/node': 12.20.28
       '@typescript-eslint/eslint-plugin': 4.28.5_cd6d049998308577a1f12a064cd5f45a
       '@typescript-eslint/parser': 4.28.5_eslint@7.32.0+typescript@4.1.6
       acorn: 8.4.1
@@ -1069,6 +1069,10 @@ packages:
 
   /@types/node/10.17.60:
     resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
+    dev: true
+
+  /@types/node/12.20.28:
+    resolution: {integrity: sha512-cBw8gzxUPYX+/5lugXIPksioBSbE42k0fZ39p+4yRzfYjN6++eq9kAPdlY9qm+MXyfbk9EmvCYAYRn380sF46w==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
