@@ -50,7 +50,7 @@
     "rollup": "2.x"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "19.0.2",
+    "@rollup/plugin-commonjs": "21.0.0",
     "@rollup/plugin-node-resolve": "11.2.1",
     "@tsconfig/node10": "1.0.8",
     "@types/estree": "0.0.50",
