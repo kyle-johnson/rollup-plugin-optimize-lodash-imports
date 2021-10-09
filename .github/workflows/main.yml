@@ -7,7 +7,8 @@ on:
 
   # allow manual runs
   workflow_dispatch:
-
+env:
+  PNPM_VERSION: 6.16.1
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +22,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: install pnpm
-        run: npm install -g pnpm@5.17.1
+        run: npm install -g pnpm@$PNPM_VERSION
       - name: Month and Year (for cache busting)
         id: month-and-year
         shell: bash
@@ -46,38 +47,44 @@ jobs:
         package: ["rollup-plugin", "transform"]
         command: ["type-check", "test", "depcheck"]
         node: [ 10 ]
-        include:          
+        include:
           - package: "rollup-plugin"
             command: lint
-            node: 14
+            node: 16
           - package: "transform"
             command: lint
-            node: 14          
+            node: 16          
           - package: "rollup-plugin"
             command: "format:check"
-            node: 14
+            node: 16
           - package: "transform"
             command: "format:check"
-            node: 14
+            node: 16
           - package: "rollup-plugin"
             command: test
             node: 12
           - package: "rollup-plugin"
             command: test
             node: 14
+          - package: "rollup-plugin"
+            command: test
+            node: 16
           - package: "transform"
             command: test
             node: 12
           - package: "transform"
             command: test
             node: 14
+          - package: "transform"
+            command: test
+            node: 16
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
       - name: install pnpm
-        run: npm install -g pnpm@5.17.1
+        run: npm install -g pnpm@$PNPM_VERSION
       - name: Month and Year (for cache busting)
         id: month-and-year
         shell: bash
@@ -108,7 +115,7 @@ jobs:
         with:
           node-version: 10
       - name: install pnpm
-        run: npm install -g pnpm@5.17.1
+        run: npm install -g pnpm@$PNPM_VERSION
       - name: install deps
         run: pnpm install --frozen-lockfile
       - name: build
