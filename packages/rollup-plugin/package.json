@@ -73,7 +73,7 @@
     "typescript": "4.1.6"
   },
   "dependencies": {
-    "@optimize-lodash/transform": "workspace:1.x",
+    "@optimize-lodash/transform": "workspace:^",
     "@rollup/pluginutils": "4.x"
   }
 }
