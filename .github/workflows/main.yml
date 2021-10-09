@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         node: [12]
+        package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -35,16 +36,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-
       - name: install deps
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --filter {./packages/${{ matrix.package }}}...
       - name: build
-        run: pnpm run -r build
+        run: pnpm run build --filter {./packages/${{ matrix.package }}}...
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     strategy:
       max-parallel: 4
       matrix:
-        package: ["rollup-plugin", "transform"]
+        package: ["rollup-plugin", "transform", "esbuild-plugin"]
         command: ["test:ci"]
         node: [ 12, 14, 16 ]
         include:
@@ -125,7 +126,11 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       # release order matters for resolving proper versions
-      # (semantic-release is likely to have issues with the multiple packages; consider using changesets)
+      # it's also important these all happen in the same runner since pnpm will modify versions within the tree,
+      # but those changes will not neccessarily be committed
+      #
+      # (WARNING: semantic-release is likely to have issues with the multiple packages; consider using changesets
+      # or something else to manage versioning/releases.)
       - name: Release transform
         run: |
           cd packages/transform
@@ -135,6 +140,12 @@ jobs:
       - name: Release rollup-plugin
         run: |
           cd packages/rollup-plugin
+          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Release esbuild-plugin
+        run: |
+          cd packages/esbuild-plugin
           pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
