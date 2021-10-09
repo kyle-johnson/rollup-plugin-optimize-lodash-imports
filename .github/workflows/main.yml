@@ -98,7 +98,7 @@ jobs:
         run: pnpm run ${{ matrix.command }} --filter {./packages/${{ matrix.package }}}
       - name: coverage
         uses: codecov/codecov-action@v2
-        if: matrix.command == "test:ci"
+        if: ${{ matrix.command == "test:ci" }}
         with:
           flags: ${{ matrix.package }}
           files: ./packages/${{ matrix.package }}/coverage/coverage-final.json
