@@ -98,7 +98,7 @@ jobs:
         run: pnpm run ${{ matrix.command }} --filter {./packages/${{ matrix.package }}}
       - name: coverage
         uses: codecov/codecov-action@v2
-        if: matrix.command == 'test:ci'
+        if: matrix.command == 'test:ci' && matrix.node == '16'
         with:
           flags: ${{ matrix.package }}
           files: ./packages/${{ matrix.package }}/coverage/coverage-final.json
@@ -129,12 +129,12 @@ jobs:
       - name: Release transform
         run: |
           cd packages/transform
-          pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 -p @semantic-release/exec@5.0 semantic-release
+          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release rollup-plugin
         run: |
           cd packages/rollup-plugin
-          pnpx -p semantic-release@17.3 -p semantic-release-monorepo@7.0 -p @semantic-release/exec@5.0 semantic-release
+          pnpm --package=semantic-release@17.3 --package=semantic-release-monorepo@7.0 --package=@semantic-release/exec@5.0 dlx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
