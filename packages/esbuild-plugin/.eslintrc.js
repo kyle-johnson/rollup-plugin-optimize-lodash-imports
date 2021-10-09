@@ -13,11 +13,11 @@ module.exports = {
     "plugin:unicorn/recommended",
     "plugin:jest/recommended",
     "plugin:jest/style",
-    "prettier"
+    "prettier",
   ],
   rules: {
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
-    "unicorn/prefer-node-protocol": "off"
+    "unicorn/prefer-node-protocol": "off",
   },
 };

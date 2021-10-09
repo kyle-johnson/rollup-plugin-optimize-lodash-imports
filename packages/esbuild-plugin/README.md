@@ -5,11 +5,11 @@
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/esbuild-plugin/peer/esbuild)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/CI)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
 ![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/kyle-johnson/rollup-plugin-optimize-lodash-imports)
-[![license](https://img.shields.io/npm/l/@optimize-lodash/rollup-plugin)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/LICENSE)
+[![license](https://img.shields.io/npm/l/@optimize-lodash/esbuild-plugin)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/esbuild-plugin/LICENSE)
 [![Codecov](https://img.shields.io/codecov/c/github/kyle-johnson/rollup-plugin-optimize-lodash-imports?flag=esbuild-plugin&label=coverage)](https://app.codecov.io/gh/kyle-johnson/rollup-plugin-optimize-lodash-imports/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kyle-johnson/rollup-plugin-optimize-lodash-imports)
 
-_**This is a proof of concept! esbuild loader plugins are "greedy" and need additional code to enable chaining.**_
+_**This is a proof of concept! esbuild loader plugins are "greedy" and need additional code to enable chaining. If you want something that's proven in production, consider using [@optimize-lodash/rollup-plugin](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin).**_
 
 There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash. Minifiers, even with dead-code elimination, cannot currently solve this problem. With this plugin, bundled code output will _only_ include the specific lodash methods your code requires.
 
@@ -56,11 +56,28 @@ import { isNil } from "lodash-es";
 
 ## Usage
 
-_TODO_
+_Please see the [esbuild docs for the most up to date info on using plugins](https://esbuild.github.io/plugins/#using-plugins)._
+
+```javascript
+const { lodashOptimizeImports } = require("@optimize-lodash/esbuild-plugin");
+
+require("esbuild").buildSync({
+  entryPoints: ["app.js"],
+  outfile: "out.js",
+  plugins: [lodashOptimizeImports()],
+});
+```
 
 ## Options
 
-_TODO_
+### `useLodashEs`
+
+Type: `boolean`<br>
+Default: `false`
+
+If `true`, the plugin will rewrite _lodash_ imports to use _lodash-es_.
+
+**\*NOTE:** be sure esbuild's `format: "esm"` option is set!\*
 
 ## Limitations
 

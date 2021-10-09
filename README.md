@@ -22,7 +22,7 @@ A fast, lightweight plugin for Rollup bundling.
 ![node-current](https://img.shields.io/node/v/@optimize-lodash/esbuild-plugin)
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/esbuild-plugin/peer/esbuild)
 
-A fast, lightweight plugin for Rollup bundling.
+A *expertimental* plugin for esbuild bundling. *(Experimental = esbuild is rapidly changing and unlike the Rollup plugin, this has not been used in a production code base.)*
 
 ## [@optimize-lodash/transform](https://www.npmjs.com/package/@optimize-lodash/transform)
 [![npm](https://img.shields.io/npm/v/@optimize-lodash/transform)](https://www.npmjs.com/package/@optimize-lodash/transform)
