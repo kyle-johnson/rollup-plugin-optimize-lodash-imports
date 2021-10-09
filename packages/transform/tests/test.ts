@@ -1,9 +1,9 @@
 /* eslint-disable jest/no-conditional-expect */
 import * as acorn from "acorn";
 
-import { CodeWithSourcemap, transform, UNCHANGED } from "../src";
+import { CodeWithSourcemap, transform, UNCHANGED, WarnFunction } from "../src";
 
-const warnMock = jest.fn<void, [string]>();
+const warnMock: jest.MockedFunction<WarnFunction> = jest.fn();
 beforeEach(() => {
   warnMock.mockReset();
 });
