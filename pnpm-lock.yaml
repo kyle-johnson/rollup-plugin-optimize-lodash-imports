@@ -23,7 +23,7 @@ importers:
       esbuild: 0.13.4
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
-      eslint-plugin-jest: 24.5.2
+      eslint-plugin-jest: 24.7.0
       eslint-plugin-unicorn: 36.0.0
       jest: 27.2.5
       lodash: 4.17.21
@@ -45,7 +45,7 @@ importers:
       esbuild: 0.13.4
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
-      eslint-plugin-jest: 24.5.2_f279f5bb925d5c153506eeaf586ca964
+      eslint-plugin-jest: 24.7.0_f279f5bb925d5c153506eeaf586ca964
       eslint-plugin-unicorn: 36.0.0_eslint@7.32.0
       jest: 27.2.5
       lodash: 4.17.21
@@ -69,7 +69,7 @@ importers:
       depcheck: 1.4.2
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
-      eslint-plugin-jest: 24.5.2
+      eslint-plugin-jest: 24.7.0
       eslint-plugin-unicorn: 36.0.0
       jest: 27.2.5
       lodash: 4.17.21
@@ -94,7 +94,7 @@ importers:
       depcheck: 1.4.2
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
-      eslint-plugin-jest: 24.5.2_8247b17f63ca001d1ca67c217dc04efc
+      eslint-plugin-jest: 24.7.0_8247b17f63ca001d1ca67c217dc04efc
       eslint-plugin-unicorn: 36.0.0_eslint@7.32.0
       jest: 27.2.5
       lodash: 4.17.21
@@ -117,7 +117,7 @@ importers:
       depcheck: 1.4.2
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
-      eslint-plugin-jest: 24.5.2
+      eslint-plugin-jest: 24.7.0
       eslint-plugin-unicorn: 36.0.0
       estree-walker: 2.x
       jest: 27.2.5
@@ -140,7 +140,7 @@ importers:
       depcheck: 1.4.2
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
-      eslint-plugin-jest: 24.5.2_8247b17f63ca001d1ca67c217dc04efc
+      eslint-plugin-jest: 24.7.0_8247b17f63ca001d1ca67c217dc04efc
       eslint-plugin-unicorn: 36.0.0_eslint@7.32.0
       jest: 27.2.5
       prettier: 2.4.1
@@ -2436,8 +2436,8 @@ packages:
       eslint: 7.32.0
     dev: true
 
-  /eslint-plugin-jest/24.5.2_8247b17f63ca001d1ca67c217dc04efc:
-    resolution: {integrity: sha512-lrI3sGAyZi513RRmP08sIW241Ti/zMnn/6wbE4ZBhb3M2pJ9ztaZMnSKSKKBUfotVdwqU8W1KtD8ao2/FR8DIg==}
+  /eslint-plugin-jest/24.7.0_8247b17f63ca001d1ca67c217dc04efc:
+    resolution: {integrity: sha512-wUxdF2bAZiYSKBclsUMrYHH6WxiBreNjyDxbRv345TIvPeoCEgPNEn3Sa+ZrSqsf1Dl9SqqSREXMHExlMMu1DA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '>= 4'
@@ -2454,8 +2454,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-jest/24.5.2_f279f5bb925d5c153506eeaf586ca964:
-    resolution: {integrity: sha512-lrI3sGAyZi513RRmP08sIW241Ti/zMnn/6wbE4ZBhb3M2pJ9ztaZMnSKSKKBUfotVdwqU8W1KtD8ao2/FR8DIg==}
+  /eslint-plugin-jest/24.7.0_f279f5bb925d5c153506eeaf586ca964:
+    resolution: {integrity: sha512-wUxdF2bAZiYSKBclsUMrYHH6WxiBreNjyDxbRv345TIvPeoCEgPNEn3Sa+ZrSqsf1Dl9SqqSREXMHExlMMu1DA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '>= 4'
