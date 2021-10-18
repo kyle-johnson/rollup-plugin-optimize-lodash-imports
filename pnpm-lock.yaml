@@ -24,7 +24,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 24.7.0
-      eslint-plugin-unicorn: 36.0.0
+      eslint-plugin-unicorn: 37.0.1
       jest: 27.2.5
       lodash: 4.17.21
       prettier: 2.4.1
@@ -46,7 +46,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
       eslint-plugin-jest: 24.7.0_f279f5bb925d5c153506eeaf586ca964
-      eslint-plugin-unicorn: 36.0.0_eslint@7.32.0
+      eslint-plugin-unicorn: 37.0.1_eslint@7.32.0
       jest: 27.2.5
       lodash: 4.17.21
       prettier: 2.4.1
@@ -70,7 +70,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 24.7.0
-      eslint-plugin-unicorn: 36.0.0
+      eslint-plugin-unicorn: 37.0.1
       jest: 27.2.5
       lodash: 4.17.21
       prettier: 2.4.1
@@ -95,7 +95,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
       eslint-plugin-jest: 24.7.0_8247b17f63ca001d1ca67c217dc04efc
-      eslint-plugin-unicorn: 36.0.0_eslint@7.32.0
+      eslint-plugin-unicorn: 37.0.1_eslint@7.32.0
       jest: 27.2.5
       lodash: 4.17.21
       prettier: 2.4.1
@@ -118,7 +118,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 24.7.0
-      eslint-plugin-unicorn: 36.0.0
+      eslint-plugin-unicorn: 37.0.1
       estree-walker: 2.x
       jest: 27.2.5
       magic-string: 0.25.x
@@ -141,7 +141,7 @@ importers:
       eslint: 7.32.0
       eslint-config-prettier: 8.3.0_eslint@7.32.0
       eslint-plugin-jest: 24.7.0_8247b17f63ca001d1ca67c217dc04efc
-      eslint-plugin-unicorn: 36.0.0_eslint@7.32.0
+      eslint-plugin-unicorn: 37.0.1_eslint@7.32.0
       jest: 27.2.5
       prettier: 2.4.1
       ts-jest: 27.0.5_264229bfc48990975d6164ef8299aad6
@@ -2472,8 +2472,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-unicorn/36.0.0_eslint@7.32.0:
-    resolution: {integrity: sha512-xxN2vSctGWnDW6aLElm/LKIwcrmk6mdiEcW55Uv5krcrVcIFSWMmEgc/hwpemYfZacKZ5npFERGNz4aThsp1AA==}
+  /eslint-plugin-unicorn/37.0.1_eslint@7.32.0:
+    resolution: {integrity: sha512-E1jq5u9ojnadisJcPi+hMXTGSiIzkIUMDvWsBudsCGXvKUB2aNSU2TcfyW2/jAS5A4ryBXfzxLykMxX1EdluSQ==}
     engines: {node: '>=12'}
     peerDependencies:
       eslint: '>=7.32.0'
@@ -2484,6 +2484,8 @@ packages:
       eslint: 7.32.0
       eslint-template-visitor: 2.3.2_eslint@7.32.0
       eslint-utils: 3.0.0_eslint@7.32.0
+      esquery: 1.4.0
+      indent-string: 4.0.0
       is-builtin-module: 3.1.0
       lodash: 4.17.21
       pluralize: 8.0.0
@@ -2491,6 +2493,7 @@ packages:
       regexp-tree: 0.1.24
       safe-regex: 2.1.1
       semver: 7.3.5
+      strip-indent: 3.0.0
     transitivePeerDependencies:
       - supports-color
     dev: true
