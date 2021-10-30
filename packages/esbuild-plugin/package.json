@@ -59,7 +59,7 @@
     "@typescript-eslint/parser": "5.2.0",
     "depcheck": "1.4.2",
     "esbuild": "0.13.10",
-    "eslint": "7.32.0",
+    "eslint": "8.1.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "25.2.2",
     "eslint-plugin-unicorn": "37.0.1",
