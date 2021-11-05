@@ -24,7 +24,7 @@ importers:
       eslint: 8.1.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 25.2.2
-      eslint-plugin-unicorn: 37.0.1
+      eslint-plugin-unicorn: 38.0.0
       jest: 27.3.1
       lodash: 4.17.21
       prettier: 2.4.1
@@ -46,7 +46,7 @@ importers:
       eslint: 8.1.0
       eslint-config-prettier: 8.3.0_eslint@8.1.0
       eslint-plugin-jest: 25.2.2_ffa880cf64caf01d3d3c5e8af18e3f8b
-      eslint-plugin-unicorn: 37.0.1_eslint@8.1.0
+      eslint-plugin-unicorn: 38.0.0_eslint@8.1.0
       jest: 27.3.1
       lodash: 4.17.21
       prettier: 2.4.1
@@ -70,7 +70,7 @@ importers:
       eslint: 8.1.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 25.2.2
-      eslint-plugin-unicorn: 37.0.1
+      eslint-plugin-unicorn: 38.0.0
       jest: 27.3.1
       lodash: 4.17.21
       prettier: 2.4.1
@@ -95,7 +95,7 @@ importers:
       eslint: 8.1.0
       eslint-config-prettier: 8.3.0_eslint@8.1.0
       eslint-plugin-jest: 25.2.2_a920ab7f4280e4c2aca71e647564185b
-      eslint-plugin-unicorn: 37.0.1_eslint@8.1.0
+      eslint-plugin-unicorn: 38.0.0_eslint@8.1.0
       jest: 27.3.1
       lodash: 4.17.21
       prettier: 2.4.1
@@ -118,7 +118,7 @@ importers:
       eslint: 8.1.0
       eslint-config-prettier: 8.3.0
       eslint-plugin-jest: 25.2.2
-      eslint-plugin-unicorn: 37.0.1
+      eslint-plugin-unicorn: 38.0.0
       estree-walker: 2.x
       jest: 27.3.1
       magic-string: 0.25.x
@@ -141,7 +141,7 @@ importers:
       eslint: 8.1.0
       eslint-config-prettier: 8.3.0_eslint@8.1.0
       eslint-plugin-jest: 25.2.2_a920ab7f4280e4c2aca71e647564185b
-      eslint-plugin-unicorn: 37.0.1_eslint@8.1.0
+      eslint-plugin-unicorn: 38.0.0_eslint@8.1.0
       jest: 27.3.1
       prettier: 2.4.1
       ts-jest: 27.0.7_aa63873380b4bb2f237e2e46aef8ee69
@@ -2504,8 +2504,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-unicorn/37.0.1_eslint@8.1.0:
-    resolution: {integrity: sha512-E1jq5u9ojnadisJcPi+hMXTGSiIzkIUMDvWsBudsCGXvKUB2aNSU2TcfyW2/jAS5A4ryBXfzxLykMxX1EdluSQ==}
+  /eslint-plugin-unicorn/38.0.0_eslint@8.1.0:
+    resolution: {integrity: sha512-8Ut3S0RTkk+9T90RmIi1NqiJ4AVCreaMjHaIXxO/IgYCNp+zxixj8Q3eXikf8RZi4vwytxefVqx6mU5LSEEx2w==}
     engines: {node: '>=12'}
     peerDependencies:
       eslint: '>=7.32.0'
