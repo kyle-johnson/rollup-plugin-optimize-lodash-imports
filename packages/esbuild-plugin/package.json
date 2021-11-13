@@ -61,7 +61,7 @@
     "esbuild": "0.13.12",
     "eslint": "8.2.0",
     "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-jest": "25.2.2",
+    "eslint-plugin-jest": "25.2.4",
     "eslint-plugin-unicorn": "38.0.0",
     "jest": "27.3.1",
     "lodash": "4.17.21",
