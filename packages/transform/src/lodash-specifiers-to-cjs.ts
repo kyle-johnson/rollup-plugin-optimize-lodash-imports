@@ -15,6 +15,6 @@ export function lodashSpecifiersToCjs(
     ({ imported, local }) =>
       `import ${
         imported.name !== local.name ? local.name : imported.name
-      } from "${base}/${imported.name}";`
+      } from "${base}/${imported.name}.js";`
   );
 }
