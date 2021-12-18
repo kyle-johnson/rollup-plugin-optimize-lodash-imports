@@ -13,11 +13,13 @@ const wrappedParse: ParseFunction = (code) =>
 
 export type PluginOptions = {
   useLodashEs?: true;
+  appendDotJs?: boolean;
 };
 
 // TODO: filter https://golang.org/pkg/regexp/
 export function lodashOptimizeImports({
   useLodashEs,
+  appendDotJs = true,
 }: PluginOptions = {}): Plugin {
   const cache = new Map<
     string,
@@ -40,6 +42,7 @@ export function lodashOptimizeImports({
           id: path,
           parse: wrappedParse,
           useLodashEs,
+          appendDotJs,
         });
         if (result === UNCHANGED) {
           cache.set(path, { input, output: UNCHANGED });
