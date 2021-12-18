@@ -54,7 +54,7 @@ export function transform({
     ast = parse(code);
   } catch (error) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    error.message += ` in ${id}`;
+    (error as Error).message += ` in ${id}`;
     throw error;
   }
 
