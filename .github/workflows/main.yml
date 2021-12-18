@@ -127,10 +127,10 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Changesets
         id: Changesets
-        uses: changesets/action@master
+        uses: changesets/action@v1
         with:
           publish: pnpm -r publish --no-git-checks
-          version: pnpm changesets version
+          version: pnpm changeset version
           commit: "chore: update versions"
           title: "chore: update versions"
         env:

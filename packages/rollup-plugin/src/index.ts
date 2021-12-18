@@ -18,6 +18,12 @@ export type OptimizeLodashOptions = {
    * Don't use this for CommonJS outputs, the plugin will error should you do so.
    */
   useLodashEs?: true;
+
+  /**
+   * Default: true. Appends '.js' to the end of optimized Lodash CJS imports. Required
+   * by some bundling tools.
+   */
+  appendDotJs?: boolean;
 };
 
 const UNCHANGED = null;
@@ -41,11 +47,13 @@ const UNCHANGED = null;
  * @param include files/globs to include with this plugin (optional)
  * @param exclude files/globs to exclude from this plugin (optional)
  * @param useLodashEs set `true` to convert imports to use "lodash-es" (optional; default false)
+ * @param appendDotJs default `true`; set `false` if you don't want `.js` appended to CJS lodash imports
  */
 export function optimizeLodashImports({
   include,
   exclude,
   useLodashEs,
+  appendDotJs,
 }: OptimizeLodashOptions = {}): Plugin & Required<Pick<Plugin, "transform">> {
   const filter = createFilter(include, exclude);
 
@@ -70,7 +78,14 @@ export function optimizeLodashImports({
         return UNCHANGED;
       }
 
-      return lodashTransform({ code, id, parse, warn, useLodashEs });
+      return lodashTransform({
+        code,
+        id,
+        parse,
+        warn,
+        useLodashEs,
+        appendDotJs,
+      });
     },
   };
 }

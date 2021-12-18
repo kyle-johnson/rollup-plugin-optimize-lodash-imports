@@ -5,9 +5,9 @@ exports[`rollup named lodash and lodash/fp imports with plugin & cjs output 1`] 
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var isNil = require('lodash/isNil');
-var negate = require('lodash/negate');
-var every = require('lodash/fp/every');
+var isNil = require('lodash/isNil.js');
+var negate = require('lodash/negate.js');
+var every = require('lodash/fp/every.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -15,7 +15,7 @@ var isNil__default = /*#__PURE__*/_interopDefaultLegacy(isNil);
 var negate__default = /*#__PURE__*/_interopDefaultLegacy(negate);
 var every__default = /*#__PURE__*/_interopDefaultLegacy(every);
 
-const everyNonNil = every__default['default'](negate__default['default'](isNil__default['default']));
+const everyNonNil = every__default[\\"default\\"](negate__default[\\"default\\"](isNil__default[\\"default\\"]));
 
 function isNonNilArray(input) {
   return Array.isArray(input) && everyNonNil(input);
@@ -26,9 +26,9 @@ exports.isNonNilArray = isNonNilArray;
 `;
 
 exports[`rollup named lodash and lodash/fp imports with plugin & es output 1`] = `
-"import isNil from 'lodash/isNil';
-import negate from 'lodash/negate';
-import every from 'lodash/fp/every';
+"import isNil from 'lodash/isNil.js';
+import negate from 'lodash/negate.js';
+import every from 'lodash/fp/every.js';
 
 const everyNonNil = every(negate(isNil));
 
