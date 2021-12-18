@@ -130,7 +130,7 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm -r publish --no-git-checks
-          version: pnpm changesets version
+          version: pnpm changeset version
           commit: "chore: update versions"
           title: "chore: update versions"
         env:
