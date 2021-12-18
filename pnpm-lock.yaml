@@ -10,7 +10,7 @@ importers:
 
   packages/esbuild-plugin:
     specifiers:
-      '@optimize-lodash/transform': workspace:2.x
+      '@optimize-lodash/transform': workspace:3.x
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.46
       '@types/jest': 27.0.3
@@ -55,7 +55,7 @@ importers:
 
   packages/rollup-plugin:
     specifiers:
-      '@optimize-lodash/transform': workspace:2.x
+      '@optimize-lodash/transform': workspace:3.x
       '@rollup/plugin-commonjs': 21.0.1
       '@rollup/plugin-node-resolve': 13.1.1
       '@rollup/pluginutils': 4.x
