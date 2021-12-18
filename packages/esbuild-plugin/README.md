@@ -25,9 +25,9 @@ import { padStart as padStartFp } from "lodash/fp";
 ### Becomes this output
 
 ```javascript
-import isNil from "lodash/isNil";
-import isString from "lodash/isString";
-import padStartFp from "lodash/fp/padStart";
+import isNil from "lodash/isNil.js";
+import isString from "lodash/isString.js";
+import padStartFp from "lodash/fp/padStart.js";
 ```
 
 ## `useLodashEs` for ES Module Output
@@ -45,7 +45,7 @@ import { isNil } from "lodash";
 #### CommonJS output
 
 ```javascript
-import isNil from "lodash/isNil";
+import isNil from "lodash/isNil.js";
 ```
 
 #### ES output (with `useLodashEs: true`)
@@ -78,6 +78,15 @@ Default: `false`
 If `true`, the plugin will rewrite _lodash_ imports to use _lodash-es_.
 
 **\*NOTE:** be sure esbuild's `format: "esm"` option is set!\*
+
+### `appendDotJs`
+
+Type: `boolean`<br>
+Default: `true`
+
+If `true`, the plugin will append `.js` to the end of CommonJS lodash imports.
+
+Set to `false` if you don't want the `.js` suffix added (prior to v2.x, this was the default).
 
 ## Limitations
 

@@ -10,3 +10,4 @@ Expects a `parse()` method with output compatible with [`acorn`](https://www.npm
 Used by:
 
 - [@optimize-lodash/rollup-plugin](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin)
+- [@optimize-lodash/esbuild-plugin (experimental)](https://www.npmjs.com/package/@optimize-lodash/esbuild-plugin)

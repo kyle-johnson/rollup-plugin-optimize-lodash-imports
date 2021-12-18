@@ -35,12 +35,14 @@ export function transform({
   parse,
   warn,
   useLodashEs,
+  appendDotJs = true,
 }: {
   code: string;
   id: string;
   parse: ParseFunction;
   warn?: WarnFunction;
   useLodashEs?: true;
+  appendDotJs?: boolean;
 }): CodeWithSourcemap | UNCHANGED {
   // before parsing, check if we can skip the whole file
   if (!code.includes("lodash")) {
@@ -86,7 +88,11 @@ export function transform({
         // modify
         const imports = useLodashEs
           ? lodashSpecifiersToEs(node.source.value, node.specifiers)
-          : lodashSpecifiersToCjs(node.source.value, node.specifiers);
+          : lodashSpecifiersToCjs(
+              node.source.value,
+              node.specifiers,
+              appendDotJs
+            );
 
         // write
         magicString.overwrite(node.start, node.end, imports.join("\n"));
