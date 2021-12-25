@@ -58,7 +58,7 @@
     "@typescript-eslint/eslint-plugin": "5.8.0",
     "@typescript-eslint/parser": "5.8.0",
     "depcheck": "1.4.2",
-    "esbuild": "0.14.7",
+    "esbuild": "0.14.8",
     "eslint": "8.5.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "25.3.0",
