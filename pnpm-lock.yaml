@@ -57,7 +57,7 @@ importers:
     specifiers:
       '@optimize-lodash/transform': workspace:3.x
       '@rollup/plugin-commonjs': 21.0.1
-      '@rollup/plugin-node-resolve': 13.1.1
+      '@rollup/plugin-node-resolve': 13.1.2
       '@rollup/pluginutils': 4.x
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.50
@@ -83,7 +83,7 @@ importers:
       '@rollup/pluginutils': 4.1.0_rollup@2.61.1
     devDependencies:
       '@rollup/plugin-commonjs': 21.0.1_rollup@2.61.1
-      '@rollup/plugin-node-resolve': 13.1.1_rollup@2.61.1
+      '@rollup/plugin-node-resolve': 13.1.2_rollup@2.61.1
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.50
       '@types/jest': 27.0.3
@@ -985,8 +985,8 @@ packages:
       rollup: 2.61.1
     dev: true
 
-  /@rollup/plugin-node-resolve/13.1.1_rollup@2.61.1:
-    resolution: {integrity: sha512-6QKtRevXLrmEig9UiMYt2fSvee9TyltGRfw+qSs6xjUnxwjOzTOqy+/Lpxsgjb8mJn1EQNbCDAvt89O4uzL5kw==}
+  /@rollup/plugin-node-resolve/13.1.2_rollup@2.61.1:
+    resolution: {integrity: sha512-xyqbuf1vyOPC60jEKhx3DBHunymnCJswzjNTKfX4Jz7zCPar1UqbRZCNY1u5QaXh97beaFTWdoUUWiV4qX8o/g==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
       rollup: ^2.42.0

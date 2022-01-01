@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "21.0.1",
-    "@rollup/plugin-node-resolve": "13.1.1",
+    "@rollup/plugin-node-resolve": "13.1.2",
     "@tsconfig/node12": "1.0.9",
     "@types/estree": "0.0.50",
     "@types/jest": "27.0.3",
