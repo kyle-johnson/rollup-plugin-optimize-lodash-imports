@@ -28,7 +28,7 @@ importers:
       jest: 27.4.7
       lodash: 4.17.21
       prettier: 2.5.1
-      ts-jest: 27.1.2
+      ts-jest: 27.1.3
       typescript: 4.5.4
     dependencies:
       '@optimize-lodash/transform': link:../transform
@@ -50,7 +50,7 @@ importers:
       jest: 27.4.7
       lodash: 4.17.21
       prettier: 2.5.1
-      ts-jest: 27.1.2_7609bee14171c797989ff7e78c897b81
+      ts-jest: 27.1.3_7609bee14171c797989ff7e78c897b81
       typescript: 4.5.4
 
   packages/rollup-plugin:
@@ -76,7 +76,7 @@ importers:
       prettier: 2.5.1
       rollup: 2.64.0
       rollup-plugin-terser: 7.0.2
-      ts-jest: 27.1.2
+      ts-jest: 27.1.3
       typescript: 4.5.4
     dependencies:
       '@optimize-lodash/transform': link:../transform
@@ -101,7 +101,7 @@ importers:
       prettier: 2.5.1
       rollup: 2.64.0
       rollup-plugin-terser: 7.0.2_rollup@2.64.0
-      ts-jest: 27.1.2_9364f2ad0b7b67f00a4d081c662c6871
+      ts-jest: 27.1.3_9364f2ad0b7b67f00a4d081c662c6871
       typescript: 4.5.4
 
   packages/transform:
@@ -123,7 +123,7 @@ importers:
       jest: 27.4.7
       magic-string: 0.25.x
       prettier: 2.5.1
-      ts-jest: 27.1.2
+      ts-jest: 27.1.3
       typescript: 4.5.4
     dependencies:
       estree-walker: 2.0.2
@@ -144,7 +144,7 @@ importers:
       eslint-plugin-unicorn: 40.0.0_eslint@8.6.0
       jest: 27.4.7
       prettier: 2.5.1
-      ts-jest: 27.1.2_9364f2ad0b7b67f00a4d081c662c6871
+      ts-jest: 27.1.3_9364f2ad0b7b67f00a4d081c662c6871
       typescript: 4.5.4
 
 packages:
@@ -4909,8 +4909,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/27.1.2_7609bee14171c797989ff7e78c897b81:
-    resolution: {integrity: sha512-eSOiJOWq6Hhs6Khzk5wKC5sgWIXgXqOCiIl1+3lfnearu58Hj4QpE5tUhQcA3xtZrELbcvAGCsd6HB8OsaVaTA==}
+  /ts-jest/27.1.3_7609bee14171c797989ff7e78c897b81:
+    resolution: {integrity: sha512-6Nlura7s6uM9BVUAoqLH7JHyMXjz8gluryjpPXxr3IxZdAXnU6FhjvVLHFtfd1vsE1p8zD1OJfskkc0jhTSnkA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
     peerDependencies:
@@ -4944,8 +4944,8 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /ts-jest/27.1.2_9364f2ad0b7b67f00a4d081c662c6871:
-    resolution: {integrity: sha512-eSOiJOWq6Hhs6Khzk5wKC5sgWIXgXqOCiIl1+3lfnearu58Hj4QpE5tUhQcA3xtZrELbcvAGCsd6HB8OsaVaTA==}
+  /ts-jest/27.1.3_9364f2ad0b7b67f00a4d081c662c6871:
+    resolution: {integrity: sha512-6Nlura7s6uM9BVUAoqLH7JHyMXjz8gluryjpPXxr3IxZdAXnU6FhjvVLHFtfd1vsE1p8zD1OJfskkc0jhTSnkA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
     peerDependencies:
