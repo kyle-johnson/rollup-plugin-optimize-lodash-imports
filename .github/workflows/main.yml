@@ -129,9 +129,9 @@ jobs:
         id: Changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm -r publish --no-git-checks
-          version: pnpm changeset version
-          commit: "chore: update versions"
-          title: "chore: update versions"
+          publish: pnpm run release
+          version: pnpm run version
+          commit: "release: update versions"
+          title: "Pending release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
