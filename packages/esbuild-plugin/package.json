@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@tsconfig/node12": "1.0.9",
-    "@types/estree": "0.0.46",
+    "@types/estree": "0.0.51",
     "@types/jest": "27.4.0",
     "@types/lodash": "4.14.178",
     "@types/node": "10.17.60",
