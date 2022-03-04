@@ -24,7 +24,7 @@ importers:
       depcheck: 1.4.3
       esbuild: 0.14.23
       eslint: 8.10.0
-      eslint-config-prettier: 8.4.0
+      eslint-config-prettier: 8.5.0
       eslint-plugin-jest: 26.1.1
       eslint-plugin-unicorn: 41.0.0
       jest: 27.5.1
@@ -46,7 +46,7 @@ importers:
       depcheck: 1.4.3
       esbuild: 0.14.23
       eslint: 8.10.0
-      eslint-config-prettier: 8.4.0_eslint@8.10.0
+      eslint-config-prettier: 8.5.0_eslint@8.10.0
       eslint-plugin-jest: 26.1.1_550c5052baf44456a1d6f6f503780be6
       eslint-plugin-unicorn: 41.0.0_eslint@8.10.0
       jest: 27.5.1
@@ -70,7 +70,7 @@ importers:
       '@typescript-eslint/parser': 5.12.1
       depcheck: 1.4.3
       eslint: 8.10.0
-      eslint-config-prettier: 8.4.0
+      eslint-config-prettier: 8.5.0
       eslint-plugin-jest: 26.1.1
       eslint-plugin-unicorn: 41.0.0
       jest: 27.5.1
@@ -95,7 +95,7 @@ importers:
       '@typescript-eslint/parser': 5.12.1_eslint@8.10.0+typescript@4.5.5
       depcheck: 1.4.3
       eslint: 8.10.0
-      eslint-config-prettier: 8.4.0_eslint@8.10.0
+      eslint-config-prettier: 8.5.0_eslint@8.10.0
       eslint-plugin-jest: 26.1.1_550c5052baf44456a1d6f6f503780be6
       eslint-plugin-unicorn: 41.0.0_eslint@8.10.0
       jest: 27.5.1
@@ -118,7 +118,7 @@ importers:
       acorn: 8.7.0
       depcheck: 1.4.3
       eslint: 8.10.0
-      eslint-config-prettier: 8.4.0
+      eslint-config-prettier: 8.5.0
       eslint-plugin-jest: 26.1.1
       eslint-plugin-unicorn: 41.0.0
       estree-walker: 2.x
@@ -141,7 +141,7 @@ importers:
       acorn: 8.7.0
       depcheck: 1.4.3
       eslint: 8.10.0
-      eslint-config-prettier: 8.4.0_eslint@8.10.0
+      eslint-config-prettier: 8.5.0_eslint@8.10.0
       eslint-plugin-jest: 26.1.1_550c5052baf44456a1d6f6f503780be6
       eslint-plugin-unicorn: 41.0.0_eslint@8.10.0
       jest: 27.5.1
@@ -2380,8 +2380,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-prettier/8.4.0_eslint@8.10.0:
-    resolution: {integrity: sha512-CFotdUcMY18nGRo5KGsnNxpznzhkopOcOo0InID+sgQssPrzjvsyKZPvOgymTFeHrFuC3Tzdf2YndhXtULK9Iw==}
+  /eslint-config-prettier/8.5.0_eslint@8.10.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
