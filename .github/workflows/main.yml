@@ -19,7 +19,7 @@ jobs:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: install pnpm
@@ -75,7 +75,7 @@ jobs:
             node: 16
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: install pnpm
@@ -112,7 +112,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 12
       - name: install pnpm
