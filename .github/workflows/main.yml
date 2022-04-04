@@ -29,7 +29,7 @@ jobs:
         shell: bash
         run: |
           echo "::set-output name=date::$(/bin/date -u \"+%Y%m\")"
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-${{ hashFiles('./pnpm-lock.yaml') }}
@@ -85,7 +85,7 @@ jobs:
         shell: bash
         run: |
           echo "::set-output name=date::$(/bin/date -u \"+%Y%m\")"
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-10-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-${{ hashFiles('./pnpm-lock.yaml') }}
