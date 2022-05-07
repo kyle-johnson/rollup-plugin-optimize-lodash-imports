@@ -123,13 +123,13 @@ importers:
       eslint-plugin-unicorn: 42.0.0
       estree-walker: 2.x
       jest: 27.5.1
-      magic-string: 0.25.x
+      magic-string: 0.26.x
       prettier: 2.6.2
       ts-jest: 27.1.4
       typescript: 4.6.4
     dependencies:
       estree-walker: 2.0.2
-      magic-string: 0.25.7
+      magic-string: 0.26.1
     devDependencies:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
@@ -3770,6 +3770,14 @@ packages:
     resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /magic-string/0.26.1:
+    resolution: {integrity: sha512-ndThHmvgtieXe8J/VGPjG+Apu7v7ItcD5mhEIvOscWjPF/ccOiLxHaSuCAS2G+3x4GKsAbT8u7zdyamupui8Tg==}
+    engines: {node: '>=12'}
+    dependencies:
+      sourcemap-codec: 1.4.8
+    dev: false
 
   /make-dir/3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
