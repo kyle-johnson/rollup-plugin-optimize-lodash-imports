@@ -15,7 +15,7 @@ importers:
       '@optimize-lodash/transform': workspace:3.x
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       '@types/lodash': 4.14.182
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 5.22.0
@@ -38,7 +38,7 @@ importers:
     devDependencies:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       '@types/lodash': 4.14.182
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 5.22.0_9817cbad956b8aa5d1e3d9ec99e4a1e4
@@ -52,7 +52,7 @@ importers:
       jest: 27.5.1
       lodash: 4.17.21
       prettier: 2.6.2
-      ts-jest: 27.1.4_396e6fd68cee946ab0689c5708150466
+      ts-jest: 27.1.4_edb1f862ecf73b6f0cc1f906c6266936
       typescript: 4.6.4
 
   packages/rollup-plugin:
@@ -63,7 +63,7 @@ importers:
       '@rollup/pluginutils': 4.x
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       '@types/lodash': 4.14.182
       '@types/node': 12.20.50
       '@typescript-eslint/eslint-plugin': 5.22.0
@@ -88,7 +88,7 @@ importers:
       '@rollup/plugin-node-resolve': 13.1.3_rollup@2.72.0
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       '@types/lodash': 4.14.182
       '@types/node': 12.20.50
       '@typescript-eslint/eslint-plugin': 5.22.0_9817cbad956b8aa5d1e3d9ec99e4a1e4
@@ -103,14 +103,14 @@ importers:
       prettier: 2.6.2
       rollup: 2.72.0
       rollup-plugin-terser: 7.0.2_rollup@2.72.0
-      ts-jest: 27.1.4_eecc682348e44222a66a9b13407b285a
+      ts-jest: 27.1.4_de3efcd1e6a6e8470860984ab19632da
       typescript: 4.6.4
 
   packages/transform:
     specifiers:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       '@types/lodash': 4.14.182
       '@types/node': 12.20.50
       '@typescript-eslint/eslint-plugin': 5.22.0
@@ -133,7 +133,7 @@ importers:
     devDependencies:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       '@types/lodash': 4.14.182
       '@types/node': 12.20.50
       '@typescript-eslint/eslint-plugin': 5.22.0_9817cbad956b8aa5d1e3d9ec99e4a1e4
@@ -146,7 +146,7 @@ importers:
       eslint-plugin-unicorn: 42.0.0_eslint@8.15.0
       jest: 27.5.1
       prettier: 2.6.2
-      ts-jest: 27.1.4_eecc682348e44222a66a9b13407b285a
+      ts-jest: 27.1.4_de3efcd1e6a6e8470860984ab19632da
       typescript: 4.6.4
 
 packages:
@@ -1127,8 +1127,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.4.1:
-    resolution: {integrity: sha512-23iPJADSmicDVrWk+HT58LMJtzLAnB2AgIzplQuq/bSrGaxCrlvRFjGbXmamnnk/mAmCdLStiGqggu28ocUyiw==}
+  /@types/jest/27.5.0:
+    resolution: {integrity: sha512-9RBFx7r4k+msyj/arpfaa0WOOEcaAZNmN+j80KFbFCoSqCJGHTz7YMAMGQW9Xmqm5w6l5c25vbSjMwlikJi5+g==}
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
@@ -4880,7 +4880,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/27.1.4_396e6fd68cee946ab0689c5708150466:
+  /ts-jest/27.1.4_de3efcd1e6a6e8470860984ab19632da:
     resolution: {integrity: sha512-qjkZlVPWVctAezwsOD1OPzbZ+k7zA5z3oxII4dGdZo5ggX/PL7kvwTM0pXTr10fAtbiVpJaL3bWd502zAhpgSQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -4901,9 +4901,8 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       bs-logger: 0.2.6
-      esbuild: 0.14.38
       fast-json-stable-stringify: 2.1.0
       jest: 27.5.1
       jest-util: 27.5.1
@@ -4915,7 +4914,7 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
-  /ts-jest/27.1.4_eecc682348e44222a66a9b13407b285a:
+  /ts-jest/27.1.4_edb1f862ecf73b6f0cc1f906c6266936:
     resolution: {integrity: sha512-qjkZlVPWVctAezwsOD1OPzbZ+k7zA5z3oxII4dGdZo5ggX/PL7kvwTM0pXTr10fAtbiVpJaL3bWd502zAhpgSQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
@@ -4936,8 +4935,9 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      '@types/jest': 27.4.1
+      '@types/jest': 27.5.0
       bs-logger: 0.2.6
+      esbuild: 0.14.38
       fast-json-stable-stringify: 2.1.0
       jest: 27.5.1
       jest-util: 27.5.1
