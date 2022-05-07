@@ -29,7 +29,7 @@ importers:
       eslint-plugin-unicorn: 41.0.1
       jest: 27.5.1
       lodash: 4.17.21
-      prettier: 2.6.0
+      prettier: 2.6.2
       ts-jest: 27.1.4
       typescript: 4.6.3
     dependencies:
@@ -51,7 +51,7 @@ importers:
       eslint-plugin-unicorn: 41.0.1_eslint@8.11.0
       jest: 27.5.1
       lodash: 4.17.21
-      prettier: 2.6.0
+      prettier: 2.6.2
       ts-jest: 27.1.4_c797a9a28c6a4b0e72bd5fe364b20216
       typescript: 4.6.3
 
@@ -75,7 +75,7 @@ importers:
       eslint-plugin-unicorn: 41.0.1
       jest: 27.5.1
       lodash: 4.17.21
-      prettier: 2.6.0
+      prettier: 2.6.2
       rollup: 2.70.1
       rollup-plugin-terser: 7.0.2
       ts-jest: 27.1.4
@@ -100,7 +100,7 @@ importers:
       eslint-plugin-unicorn: 41.0.1_eslint@8.11.0
       jest: 27.5.1
       lodash: 4.17.21
-      prettier: 2.6.0
+      prettier: 2.6.2
       rollup: 2.70.1
       rollup-plugin-terser: 7.0.2_rollup@2.70.1
       ts-jest: 27.1.4_9985e1834e803358b7be1e6ce5ca0eea
@@ -124,7 +124,7 @@ importers:
       estree-walker: 2.x
       jest: 27.5.1
       magic-string: 0.25.x
-      prettier: 2.6.0
+      prettier: 2.6.2
       ts-jest: 27.1.4
       typescript: 4.6.3
     dependencies:
@@ -145,7 +145,7 @@ importers:
       eslint-plugin-jest: 26.1.5_b282f63f35ccaf368f84b169b2a9162a
       eslint-plugin-unicorn: 41.0.1_eslint@8.11.0
       jest: 27.5.1
-      prettier: 2.6.0
+      prettier: 2.6.2
       ts-jest: 27.1.4_9985e1834e803358b7be1e6ce5ca0eea
       typescript: 4.6.3
 
@@ -4228,8 +4228,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.6.0:
-    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
+  /prettier/2.6.2:
+    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
