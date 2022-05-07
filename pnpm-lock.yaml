@@ -25,7 +25,7 @@ importers:
       esbuild: 0.14.38
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0
-      eslint-plugin-jest: 26.1.3
+      eslint-plugin-jest: 26.1.5
       eslint-plugin-unicorn: 41.0.1
       jest: 27.5.1
       lodash: 4.17.21
@@ -47,7 +47,7 @@ importers:
       esbuild: 0.14.38
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0_eslint@8.11.0
-      eslint-plugin-jest: 26.1.3_b282f63f35ccaf368f84b169b2a9162a
+      eslint-plugin-jest: 26.1.5_b282f63f35ccaf368f84b169b2a9162a
       eslint-plugin-unicorn: 41.0.1_eslint@8.11.0
       jest: 27.5.1
       lodash: 4.17.21
@@ -71,7 +71,7 @@ importers:
       depcheck: 1.4.3
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0
-      eslint-plugin-jest: 26.1.3
+      eslint-plugin-jest: 26.1.5
       eslint-plugin-unicorn: 41.0.1
       jest: 27.5.1
       lodash: 4.17.21
@@ -96,7 +96,7 @@ importers:
       depcheck: 1.4.3
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0_eslint@8.11.0
-      eslint-plugin-jest: 26.1.3_b282f63f35ccaf368f84b169b2a9162a
+      eslint-plugin-jest: 26.1.5_b282f63f35ccaf368f84b169b2a9162a
       eslint-plugin-unicorn: 41.0.1_eslint@8.11.0
       jest: 27.5.1
       lodash: 4.17.21
@@ -119,7 +119,7 @@ importers:
       depcheck: 1.4.3
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0
-      eslint-plugin-jest: 26.1.3
+      eslint-plugin-jest: 26.1.5
       eslint-plugin-unicorn: 41.0.1
       estree-walker: 2.x
       jest: 27.5.1
@@ -142,7 +142,7 @@ importers:
       depcheck: 1.4.3
       eslint: 8.11.0
       eslint-config-prettier: 8.5.0_eslint@8.11.0
-      eslint-plugin-jest: 26.1.3_b282f63f35ccaf368f84b169b2a9162a
+      eslint-plugin-jest: 26.1.5_b282f63f35ccaf368f84b169b2a9162a
       eslint-plugin-unicorn: 41.0.1_eslint@8.11.0
       jest: 27.5.1
       prettier: 2.6.0
@@ -2347,8 +2347,8 @@ packages:
       eslint: 8.11.0
     dev: true
 
-  /eslint-plugin-jest/26.1.3_b282f63f35ccaf368f84b169b2a9162a:
-    resolution: {integrity: sha512-Pju+T7MFpo5VFhFlwrkK/9jRUu18r2iugvgyrWOnnGRaVTFFmFXp+xFJpHyqmjjLmGJPKLeEFLVTAxezkApcpQ==}
+  /eslint-plugin-jest/26.1.5_b282f63f35ccaf368f84b169b2a9162a:
+    resolution: {integrity: sha512-su89aDuljL9bTjEufTXmKUMSFe2kZUL9bi7+woq+C2ukHZordhtfPm4Vg+tdioHBaKf8v3/FXW9uV0ksqhYGFw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': ^5.0.0
