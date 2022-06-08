@@ -15,7 +15,7 @@ importers:
       '@optimize-lodash/transform': workspace:3.x
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.5.2
+      '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 5.26.0
@@ -38,7 +38,7 @@ importers:
     devDependencies:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.5.2
+      '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 5.26.0_3e687f93547efbf7d61b629ca4d69a5c
@@ -63,7 +63,7 @@ importers:
       '@rollup/pluginutils': 4.x
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.5.2
+      '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
       '@types/node': 12.20.54
       '@typescript-eslint/eslint-plugin': 5.26.0
@@ -88,7 +88,7 @@ importers:
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.75.5
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.5.2
+      '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
       '@types/node': 12.20.54
       '@typescript-eslint/eslint-plugin': 5.26.0_3e687f93547efbf7d61b629ca4d69a5c
@@ -110,7 +110,7 @@ importers:
     specifiers:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.5.2
+      '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
       '@types/node': 12.20.54
       '@typescript-eslint/eslint-plugin': 5.26.0
@@ -133,7 +133,7 @@ importers:
     devDependencies:
       '@tsconfig/node12': 1.0.9
       '@types/estree': 0.0.51
-      '@types/jest': 27.5.2
+      '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
       '@types/node': 12.20.54
       '@typescript-eslint/eslint-plugin': 5.26.0_3e687f93547efbf7d61b629ca4d69a5c
@@ -1167,8 +1167,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/27.5.2:
-    resolution: {integrity: sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA==}
+  /@types/jest/28.1.1:
+    resolution: {integrity: sha512-C2p7yqleUKtCkVjlOur9BWVA4HgUQmEj/HWCt5WzZ5mLXrWnyIfl0wGuArc+kBXsy0ZZfLp+7dywB4HtSVYGVA==}
     dependencies:
       jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
