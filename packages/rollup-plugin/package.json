@@ -54,7 +54,7 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@tsconfig/node12": "1.0.9",
     "@types/estree": "0.0.51",
-    "@types/jest": "27.5.2",
+    "@types/jest": "28.1.1",
     "@types/lodash": "4.14.182",
     "@types/node": "12.20.54",
     "@typescript-eslint/eslint-plugin": "5.26.0",
