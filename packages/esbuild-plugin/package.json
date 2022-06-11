@@ -67,7 +67,7 @@
     "lodash": "4.17.21",
     "prettier": "2.6.2",
     "ts-jest": "28.0.4",
-    "typescript": "4.7.2"
+    "typescript": "4.7.3"
   },
   "dependencies": {
     "@optimize-lodash/transform": "workspace:3.x",
