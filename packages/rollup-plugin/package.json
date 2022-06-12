@@ -56,7 +56,7 @@
     "@types/estree": "0.0.51",
     "@types/jest": "28.1.1",
     "@types/lodash": "4.14.182",
-    "@types/node": "12.20.54",
+    "@types/node": "12.20.55",
     "@typescript-eslint/eslint-plugin": "5.27.1",
     "@typescript-eslint/parser": "5.27.1",
     "depcheck": "1.4.3",
