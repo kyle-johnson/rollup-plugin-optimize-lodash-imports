@@ -4,10 +4,10 @@ importers:
 
   .:
     specifiers:
-      '@changesets/changelog-github': 0.4.4
+      '@changesets/changelog-github': 0.4.5
       '@changesets/cli': 2.22.0
     devDependencies:
-      '@changesets/changelog-github': 0.4.4
+      '@changesets/changelog-github': 0.4.5
       '@changesets/cli': 2.22.0
 
   packages/esbuild-plugin:
@@ -543,10 +543,10 @@ packages:
       '@changesets/types': 5.0.0
     dev: true
 
-  /@changesets/changelog-github/0.4.4:
-    resolution: {integrity: sha512-htSILqCkyYtTB5/LoVKwx7GCJQGxAiBcYbfUKWiz/QoDARuM01owYtMXhV6/iytJZq/Dqqz3PjMZUNB4MphpbQ==}
+  /@changesets/changelog-github/0.4.5:
+    resolution: {integrity: sha512-J36QJml3mXYm88PLY2qGepmb7j6LA3NM/wuUy6XBwh14qzVTRek+3Xww5oqeZhpK5lK8ELxGahdhSdYQzMv0kA==}
     dependencies:
-      '@changesets/get-github-info': 0.5.0
+      '@changesets/get-github-info': 0.5.1
       '@changesets/types': 5.0.0
       dotenv: 8.6.0
     dev: true
@@ -617,8 +617,8 @@ packages:
       semver: 5.7.1
     dev: true
 
-  /@changesets/get-github-info/0.5.0:
-    resolution: {integrity: sha512-vm5VgHwrxkMkUjFyn3UVNKLbDp9YMHd3vMf1IyJoa/7B+6VpqmtAaXyDS0zBLfN5bhzVCHrRnj4GcZXXcqrFTw==}
+  /@changesets/get-github-info/0.5.1:
+    resolution: {integrity: sha512-w2yl3AuG+hFuEEmT6j1zDlg7GQLM/J2UxTmk0uJBMdRqHni4zXGe/vUlPfLom5KfX3cRfHc0hzGvloDPjWFNZw==}
     dependencies:
       dataloader: 1.4.0
       node-fetch: 2.6.6
@@ -5045,7 +5045,7 @@ packages:
     dev: true
 
   /tr46/0.0.3:
-    resolution: {integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=}
+    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
     dev: true
 
   /trim-newlines/3.0.1:
@@ -5232,11 +5232,11 @@ packages:
     dev: true
 
   /webidl-conversions/3.0.1:
-    resolution: {integrity: sha1-JFNCdeKnvGvnvIZhHMFq4KVlSHE=}
+    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
     dev: true
 
   /whatwg-url/5.0.0:
-    resolution: {integrity: sha1-lmRU6HZUYuN2RNNib2dCzotwll0=}
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
