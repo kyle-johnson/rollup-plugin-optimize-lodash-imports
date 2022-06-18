@@ -30,7 +30,7 @@ importers:
       jest: 28.1.1
       lodash: 4.17.21
       prettier: 2.6.2
-      ts-jest: 28.0.4
+      ts-jest: 28.0.5
       typescript: 4.7.3
     dependencies:
       '@optimize-lodash/transform': link:../transform
@@ -52,7 +52,7 @@ importers:
       jest: 28.1.1_@types+node@10.17.60
       lodash: 4.17.21
       prettier: 2.6.2
-      ts-jest: 28.0.4_39d28abc242f9a15cc88f7055fcff9cf
+      ts-jest: 28.0.5_39d28abc242f9a15cc88f7055fcff9cf
       typescript: 4.7.3
 
   packages/rollup-plugin:
@@ -78,7 +78,7 @@ importers:
       prettier: 2.6.2
       rollup: 2.75.6
       rollup-plugin-terser: 7.0.2
-      ts-jest: 28.0.4
+      ts-jest: 28.0.5
       typescript: 4.7.3
     dependencies:
       '@optimize-lodash/transform': link:../transform
@@ -103,7 +103,7 @@ importers:
       prettier: 2.6.2
       rollup: 2.75.6
       rollup-plugin-terser: 7.0.2_rollup@2.75.6
-      ts-jest: 28.0.4_jest@28.1.1+typescript@4.7.3
+      ts-jest: 28.0.5_jest@28.1.1+typescript@4.7.3
       typescript: 4.7.3
 
   packages/transform:
@@ -125,7 +125,7 @@ importers:
       jest: 28.1.1
       magic-string: 0.26.x
       prettier: 2.6.2
-      ts-jest: 28.0.4
+      ts-jest: 28.0.5
       typescript: 4.7.3
     dependencies:
       estree-walker: 2.0.2
@@ -146,7 +146,7 @@ importers:
       eslint-plugin-unicorn: 42.0.0_eslint@8.17.0
       jest: 28.1.1_@types+node@12.20.55
       prettier: 2.6.2
-      ts-jest: 28.0.4_jest@28.1.1+typescript@4.7.3
+      ts-jest: 28.0.5_jest@28.1.1+typescript@4.7.3
       typescript: 4.7.3
 
 packages:
@@ -5053,8 +5053,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/28.0.4_39d28abc242f9a15cc88f7055fcff9cf:
-    resolution: {integrity: sha512-S6uRDDdCJBvnZqyGjB4VCnwbQrbgdL8WPeP4jevVSpYsBaeGRQAIS08o3Svav2Ex+oXwLgJ/m7F24TNq62kA1A==}
+  /ts-jest/28.0.5_39d28abc242f9a15cc88f7055fcff9cf:
+    resolution: {integrity: sha512-Sx9FyP9pCY7pUzQpy4FgRZf2bhHY3za576HMKJFs+OnQ9jS96Du5vNsDKkyedQkik+sEabbKAnCliv9BEsHZgQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
@@ -5081,11 +5081,11 @@ packages:
       make-error: 1.3.6
       semver: 7.3.7
       typescript: 4.7.3
-      yargs-parser: 20.2.9
+      yargs-parser: 21.0.1
     dev: true
 
-  /ts-jest/28.0.4_jest@28.1.1+typescript@4.7.3:
-    resolution: {integrity: sha512-S6uRDDdCJBvnZqyGjB4VCnwbQrbgdL8WPeP4jevVSpYsBaeGRQAIS08o3Svav2Ex+oXwLgJ/m7F24TNq62kA1A==}
+  /ts-jest/28.0.5_jest@28.1.1+typescript@4.7.3:
+    resolution: {integrity: sha512-Sx9FyP9pCY7pUzQpy4FgRZf2bhHY3za576HMKJFs+OnQ9jS96Du5vNsDKkyedQkik+sEabbKAnCliv9BEsHZgQ==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
@@ -5111,7 +5111,7 @@ packages:
       make-error: 1.3.6
       semver: 7.3.7
       typescript: 4.7.3
-      yargs-parser: 20.2.9
+      yargs-parser: 21.0.1
     dev: true
 
   /tslib/1.14.1:
