@@ -13,7 +13,7 @@ importers:
   packages/esbuild-plugin:
     specifiers:
       '@optimize-lodash/transform': workspace:3.x
-      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
       '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
@@ -36,7 +36,7 @@ importers:
       '@optimize-lodash/transform': link:../transform
       acorn: 8.5.0
     devDependencies:
-      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
       '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
@@ -61,7 +61,7 @@ importers:
       '@rollup/plugin-commonjs': 22.0.0
       '@rollup/plugin-node-resolve': 13.3.0
       '@rollup/pluginutils': 4.x
-      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
       '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
@@ -86,7 +86,7 @@ importers:
     devDependencies:
       '@rollup/plugin-commonjs': 22.0.0_rollup@2.75.6
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.75.6
-      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
       '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
@@ -108,7 +108,7 @@ importers:
 
   packages/transform:
     specifiers:
-      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
       '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
@@ -131,7 +131,7 @@ importers:
       estree-walker: 2.0.2
       magic-string: 0.26.1
     devDependencies:
-      '@tsconfig/node12': 1.0.9
+      '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
       '@types/jest': 28.1.1
       '@types/lodash': 4.14.182
@@ -1094,8 +1094,8 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@tsconfig/node12/1.0.9:
-    resolution: {integrity: sha512-/yBMcem+fbvhSREH+s14YJi18sp7J9jpuhYByADT2rypfajMZZN4WQ6zBGgBKp53NKmqI36wFYDb3yaMPurITw==}
+  /@tsconfig/node12/1.0.11:
+    resolution: {integrity: sha512-cqefuRsh12pWyGsIoBKJA9luFu3mRxCA+ORZvA4ktLSzIuCUtWVxGIuXigEwO5/ywWFMZ2QEGKWvkZG1zDMTag==}
     dev: true
 
   /@types/babel__core/7.1.16:
