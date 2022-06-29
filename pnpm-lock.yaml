@@ -58,7 +58,7 @@ importers:
   packages/rollup-plugin:
     specifiers:
       '@optimize-lodash/transform': workspace:3.x
-      '@rollup/plugin-commonjs': 22.0.0
+      '@rollup/plugin-commonjs': 22.0.1
       '@rollup/plugin-node-resolve': 13.3.0
       '@rollup/pluginutils': 4.x
       '@tsconfig/node12': 1.0.11
@@ -84,7 +84,7 @@ importers:
       '@optimize-lodash/transform': link:../transform
       '@rollup/pluginutils': 4.1.0_rollup@2.75.6
     devDependencies:
-      '@rollup/plugin-commonjs': 22.0.0_rollup@2.75.6
+      '@rollup/plugin-commonjs': 22.0.1_rollup@2.75.6
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.75.6
       '@tsconfig/node12': 1.0.11
       '@types/estree': 0.0.51
@@ -1025,8 +1025,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-commonjs/22.0.0_rollup@2.75.6:
-    resolution: {integrity: sha512-Ktvf2j+bAO+30awhbYoCaXpBcyPmJbaEUYClQns/+6SNCYFURbvBiNbWgHITEsIgDDWCDUclWRKEuf8cwZCFoQ==}
+  /@rollup/plugin-commonjs/22.0.1_rollup@2.75.6:
+    resolution: {integrity: sha512-dGfEZvdjDHObBiP5IvwTKMVeq/tBZGMBHZFMdIV1ClMM/YoWS34xrHFGfag9SN2ZtMgNZRFruqvxZQEa70O6nQ==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
       rollup: ^2.68.0
@@ -1945,7 +1945,7 @@ packages:
     dev: true
 
   /commondir/1.0.1:
-    resolution: {integrity: sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=}
+    resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
     dev: true
 
   /concat-map/0.0.1:
