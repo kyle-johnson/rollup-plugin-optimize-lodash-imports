@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`esbuild sanity check no-transform.js 1`] = `
-"var __defProp = Object.defineProperty;
+"\\"use strict\\";
+var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
@@ -30,7 +31,8 @@ function hello(name) {
 `;
 
 exports[`esbuild with lodashOptimizeImports() CJS: standard-and-fp.js 1`] = `
-"var __create = Object.create;
+"\\"use strict\\";
+var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
