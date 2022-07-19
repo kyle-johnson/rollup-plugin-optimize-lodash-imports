@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 3
     strategy:
       matrix:
-        node: [12]
+        node: [16]
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v3
@@ -47,7 +47,7 @@ jobs:
       matrix:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
         command: ["test:ci"]
-        node: [ 12, 16 ] # if 12 and 16 pass, assume 14 does too!
+        node: [ 14, 16 ] # dropping 12!
         include:
           - package: "rollup-plugin"
             command: lint
@@ -114,7 +114,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
       - name: install pnpm
         run: npm install -g pnpm@$PNPM_VERSION
       - name: install deps
