@@ -5,11 +5,13 @@
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.5",
-    "@changesets/cli": "2.23.0"
+    "@changesets/cli": "2.23.2"
   },
   "pnpm": {
     "peerDependencyRules": {
-      "ignoreMissing": ["vue"]
+      "ignoreMissing": [
+        "vue"
+      ]
     }
   }
 }
