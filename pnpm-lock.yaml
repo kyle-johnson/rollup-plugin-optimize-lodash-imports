@@ -26,7 +26,7 @@ importers:
       eslint: 8.18.0
       eslint-config-prettier: 8.5.0
       eslint-plugin-jest: 26.5.3
-      eslint-plugin-unicorn: 43.0.0
+      eslint-plugin-unicorn: 43.0.2
       jest: 28.1.2
       lodash: 4.17.21
       prettier: 2.7.1
@@ -48,7 +48,7 @@ importers:
       eslint: 8.18.0
       eslint-config-prettier: 8.5.0_eslint@8.18.0
       eslint-plugin-jest: 26.5.3_3flrxtihrimz32xf3px6pxbn6q
-      eslint-plugin-unicorn: 43.0.0_eslint@8.18.0
+      eslint-plugin-unicorn: 43.0.2_eslint@8.18.0
       jest: 28.1.2_@types+node@10.17.60
       lodash: 4.17.21
       prettier: 2.7.1
@@ -72,7 +72,7 @@ importers:
       eslint: 8.18.0
       eslint-config-prettier: 8.5.0
       eslint-plugin-jest: 26.5.3
-      eslint-plugin-unicorn: 43.0.0
+      eslint-plugin-unicorn: 43.0.2
       jest: 28.1.2
       lodash: 4.17.21
       prettier: 2.7.1
@@ -97,7 +97,7 @@ importers:
       eslint: 8.18.0
       eslint-config-prettier: 8.5.0_eslint@8.18.0
       eslint-plugin-jest: 26.5.3_3flrxtihrimz32xf3px6pxbn6q
-      eslint-plugin-unicorn: 43.0.0_eslint@8.18.0
+      eslint-plugin-unicorn: 43.0.2_eslint@8.18.0
       jest: 28.1.2_@types+node@12.20.55
       lodash: 4.17.21
       prettier: 2.7.1
@@ -120,7 +120,7 @@ importers:
       eslint: 8.18.0
       eslint-config-prettier: 8.5.0
       eslint-plugin-jest: 26.5.3
-      eslint-plugin-unicorn: 43.0.0
+      eslint-plugin-unicorn: 43.0.2
       estree-walker: 2.x
       jest: 28.1.2
       magic-string: 0.26.x
@@ -143,7 +143,7 @@ importers:
       eslint: 8.18.0
       eslint-config-prettier: 8.5.0_eslint@8.18.0
       eslint-plugin-jest: 26.5.3_3flrxtihrimz32xf3px6pxbn6q
-      eslint-plugin-unicorn: 43.0.0_eslint@8.18.0
+      eslint-plugin-unicorn: 43.0.2_eslint@8.18.0
       jest: 28.1.2_@types+node@12.20.55
       prettier: 2.7.1
       ts-jest: 28.0.5_lt5llx2ti6zt4eclhanfli5ynu
@@ -1447,6 +1447,9 @@ packages:
     resolution: {integrity: sha512-4KDQg60Khy3SgnF+V/TB2NZqzmM4TyGRmzsxqG1SebGdMSecCweFDSlI/F1vDYk6dKiCHgmpoT9A1sLxswkJ0A==}
     peerDependencies:
       vue: 3.1.4
+    peerDependenciesMeta:
+      vue:
+        optional: true
     dependencies:
       '@babel/parser': 7.16.4
       '@babel/types': 7.15.6
@@ -2717,8 +2720,8 @@ packages:
       - typescript
     dev: true
 
-  /eslint-plugin-unicorn/43.0.0_eslint@8.18.0:
-    resolution: {integrity: sha512-Z/6HX8yry+zAjo4jHHTAbe1rfniox7qgmCReGBfTc/CVgotfScaMCc4dtSSTHlJ+7Yix5o6LPXzwwpuGGFricg==}
+  /eslint-plugin-unicorn/43.0.2_eslint@8.18.0:
+    resolution: {integrity: sha512-DtqZ5mf/GMlfWoz1abIjq5jZfaFuHzGBZYIeuJfEoKKGWRHr2JiJR+ea+BF7Wx2N1PPRoT/2fwgiK1NnmNE3Hg==}
     engines: {node: '>=14.18'}
     peerDependencies:
       eslint: '>=8.18.0'
