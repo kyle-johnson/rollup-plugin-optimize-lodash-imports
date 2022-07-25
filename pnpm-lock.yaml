@@ -4,10 +4,10 @@ importers:
 
   .:
     specifiers:
-      '@changesets/changelog-github': 0.4.5
+      '@changesets/changelog-github': 0.4.6
       '@changesets/cli': 2.24.1
     devDependencies:
-      '@changesets/changelog-github': 0.4.5
+      '@changesets/changelog-github': 0.4.6
       '@changesets/cli': 2.24.1
 
   packages/esbuild-plugin:
@@ -625,11 +625,11 @@ packages:
       '@changesets/types': 5.1.0
     dev: true
 
-  /@changesets/changelog-github/0.4.5:
-    resolution: {integrity: sha512-J36QJml3mXYm88PLY2qGepmb7j6LA3NM/wuUy6XBwh14qzVTRek+3Xww5oqeZhpK5lK8ELxGahdhSdYQzMv0kA==}
+  /@changesets/changelog-github/0.4.6:
+    resolution: {integrity: sha512-ahR/+o3OPodzfG9kucEMU/tEtBgwy6QoJiWi1sDBPme8n3WjT6pBlbhqNYpWAJKilomwfjBGY0MTUTs6r9d1RQ==}
     dependencies:
       '@changesets/get-github-info': 0.5.1
-      '@changesets/types': 5.0.0
+      '@changesets/types': 5.1.0
       dotenv: 8.6.0
     dev: true
 
@@ -772,10 +772,6 @@ packages:
 
   /@changesets/types/4.1.0:
     resolution: {integrity: sha512-LDQvVDv5Kb50ny2s25Fhm3d9QSZimsoUGBsUioj6MC3qbMUCuC8GPIvk/M6IvXx3lYhAs0lwWUQLb+VIEUCECw==}
-    dev: true
-
-  /@changesets/types/5.0.0:
-    resolution: {integrity: sha512-IT1kBLSbAgTS4WtpU6P5ko054hq12vk4tgeIFRVE7Vnm4a/wgbNvBalgiKP0MjEXbCkZbItiGQHkCGxYWR55sA==}
     dev: true
 
   /@changesets/types/5.1.0:
