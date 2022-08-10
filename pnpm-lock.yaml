@@ -58,7 +58,7 @@ importers:
   packages/rollup-plugin:
     specifiers:
       '@optimize-lodash/transform': workspace:3.x
-      '@rollup/plugin-commonjs': 22.0.1
+      '@rollup/plugin-commonjs': 22.0.2
       '@rollup/plugin-node-resolve': 13.3.0
       '@rollup/pluginutils': 4.x
       '@tsconfig/node12': 1.0.11
@@ -84,7 +84,7 @@ importers:
       '@optimize-lodash/transform': link:../transform
       '@rollup/pluginutils': 4.1.0_rollup@2.77.2
     devDependencies:
-      '@rollup/plugin-commonjs': 22.0.1_rollup@2.77.2
+      '@rollup/plugin-commonjs': 22.0.2_rollup@2.77.2
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.77.2
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
@@ -1133,8 +1133,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-commonjs/22.0.1_rollup@2.77.2:
-    resolution: {integrity: sha512-dGfEZvdjDHObBiP5IvwTKMVeq/tBZGMBHZFMdIV1ClMM/YoWS34xrHFGfag9SN2ZtMgNZRFruqvxZQEa70O6nQ==}
+  /@rollup/plugin-commonjs/22.0.2_rollup@2.77.2:
+    resolution: {integrity: sha512-//NdP6iIwPbMTcazYsiBMbJW7gfmpHom33u1beiIoHDEM0Q9clvtQB1T0efvMqHeKsGohiHo97BCPCkBXdscwg==}
     engines: {node: '>= 12.0.0'}
     peerDependencies:
       rollup: ^2.68.0
@@ -1142,10 +1142,10 @@ packages:
       '@rollup/pluginutils': 3.1.0_rollup@2.77.2
       commondir: 1.0.1
       estree-walker: 2.0.2
-      glob: 7.2.0
+      glob: 7.2.3
       is-reference: 1.2.1
       magic-string: 0.25.7
-      resolve: 1.20.0
+      resolve: 1.22.1
       rollup: 2.77.2
     dev: true
 
@@ -3220,17 +3220,6 @@ packages:
     engines: {node: '>=10.13.0'}
     dependencies:
       is-glob: 4.0.3
-    dev: true
-
-  /glob/7.2.0:
-    resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 3.1.2
-      once: 1.4.0
-      path-is-absolute: 1.0.1
     dev: true
 
   /glob/7.2.3:
