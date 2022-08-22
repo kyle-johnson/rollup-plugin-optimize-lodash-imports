@@ -56,13 +56,14 @@ export function optimizeLodashImports({
   appendDotJs,
 }: OptimizeLodashOptions = {}): Plugin & Required<Pick<Plugin, "transform">> {
   const filter = createFilter(include, exclude);
-
+  const esmFormats = ['es', 'esm', 'module'];
+  
   return {
     name: "optimize-lodash-imports",
     outputOptions(options) {
-      if (useLodashEs && options.format !== "es") {
+      if (useLodashEs && options.format && !esmFormats.includes(options.format)) {
         this.error(
-          `'useLodashEs' is true but the output format is not 'es', it's ${
+          `'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's ${
             options.format ?? "undefined"
           }`
         );
