@@ -60,7 +60,7 @@
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
     "depcheck": "1.4.3",
-    "eslint": "8.21.0",
+    "eslint": "8.23.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-jest": "26.7.0",
     "eslint-plugin-unicorn": "43.0.2",
