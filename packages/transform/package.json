@@ -52,7 +52,7 @@
     "@typescript-eslint/parser": "5.36.2",
     "acorn": "8.8.0",
     "depcheck": "1.4.3",
-    "eslint": "8.23.0",
+    "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-jest": "27.0.4",
     "eslint-plugin-unicorn": "43.0.2",
