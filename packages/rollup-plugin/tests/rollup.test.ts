@@ -43,7 +43,7 @@ describe("rollup", () => {
     await expect(
       wrapperRollupGenerate(STANDARD_AND_FP, { useLodashEs: true }, "cjs")
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"'useLodashEs' is true but the output format is not 'es', it's cjs"`
+      `'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's cjs"`
     );
   });
 
