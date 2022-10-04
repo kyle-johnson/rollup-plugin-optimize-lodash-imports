@@ -28,6 +28,8 @@ export type OptimizeLodashOptions = {
 
 const UNCHANGED = null;
 
+const ROLLUP_ESM_FORMATS = new Set(["es", "esm", "module"]);
+
 /**
  * Converts lodash imports to be specific, enabling better tree-shaking:
  *
@@ -40,7 +42,7 @@ const UNCHANGED = null;
  *
  * Optionally, set `useLodashEs` to true and `lodash` imports will be converted to `lodash-es`
  * imports. Note that it's up to user to include the `lodash-es` module and ensure the output
- * is set to some form of `es` (other output formats will error). An example:
+ * is set to some form of `es`/`esm`/`module` (other output formats will error). An example:
  *
  * `import { isNil } from "lodash";` -> `import { isNil } from "lodash-es";`
  *
@@ -56,12 +58,15 @@ export function optimizeLodashImports({
   appendDotJs,
 }: OptimizeLodashOptions = {}): Plugin & Required<Pick<Plugin, "transform">> {
   const filter = createFilter(include, exclude);
-  const esmFormats = ['es', 'esm', 'module'];
-  
+
   return {
     name: "optimize-lodash-imports",
     outputOptions(options) {
-      if (useLodashEs && options.format && !esmFormats.includes(options.format)) {
+      if (
+        useLodashEs &&
+        options.format &&
+        !ROLLUP_ESM_FORMATS.has(options.format)
+      ) {
         this.error(
           `'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's ${
             options.format ?? "undefined"
