@@ -92,7 +92,7 @@ Default: `false`
 
 If `true`, the plugin will rewrite _lodash_ imports to use _lodash-es_.
 
-_Note: the build will fail if your Rollup output format is not also set to `es`!_
+_Note: the build will fail if your Rollup output format is not also set to `es`, `esm`, or `module`!_
 
 ### `appendDotJs`
 
