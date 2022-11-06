@@ -1,5 +1,11 @@
 # @optimize-lodash/rollup-plugin
 
+## 4.0.0
+
+### Major Changes
+
+- [#357](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/357) [`bc61cb0`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/bc61cb017971f715d369f70c05397ac01b354ca8) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Support importing as ESM. CJS is still supported and this _should_ be backwards compatible, however this is being treated as a breaking change due to dropping 'main' in package.json ('exports' replaces it). The actual value of this is fairly low since ESM can import CommonJS.
+
 ## 3.2.0
 
 ### Minor Changes
