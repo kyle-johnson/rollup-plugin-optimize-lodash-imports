@@ -18,7 +18,7 @@ describe("esbuild sanity check", () => {
 
     expect(result.outputFiles).toHaveLength(1);
     expect(
-      Buffer.from(result.outputFiles[0].contents).toString("utf-8")
+      Buffer.from(result.outputFiles[0].contents).toString("utf8")
     ).toMatchSnapshot();
   });
 });
@@ -35,7 +35,7 @@ describe("esbuild with lodashOptimizeImports()", () => {
     });
 
     expect(result.outputFiles).toHaveLength(1);
-    const code = Buffer.from(result.outputFiles[0].contents).toString("utf-8");
+    const code = Buffer.from(result.outputFiles[0].contents).toString("utf8");
 
     // ensure all imports became more specific
     expect(code).not.toMatch(/["']lodash["']/g);
@@ -55,7 +55,7 @@ describe("esbuild with lodashOptimizeImports()", () => {
     });
 
     expect(result.outputFiles).toHaveLength(1);
-    const code = Buffer.from(result.outputFiles[0].contents).toString("utf-8");
+    const code = Buffer.from(result.outputFiles[0].contents).toString("utf8");
 
     // ensure all imports became more specific
     expect(code).not.toMatch(/["']lodash["']/g);
