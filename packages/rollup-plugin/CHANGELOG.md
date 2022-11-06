@@ -1,5 +1,11 @@
 # @optimize-lodash/rollup-plugin
 
+## 3.2.0
+
+### Minor Changes
+
+- [#352](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/352) [`4d1525e`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/4d1525e4819502bed3f461e91cc3937c2f9b114a) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Support Rollup 3.x. This plugin remains backwards compatible with Rollup 2.x.
+
 ## 3.1.0
 
 ### Minor Changes
