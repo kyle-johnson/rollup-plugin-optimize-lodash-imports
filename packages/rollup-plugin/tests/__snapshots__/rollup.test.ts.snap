@@ -3,19 +3,11 @@
 exports[`rollup named lodash and lodash/fp imports with plugin & cjs output 1`] = `
 "'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var isNil = require('lodash/isNil.js');
 var negate = require('lodash/negate.js');
 var every = require('lodash/fp/every.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var isNil__default = /*#__PURE__*/_interopDefaultLegacy(isNil);
-var negate__default = /*#__PURE__*/_interopDefaultLegacy(negate);
-var every__default = /*#__PURE__*/_interopDefaultLegacy(every);
-
-const everyNonNil = every__default["default"](negate__default["default"](isNil__default["default"]));
+const everyNonNil = every(negate(isNil));
 
 function isNonNilArray(input) {
   return Array.isArray(input) && everyNonNil(input);
@@ -56,8 +48,6 @@ export { isNonNilArray };
 
 exports[`rollup named lodash and lodash/fp imports without plugin 1`] = `
 "'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
 
 var lodash = require('lodash');
 var fp = require('lodash/fp');

@@ -1,4 +1,4 @@
-import type { Plugin } from "rollup";
+import type { PluginImpl } from "rollup";
 import { createFilter, FilterPattern } from "@rollup/pluginutils";
 import { transform as lodashTransform } from "@optimize-lodash/transform";
 
@@ -28,7 +28,9 @@ export type OptimizeLodashOptions = {
 
 const UNCHANGED = null;
 
-const ROLLUP_ESM_FORMATS = new Set(["es", "esm", "module"]);
+// for small numbers of items, arrays are faster than hash tables
+// eslint-disable-next-line unicorn/prefer-set-has
+const ROLLUP_ESM_FORMATS: ReadonlyArray<string> = ["es", "esm", "module"];
 
 /**
  * Converts lodash imports to be specific, enabling better tree-shaking:
@@ -51,12 +53,12 @@ const ROLLUP_ESM_FORMATS = new Set(["es", "esm", "module"]);
  * @param useLodashEs set `true` to convert imports to use "lodash-es" (optional; default false)
  * @param appendDotJs default `true`; set `false` if you don't want `.js` appended to CJS lodash imports
  */
-export function optimizeLodashImports({
+export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
   include,
   exclude,
   useLodashEs,
   appendDotJs,
-}: OptimizeLodashOptions = {}): Plugin & Required<Pick<Plugin, "transform">> {
+}: OptimizeLodashOptions = {}) => {
   const filter = createFilter(include, exclude);
 
   return {
@@ -65,7 +67,7 @@ export function optimizeLodashImports({
       if (
         useLodashEs &&
         options.format &&
-        !ROLLUP_ESM_FORMATS.has(options.format)
+        !ROLLUP_ESM_FORMATS.includes(options.format)
       ) {
         this.error(
           `'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's ${
@@ -94,4 +96,4 @@ export function optimizeLodashImports({
       });
     },
   };
-}
+};

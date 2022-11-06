@@ -1,4 +1,8 @@
-import type { TransformPluginContext } from "rollup";
+import type {
+  FunctionPluginHooks,
+  TransformPluginContext,
+  TransformResult,
+} from "rollup";
 import { ParseFunction, transform } from "@optimize-lodash/transform";
 
 import { optimizeLodashImports, OptimizeLodashOptions } from "../src";
@@ -19,8 +23,8 @@ describe("optimizeLodashImports", () => {
     input: string,
     id: string,
     options: OptimizeLodashOptions
-  ) =>
-    optimizeLodashImports(options).transform.call(
+  ): TransformResult =>
+    (optimizeLodashImports(options) as FunctionPluginHooks).transform.call(
       {
         parse: parseMock as ParseFunction,
         warn: warnMock as TransformPluginContext["warn"],
@@ -47,14 +51,7 @@ describe("optimizeLodashImports", () => {
       return UNCHANGED;
     });
 
-    const result = optimizeLodashImports().transform.call(
-      {
-        parse: parseMock as ParseFunction,
-        warn: warnMock as TransformPluginContext["warn"],
-      } as TransformPluginContext /* we're only providing what this stage of the plugin requires */,
-      CODE,
-      SOURCE_ID
-    );
+    const result = wrapperPlugin(CODE, SOURCE_ID, {});
     expect(result).toBe(UNCHANGED);
 
     expect(sourceTransformerMock).toHaveBeenCalledTimes(1);
