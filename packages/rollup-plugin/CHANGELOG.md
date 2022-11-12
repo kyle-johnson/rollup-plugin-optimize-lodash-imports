@@ -1,5 +1,11 @@
 # @optimize-lodash/rollup-plugin
 
+## 4.0.1
+
+### Patch Changes
+
+- [#360](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/360) [`aacef60`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/aacef604e9e5639a447a64274548dd3fb87156c1) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Document Vite compatibility/use. Add `vite-plugin` to package.json keywords.
+
 ## 4.0.0
 
 ### Major Changes
