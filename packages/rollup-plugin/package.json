@@ -6,6 +6,7 @@
     "lodash",
     "rollup",
     "rollup-plugin",
+    "vite-plugin",
     "optimize",
     "minify"
   ],
