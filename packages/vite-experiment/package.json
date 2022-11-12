@@ -1,0 +1,31 @@
+{
+  "name": "vite-experiment",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lodash": "4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@optimize-lodash/rollup-plugin": "workspace:^4.0.0",
+    "@types/lodash": "4.14.188",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "rollup": "2.x",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3"
+  },
+  "dependenciesMeta": {
+    "@optimize-lodash/rollup-plugin": {
+      "injected": true
+    }
+  }
+}
