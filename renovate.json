@@ -21,6 +21,25 @@
     {
       "matchPackageNames": ["@types/node"],
       "extends": [":disableMajorUpdates"]
+    },
+    {
+      "matchPackageNames": ["rollup"],
+      "extends": ["schedule:monthly"]
+    },
+    {
+      "matchPackagePatterns": ["eslint"],
+      "excludePackagePatterns": ["jest"],
+      "extends": ["schedule:monthly"],
+      "groupName": "eslint packages"
+    },
+    {
+      "matchPackagePatterns": ["jest"],
+      "extends": ["schedule:monthly"],
+      "groupName": "jest packages"
+    },
+    {
+      "matchPackageNames": ["esbuild"],
+      "extends": ["schedule:monthly"]
     }
   ]
 }
