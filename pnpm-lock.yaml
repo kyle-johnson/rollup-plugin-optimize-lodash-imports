@@ -16,7 +16,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.3
-      '@types/lodash': 4.14.189
+      '@types/lodash': 4.14.191
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 5.42.1
       '@typescript-eslint/parser': 5.42.1
@@ -39,7 +39,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.3
-      '@types/lodash': 4.14.189
+      '@types/lodash': 4.14.191
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 5.42.1_a76fwnskzo2n3ynumjbqxmyj7i
       '@typescript-eslint/parser': 5.42.1_e3uo4sehh4zr4i6m57mkkxxv7y
@@ -65,7 +65,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.3
-      '@types/lodash': 4.14.189
+      '@types/lodash': 4.14.191
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.42.1
       '@typescript-eslint/parser': 5.42.1
@@ -91,7 +91,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.3
-      '@types/lodash': 4.14.189
+      '@types/lodash': 4.14.191
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.42.1_a76fwnskzo2n3ynumjbqxmyj7i
       '@typescript-eslint/parser': 5.42.1_e3uo4sehh4zr4i6m57mkkxxv7y
@@ -113,7 +113,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.3
-      '@types/lodash': 4.14.189
+      '@types/lodash': 4.14.191
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.42.1
       '@typescript-eslint/parser': 5.42.1
@@ -136,7 +136,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.3
-      '@types/lodash': 4.14.189
+      '@types/lodash': 4.14.191
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.42.1_a76fwnskzo2n3ynumjbqxmyj7i
       '@typescript-eslint/parser': 5.42.1_e3uo4sehh4zr4i6m57mkkxxv7y
@@ -1263,8 +1263,8 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
-  /@types/lodash/4.14.189:
-    resolution: {integrity: sha512-kb9/98N6X8gyME9Cf7YaqIMvYGnBSWqEci6tiettE6iJWH1XdJz/PO8LB0GtLCG7x8dU3KWhZT+lA1a35127tA==}
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/minimatch/3.0.5:
