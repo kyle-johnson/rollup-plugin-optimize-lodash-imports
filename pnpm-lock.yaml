@@ -58,7 +58,7 @@ importers:
   packages/rollup-plugin:
     specifiers:
       '@optimize-lodash/transform': workspace:3.x
-      '@rollup/plugin-commonjs': 23.0.2
+      '@rollup/plugin-commonjs': 23.0.7
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.1.0
       '@rollup/pluginutils': ~5.0.2
@@ -85,7 +85,7 @@ importers:
       '@optimize-lodash/transform': link:../transform
       '@rollup/pluginutils': 5.0.2_rollup@3.3.0
     devDependencies:
-      '@rollup/plugin-commonjs': 23.0.2_rollup@3.3.0
+      '@rollup/plugin-commonjs': 23.0.7_rollup@3.3.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.3.0
       '@rollup/plugin-terser': 0.1.0_rollup@3.3.0
       '@tsconfig/node12': 1.0.11
@@ -1104,8 +1104,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-commonjs/23.0.2_rollup@3.3.0:
-    resolution: {integrity: sha512-e9ThuiRf93YlVxc4qNIurvv+Hp9dnD+4PjOqQs5vAYfcZ3+AXSrcdzXnVjWxcGQOa6KGJFcRZyUI3ktWLavFjg==}
+  /@rollup/plugin-commonjs/23.0.7_rollup@3.3.0:
+    resolution: {integrity: sha512-hsSD5Qzyuat/swzrExGG5l7EuIlPhwTsT7KwKbSCQzIcJWjRxiimi/0tyMYY2bByitNb3i1p+6JWEDGa0NvT0Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -1118,7 +1118,7 @@ packages:
       estree-walker: 2.0.2
       glob: 8.0.3
       is-reference: 1.2.1
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       rollup: 3.3.0
     dev: true
 
@@ -4301,11 +4301,11 @@ packages:
       sourcemap-codec: 1.4.8
     dev: false
 
-  /magic-string/0.26.7:
-    resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
+  /magic-string/0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
     engines: {node: '>=12'}
     dependencies:
-      sourcemap-codec: 1.4.8
+      '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
   /make-dir/3.1.0:
