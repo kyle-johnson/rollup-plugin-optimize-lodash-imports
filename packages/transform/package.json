@@ -60,6 +60,6 @@
   },
   "dependencies": {
     "estree-walker": "2.x",
-    "magic-string": "0.26.x"
+    "magic-string": "0.27.x"
   }
 }
