@@ -1,6 +1,6 @@
 {
   "name": "@optimize-lodash/transform",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Rewrites lodash imports in a given source file to be specific.",
   "keywords": [
     "lodash",

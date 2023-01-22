@@ -1,6 +1,6 @@
 {
   "name": "@optimize-lodash/rollup-plugin",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Rewrite lodash imports with Rollup for improved tree-shaking.",
   "keywords": [
     "lodash",
@@ -75,7 +75,7 @@
     "typescript": "4.9.4"
   },
   "dependencies": {
-    "@optimize-lodash/transform": "workspace:3.x",
+    "@optimize-lodash/transform": "workspace:3.0.1",
     "@rollup/pluginutils": "~5.0.2"
   }
 }

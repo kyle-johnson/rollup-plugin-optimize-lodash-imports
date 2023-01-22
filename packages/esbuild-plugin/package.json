@@ -1,6 +1,6 @@
 {
   "name": "@optimize-lodash/esbuild-plugin",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Rewrite lodash imports with esbuild for improved tree-shaking.",
   "keywords": [
     "lodash",
@@ -67,7 +67,7 @@
     "typescript": "4.9.4"
   },
   "dependencies": {
-    "@optimize-lodash/transform": "workspace:3.x",
+    "@optimize-lodash/transform": "workspace:3.0.1",
     "acorn": "8.x"
   }
 }

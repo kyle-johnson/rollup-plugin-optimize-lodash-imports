@@ -1,5 +1,14 @@
 # @optimize-lodash/rollup-plugin
 
+## 4.0.2
+
+### Patch Changes
+
+- [#378](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/378) [`2ee39fb`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/2ee39fb73fe818a9cf1648cdc59beba0d899b011) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - fix: update Readme shields (no code changes)
+
+- Updated dependencies [[`2ee39fb`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/2ee39fb73fe818a9cf1648cdc59beba0d899b011)]:
+  - @optimize-lodash/transform@3.0.1
+
 ## 4.0.1
 
 ### Patch Changes
