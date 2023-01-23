@@ -1,5 +1,12 @@
 # @optimize-lodash/rollup-plugin
 
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`9dfcbfb`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/9dfcbfb6fd642a350520bf6bd9032918a2df6dc6)]:
+  - @optimize-lodash/transform@3.0.2
+
 ## 4.0.2
 
 ### Patch Changes
