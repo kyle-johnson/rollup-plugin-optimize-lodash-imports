@@ -12,7 +12,7 @@ importers:
 
   packages/esbuild-plugin:
     specifiers:
-      '@optimize-lodash/transform': workspace:3.0.1
+      '@optimize-lodash/transform': workspace:3.0.2
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.2.5
@@ -57,7 +57,7 @@ importers:
 
   packages/rollup-plugin:
     specifiers:
-      '@optimize-lodash/transform': workspace:3.0.1
+      '@optimize-lodash/transform': workspace:3.0.2
       '@rollup/plugin-commonjs': 24.0.0
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-terser': 0.3.0
@@ -2751,7 +2751,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
       '@typescript-eslint/utils': 5.48.2_7uibuqfxkfaozanbtbziikiqje
       eslint: 8.32.0
-      jest: 29.3.1_@types+node@10.17.60
+      jest: 29.3.1_@types+node@12.20.55
     transitivePeerDependencies:
       - supports-color
       - typescript

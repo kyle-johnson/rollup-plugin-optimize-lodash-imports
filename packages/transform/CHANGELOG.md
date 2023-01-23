@@ -1,5 +1,11 @@
 # @optimize-lodash/transform
 
+## 3.0.2
+
+### Patch Changes
+
+- [#371](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/371) [`9dfcbfb`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/9dfcbfb6fd642a350520bf6bd9032918a2df6dc6) Thanks [@renovate](https://github.com/apps/renovate)! - Update dependency magic-string to 0.27.x. This is a small performance increase.
+
 ## 3.0.1
 
 ### Patch Changes
