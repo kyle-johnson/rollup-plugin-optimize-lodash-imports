@@ -1,5 +1,16 @@
 # @optimize-lodash/rollup-plugin
 
+## 4.0.4
+
+### Patch Changes
+
+- [#400](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/400) [`d56ff02`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/d56ff024eb73c6ea1cac4846cbce0d9db6ec3ba6) Thanks [@IlyaSemenov](https://github.com/IlyaSemenov)! - Support TypeScript `"moduleResolution": "node16"`.
+
+- [#405](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/405) [`cd01862`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/cd01862f3a3cffb05a3d7ea49587bb8f29ef723c) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Bump Typescript from 4.9.5 to 5.2.2. This should be backwards compatible, but outputs may differ slightly across Typescript versions.
+
+- Updated dependencies [[`cd01862`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/cd01862f3a3cffb05a3d7ea49587bb8f29ef723c)]:
+  - @optimize-lodash/transform@3.0.3
+
 ## 4.0.3
 
 ### Patch Changes
