@@ -91,7 +91,7 @@ export function transform({
           : lodashSpecifiersToCjs(
               node.source.value,
               node.specifiers,
-              appendDotJs
+              appendDotJs,
             );
 
         // write
@@ -105,7 +105,7 @@ export function transform({
         warn(
           `Detected a default lodash or lodash/fp import within ${id} on line ${
             node.loc?.start?.line ?? "unknown"
-          }.\nThis import cannot be optimized by optimize-lodash-imports.`
+          }.\nThis import cannot be optimized by optimize-lodash-imports.`,
         );
       }
     },
