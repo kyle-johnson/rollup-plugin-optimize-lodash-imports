@@ -21,7 +21,7 @@ const external = (id: string): boolean => /^[^./]/.test(id);
 const wrapperRollupGenerate = async (
   input: string,
   pluginOptions: OptimizeLodashOptions | false,
-  rollupOutputFormat: OutputOptions["format"] = "cjs"
+  rollupOutputFormat: OutputOptions["format"] = "cjs",
 ): Promise<string> => {
   const bundle = await rollup({
     input,
@@ -41,9 +41,9 @@ const STANDARD_AND_FP = `${__dirname}/fixtures/standard-and-fp.js`;
 describe("rollup", () => {
   test("setting `useLodashEs` to true with output format `cjs` throws", async () => {
     await expect(
-      wrapperRollupGenerate(STANDARD_AND_FP, { useLodashEs: true }, "cjs")
+      wrapperRollupGenerate(STANDARD_AND_FP, { useLodashEs: true }, "cjs"),
     ).rejects.toThrowErrorMatchingInlineSnapshot(
-      `"'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's cjs"`
+      `"'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's cjs"`,
     );
   });
 
@@ -67,7 +67,7 @@ describe("rollup", () => {
         const code = await wrapperRollupGenerate(
           STANDARD_AND_FP,
           {},
-          outputFormat
+          outputFormat,
         );
 
         // ensure all imports became more specific
@@ -76,7 +76,7 @@ describe("rollup", () => {
 
         // full snapshot
         expect(code).toMatchSnapshot();
-      }
+      },
     );
 
     test("with plugin, ES output, & useLodashEs", async () => {
@@ -84,7 +84,7 @@ describe("rollup", () => {
       const code = await wrapperRollupGenerate(
         STANDARD_AND_FP,
         { useLodashEs: true },
-        "es"
+        "es",
       );
 
       // ensure all imports became more specific

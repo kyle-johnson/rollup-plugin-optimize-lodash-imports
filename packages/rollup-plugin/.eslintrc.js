@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
+    "unicorn/expiring-todo-comments": "off",
   },
 };

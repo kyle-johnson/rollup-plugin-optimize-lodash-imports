@@ -18,7 +18,7 @@ const STANDARD_AND_FP = `${__dirname}/fixtures/standard-and-fp.js`;
 const wrapperRollup = async (
   input: string,
   enableLodashOptimization: boolean,
-  enableTerser: boolean
+  enableTerser: boolean,
 ) => {
   // nodeResolve + commonjs = baked in lodash
   const plugins = [nodeResolve(), commonjs()];
@@ -43,8 +43,12 @@ describe("output size is reduced for bundled lodash", () => {
       expect.assertions(2);
       const [unoptimized, optimized] = await Promise.all(
         [false, true].map((enableLodashOptimization) =>
-          wrapperRollup(STANDARD_AND_FP, enableLodashOptimization, enableTerser)
-        )
+          wrapperRollup(
+            STANDARD_AND_FP,
+            enableLodashOptimization,
+            enableTerser,
+          ),
+        ),
       );
 
       const improvementPercentage =
@@ -53,13 +57,13 @@ describe("output size is reduced for bundled lodash", () => {
         `Terser: ${enableTerser ? "yes" : "no"}\nOptimized: ${
           optimized.length
         }\nUnoptimized: ${unoptimized.length}\nSize reduction: ${Math.round(
-          improvementPercentage * 100
-        )}%`
+          improvementPercentage * 100,
+        )}%`,
       );
 
       // we expect over a 50% improvement
       expect(unoptimized.length).toBeGreaterThan(optimized.length);
       expect(improvementPercentage).toBeGreaterThan(0.5);
-    }
+    },
   );
 });
