@@ -18,5 +18,6 @@ module.exports = {
   rules: {
     "unicorn/no-null": "off",
     "jest/no-conditional-expect": "off",
+    "unicorn/expiring-todo-comments": "off",
   },
 };

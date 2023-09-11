@@ -3,8 +3,8 @@
 [![npm](https://img.shields.io/npm/v/@optimize-lodash/rollup-plugin)](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin)
 ![node-current](https://img.shields.io/node/v/@optimize-lodash/rollup-plugin)
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/rollup-plugin/peer/rollup)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/CI)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
-![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/kyle-johnson/rollup-plugin-optimize-lodash-imports)
+![compatible with Vite 3.x](https://img.shields.io/badge/vite-%3E%3D3.x-blue)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/main.yml?branch=main)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
 [![license](https://img.shields.io/npm/l/@optimize-lodash/rollup-plugin)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/LICENSE)
 [![Codecov](https://img.shields.io/codecov/c/github/kyle-johnson/rollup-plugin-optimize-lodash-imports?flag=rollup-plugin&label=coverage)](https://app.codecov.io/gh/kyle-johnson/rollup-plugin-optimize-lodash-imports/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kyle-johnson/rollup-plugin-optimize-lodash-imports)
@@ -103,6 +103,29 @@ If `true`, the plugin will append `.js` to the end of CommonJS lodash imports.
 
 Set to `false` if you don't want the `.js` suffix added (prior to v3.x, this was the default).
 
+## Vite Compatibility
+
+This plugin "just works" as a [Vite 3.x plugin](https://vitejs.dev/guide/api-plugin.html#rollup-plugin-compatibility). Simply add it to `plugins` in your [Vite config](https://vitejs.dev/config/):
+
+```javascript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { optimizeLodashImports } from "@optimize-lodash/rollup-plugin";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), optimizeLodashImports()],
+});
+```
+
+Example Vite output for a use of [kebabCase](https://lodash.com/docs/4.17.15#kebabCase):
+
+| No plugin                                                    | With plugin                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `dist/assets/index.497fb95b.js 212.88 KiB / gzip: 71.58 KiB` | `dist/assets/index.54b72c40.js 146.31 KiB / gzip: 47.81 KiB` |
+
+A ~23 KiB reduction in compressed size!
+
 ## Limitations
 
 ### Default imports are not optimized
@@ -118,7 +141,7 @@ export function testX(x) {
 }
 ```
 
-The above code will not be optimized, and Rollup will print a warning.
+The above code will not be optimized, and the plugin will print a warning. (Note: Vite supresses these warnings at build time unless `--debug` is added to the build command.)
 
 To avoid this, always import the specific method(s) you need:
 

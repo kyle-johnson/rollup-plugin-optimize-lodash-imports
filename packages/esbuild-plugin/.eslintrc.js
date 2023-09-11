@@ -19,5 +19,6 @@ module.exports = {
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
     "unicorn/prefer-node-protocol": "off",
+    "unicorn/expiring-todo-comments": "off",
   },
 };

@@ -22,7 +22,7 @@ describe("optimizeLodashImports", () => {
   const wrapperPlugin = (
     input: string,
     id: string,
-    options: OptimizeLodashOptions
+    options: OptimizeLodashOptions,
   ): TransformResult =>
     (optimizeLodashImports(options) as FunctionPluginHooks).transform.call(
       {
@@ -30,7 +30,7 @@ describe("optimizeLodashImports", () => {
         warn: warnMock as TransformPluginContext["warn"],
       } as TransformPluginContext,
       input,
-      id
+      id,
     );
 
   beforeEach(() => {
@@ -60,7 +60,7 @@ describe("optimizeLodashImports", () => {
         code: CODE,
         id: SOURCE_ID,
         useLodashEs: undefined,
-      })
+      }),
     );
     expect(warnMock).toHaveBeenCalledTimes(1);
     expect(parseMock).toHaveBeenCalledTimes(1);
@@ -96,8 +96,8 @@ describe("optimizeLodashImports", () => {
       expect(sourceTransformerMock).toHaveBeenLastCalledWith(
         expect.objectContaining({
           useLodashEs,
-        })
+        }),
       );
-    }
+    },
   );
 });
