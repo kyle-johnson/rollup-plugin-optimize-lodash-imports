@@ -1,7 +1,8 @@
 {
   "scripts": {
     "version": "changeset version; pnpm install --lockfile-only; pnpm run -r format",
-    "release": "pnpm -r publish --no-git-checks; changeset tag"
+    "release": "pnpm -r publish --no-git-checks; changeset tag",
+    "reset": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
