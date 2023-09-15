@@ -16,7 +16,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.5.4
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.198
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 6.6.0
       '@typescript-eslint/parser': 6.6.0
@@ -39,7 +39,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.5.4
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.198
       '@types/node': 10.17.60
       '@typescript-eslint/eslint-plugin': 6.6.0_wbphrqh76dlzieybwrz35pc2du
       '@typescript-eslint/parser': 6.6.0_rngtr6f3b25lvetpihwplgecf4
@@ -65,7 +65,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.5.4
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.198
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 6.6.0
       '@typescript-eslint/parser': 6.6.0
@@ -91,7 +91,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.5.4
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.198
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 6.6.0_wbphrqh76dlzieybwrz35pc2du
       '@typescript-eslint/parser': 6.6.0_rngtr6f3b25lvetpihwplgecf4
@@ -113,7 +113,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.5.4
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.198
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 6.6.0
       '@typescript-eslint/parser': 6.6.0
@@ -136,7 +136,7 @@ importers:
       '@tsconfig/node12': 1.0.11
       '@types/estree': 1.0.0
       '@types/jest': 29.5.4
-      '@types/lodash': 4.14.191
+      '@types/lodash': 4.14.198
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 6.6.0_wbphrqh76dlzieybwrz35pc2du
       '@typescript-eslint/parser': 6.6.0_rngtr6f3b25lvetpihwplgecf4
@@ -1320,8 +1320,8 @@ packages:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
     dev: true
 
-  /@types/lodash/4.14.191:
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
+  /@types/lodash/4.14.198:
+    resolution: {integrity: sha512-trNJ/vtMZYMLhfN45uLq4ShQSw0/S7xCTLLVM+WM1rmFpba/VS42jVUgaO3w/NOLiWR/09lnYk0yMaA/atdIsg==}
     dev: true
 
   /@types/minimatch/3.0.5:
