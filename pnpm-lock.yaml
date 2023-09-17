@@ -58,7 +58,7 @@ importers:
   packages/rollup-plugin:
     specifiers:
       '@optimize-lodash/transform': workspace:3.0.3
-      '@rollup/plugin-commonjs': 24.0.1
+      '@rollup/plugin-commonjs': 25.0.4
       '@rollup/plugin-node-resolve': 15.0.2
       '@rollup/plugin-terser': 0.4.3
       '@rollup/pluginutils': ~5.0.2
@@ -85,7 +85,7 @@ importers:
       '@optimize-lodash/transform': link:../transform
       '@rollup/pluginutils': 5.0.2_rollup@3.28.1
     devDependencies:
-      '@rollup/plugin-commonjs': 24.0.1_rollup@3.28.1
+      '@rollup/plugin-commonjs': 25.0.4_rollup@3.28.1
       '@rollup/plugin-node-resolve': 15.0.2_rollup@3.28.1
       '@rollup/plugin-terser': 0.4.3_rollup@3.28.1
       '@tsconfig/node12': 1.0.11
@@ -1235,8 +1235,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-commonjs/24.0.1_rollup@3.28.1:
-    resolution: {integrity: sha512-15LsiWRZk4eOGqvrJyu3z3DaBu5BhXIMeWnijSRvd8irrrg9SHpQ1pH+BUK4H6Z9wL9yOxZJMTLU+Au86XHxow==}
+  /@rollup/plugin-commonjs/25.0.4_rollup@3.28.1:
+    resolution: {integrity: sha512-L92Vz9WUZXDnlQQl3EwbypJR4+DM2EbsO+/KOcEkP4Mc6Ct453EeDB2uH9lgRwj4w5yflgNpq9pHOiY8aoUXBQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
