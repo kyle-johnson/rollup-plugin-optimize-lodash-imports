@@ -14,7 +14,7 @@ importers:
     specifiers:
       '@optimize-lodash/transform': workspace:3.0.3
       '@tsconfig/node12': 1.0.11
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       '@types/jest': 29.5.4
       '@types/lodash': 4.14.198
       '@types/node': 10.17.60
@@ -37,7 +37,7 @@ importers:
       acorn: 8.5.0
     devDependencies:
       '@tsconfig/node12': 1.0.11
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       '@types/jest': 29.5.4
       '@types/lodash': 4.14.198
       '@types/node': 10.17.60
@@ -63,7 +63,7 @@ importers:
       '@rollup/plugin-terser': 0.4.3
       '@rollup/pluginutils': ~5.0.2
       '@tsconfig/node12': 1.0.11
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       '@types/jest': 29.5.4
       '@types/lodash': 4.14.198
       '@types/node': 12.20.55
@@ -89,7 +89,7 @@ importers:
       '@rollup/plugin-node-resolve': 15.2.1_rollup@3.28.1
       '@rollup/plugin-terser': 0.4.3_rollup@3.28.1
       '@tsconfig/node12': 1.0.11
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       '@types/jest': 29.5.4
       '@types/lodash': 4.14.198
       '@types/node': 12.20.55
@@ -111,7 +111,7 @@ importers:
   packages/transform:
     specifiers:
       '@tsconfig/node12': 1.0.11
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       '@types/jest': 29.5.4
       '@types/lodash': 4.14.198
       '@types/node': 12.20.55
@@ -134,7 +134,7 @@ importers:
       magic-string: 0.30.3
     devDependencies:
       '@tsconfig/node12': 1.0.11
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       '@types/jest': 29.5.4
       '@types/lodash': 4.14.198
       '@types/node': 12.20.55
@@ -1212,7 +1212,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
@@ -1274,8 +1274,8 @@ packages:
     resolution: {integrity: sha512-LfZwXoGUDo0C3me81HXgkBg5CTQYb6xzEl+fNmbO4JdRiSKQ8A0GD1OBBvKAIsbCUgoyAty7m99GqqMQe784ew==}
     dev: true
 
-  /@types/estree/1.0.0:
-    resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+  /@types/estree/1.0.1:
+    resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
 
   /@types/graceful-fs/4.1.5:
     resolution: {integrity: sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw==}
@@ -3676,7 +3676,7 @@ packages:
   /is-reference/1.2.1:
     resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
     dependencies:
-      '@types/estree': 1.0.0
+      '@types/estree': 1.0.1
     dev: true
 
   /is-regex/1.1.4:
