@@ -18,7 +18,7 @@ describe("esbuild sanity check", () => {
 
     expect(result.outputFiles).toHaveLength(1);
     expect(
-      Buffer.from(result.outputFiles[0].contents).toString("utf8")
+      Buffer.from(result.outputFiles[0].contents).toString("utf8"),
     ).toMatchSnapshot();
   });
 });

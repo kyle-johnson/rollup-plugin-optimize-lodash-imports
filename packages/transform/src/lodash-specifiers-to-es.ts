@@ -9,7 +9,7 @@ import type { ImportSpecifier } from "estree";
  */
 export function lodashSpecifiersToEs(
   base: string,
-  specifiers: Array<ImportSpecifier>
+  specifiers: Array<ImportSpecifier>,
 ): Array<string> {
   const isFp = base.endsWith("fp");
   return specifiers.map(
@@ -18,6 +18,6 @@ export function lodashSpecifiersToEs(
         imported.name !== local.name
           ? imported.name + " as " + local.name
           : local.name
-      } } from "lodash-es${isFp ? "/fp" : ""}";`
+      } } from "lodash-es${isFp ? "/fp" : ""}";`,
   );
 }

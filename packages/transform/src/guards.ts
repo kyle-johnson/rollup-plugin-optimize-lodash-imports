@@ -14,7 +14,7 @@ export function isProgram(node: BaseNode): node is Program {
 }
 
 export function isImportSpecifierArray(
-  items: ImportDeclaration["specifiers"]
+  items: ImportDeclaration["specifiers"],
 ): items is Array<ImportSpecifier> {
   return items.every((item) => item.type === "ImportSpecifier");
 }

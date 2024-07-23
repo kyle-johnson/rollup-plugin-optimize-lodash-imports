@@ -41,7 +41,7 @@ test("when parse throws, transform throws", () => {
       warn: warnMock,
       id: "random-code-id",
       parse: parseMock,
-    })
+    }),
   ).toThrow();
 });
 
@@ -49,7 +49,7 @@ describe("lodash transforms", () => {
   test("code without lodash is not parsed", () => {
     const parseMock = jest.fn();
     expect(
-      transform({ code: "hello world", parse: parseMock, id: "my-id" })
+      transform({ code: "hello world", parse: parseMock, id: "my-id" }),
     ).toEqual(UNCHANGED);
     expect(parseMock).not.toHaveBeenCalled();
   });
@@ -125,7 +125,7 @@ describe("lodash transforms", () => {
 
       // verify the output is parsable code
       expect(() =>
-        acorn.parse(code, { ecmaVersion: "latest", sourceType: "module" })
+        acorn.parse(code, { ecmaVersion: "latest", sourceType: "module" }),
       ).not.toThrow();
 
       // verify sourcemap exists
@@ -162,7 +162,7 @@ describe("lodash transforms", () => {
           code: input,
           useLodashEs: true,
           appendDotJs: true,
-        })
+        }),
       ).toBeNull();
     });
   });

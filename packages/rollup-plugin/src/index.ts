@@ -72,7 +72,7 @@ export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
         this.error(
           `'useLodashEs' is true but the output format is not 'es', 'esm' or 'module', it's ${
             options.format ?? "undefined"
-          }`
+          }`,
         );
       }
       return UNCHANGED;

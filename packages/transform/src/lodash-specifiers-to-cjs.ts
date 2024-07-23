@@ -11,12 +11,12 @@ import type { ImportSpecifier } from "estree";
 export function lodashSpecifiersToCjs(
   base: string,
   specifiers: Array<ImportSpecifier>,
-  appendDotJs = true
+  appendDotJs = true,
 ): Array<string> {
   return specifiers.map(
     ({ imported, local }) =>
       `import ${
         imported.name !== local.name ? local.name : imported.name
-      } from "${base}/${imported.name}${appendDotJs ? ".js" : ""}";`
+      } from "${base}/${imported.name}${appendDotJs ? ".js" : ""}";`,
   );
 }
