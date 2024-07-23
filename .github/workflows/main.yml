@@ -8,14 +8,14 @@ on:
   # allow manual runs
   workflow_dispatch:
 env:
-  PNPM_VERSION: 7.5.1
+  PNPM_VERSION: 8.15.9
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     strategy:
       matrix:
-        node: [16]
+        node: [20]
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v4
@@ -47,32 +47,32 @@ jobs:
       matrix:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
         command: ["test:ci"]
-        node: [ 14, 16 ]
+        node: [ 16, 18, 20 ]
         include:
           - package: "rollup-plugin"
             command: lint
-            node: 16
+            node: 20
           - package: "transform"
             command: lint
-            node: 16          
+            node: 20          
           - package: "rollup-plugin"
             command: "format:check"
-            node: 16
+            node: 20
           - package: "transform"
             command: "format:check"
-            node: 16
+            node: 20
           - package: "rollup-plugin"
             command: "depcheck"
-            node: 16
+            node: 20
           - package: "transform"
             command: "depcheck"
-            node: 16
+            node: 20
           - package: "rollup-plugin"
             command: "type-check"
-            node: 16
+            node: 20
           - package: "transform"
             command: "type-check"
-            node: 16
+            node: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -114,7 +114,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
       - name: install pnpm
         run: npm install -g pnpm@$PNPM_VERSION
       - name: install deps
