@@ -1,5 +1,13 @@
 # @optimize-lodash/transform
 
+## 3.0.4
+
+### Patch Changes
+
+- [#431](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/431) [`afa4382`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/afa438276f164a2afefbce9993f214e9a4aec8f7) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Bump acorn dev dependency, required for esbuild plugin changes.
+
+- [#435](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/435) [`af5f97d`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/af5f97dbba80dec2cbefeee1890504aeac1cb569) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Be slightly more specific about dependency versions to avoid potential deep type-check issues.
+
 ## 3.0.3
 
 ### Patch Changes

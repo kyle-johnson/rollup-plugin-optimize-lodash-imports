@@ -1,5 +1,18 @@
 # @optimize-lodash/esbuild-plugin
 
+## 3.0.0
+
+### Major Changes
+
+- [#431](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/431) [`afa4382`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/afa438276f164a2afefbce9993f214e9a4aec8f7) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Add experimental Typescript support. Thanks @ldu1020 (#428)!
+
+- [#430](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/430) [`85adaf4`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/85adaf4706134e15f06855f96b40311f54225d4b) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Minimum supported NodeJS version is 16 (was 12).
+
+### Patch Changes
+
+- Updated dependencies [[`afa4382`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/afa438276f164a2afefbce9993f214e9a4aec8f7), [`af5f97d`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/af5f97dbba80dec2cbefeee1890504aeac1cb569)]:
+  - @optimize-lodash/transform@3.0.4
+
 ## 2.0.3
 
 ### Patch Changes
