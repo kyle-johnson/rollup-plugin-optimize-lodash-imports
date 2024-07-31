@@ -8,9 +8,7 @@ import { ParseFunction, transform } from "@optimize-lodash/transform";
 import { optimizeLodashImports, OptimizeLodashOptions } from "../src";
 
 jest.mock("@optimize-lodash/transform");
-const sourceTransformerMock = transform as jest.MockedFunction<
-  typeof transform
->;
+const sourceTransformerMock = jest.mocked(transform);
 
 const UNCHANGED = null;
 type UNCHANGED = null;
