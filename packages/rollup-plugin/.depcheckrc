@@ -1,1 +1,1 @@
-ignores: ["@types/*", "@tsconfig/*", "depcheck"]
+ignores: ["@types/*", "@tsconfig/*", "depcheck", "ts-node"]
