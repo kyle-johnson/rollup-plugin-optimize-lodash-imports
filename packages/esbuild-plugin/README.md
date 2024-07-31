@@ -14,6 +14,8 @@ There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](ht
 
 There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship CommonJS and ES builds: the ES build will be transformed to import from `lodash-es`.
 
+Versions of this plugin _before_ 3.x did not support Typescript. 3.x and later support Typescript, although Typescript support is considered experimental.
+
 ### This input
 
 ```javascript
