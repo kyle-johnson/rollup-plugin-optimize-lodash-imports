@@ -1,5 +1,16 @@
 # @optimize-lodash/rollup-plugin
 
+## 5.0.0
+
+### Major Changes
+
+- [#435](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/435) [`af5f97d`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/af5f97dbba80dec2cbefeee1890504aeac1cb569) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - NodeJS 18+ required. Rollup 4.x+ required. Previous versions probably worked with Rollup 4.x, but this makes it official and frees us from assumptions of past versions.
+
+### Patch Changes
+
+- Updated dependencies [[`afa4382`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/afa438276f164a2afefbce9993f214e9a4aec8f7), [`af5f97d`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/af5f97dbba80dec2cbefeee1890504aeac1cb569)]:
+  - @optimize-lodash/transform@3.0.4
+
 ## 4.0.4
 
 ### Patch Changes

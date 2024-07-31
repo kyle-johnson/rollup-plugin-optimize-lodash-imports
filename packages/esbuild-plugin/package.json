@@ -1,6 +1,6 @@
 {
   "name": "@optimize-lodash/esbuild-plugin",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "Rewrite lodash imports with esbuild for improved tree-shaking.",
   "keywords": [
     "lodash",
