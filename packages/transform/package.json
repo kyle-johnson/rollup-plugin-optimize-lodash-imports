@@ -59,7 +59,7 @@
     "typescript": "5.2.2"
   },
   "dependencies": {
-    "estree-walker": "2.x",
-    "magic-string": "0.30.x"
+    "estree-walker": "^2.0.2",
+    "magic-string": "~0.30.11"
   }
 }

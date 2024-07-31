@@ -13,6 +13,8 @@ There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](ht
 
 There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship CommonJS and ES builds: the ES build will be transformed to import from `lodash-es`.
 
+Note: versions of this plugin prior to 5.x supported NodeJS 12 and Rollup 2.x - 3.x. If you need support for these older versions, please use the 4.x release. [Rollup 4.x contains significant performance improvements](https://github.com/rollup/rollup/releases/tag/v4.0.0) over previous versions and is highly recommended.
+
 ### This input
 
 ```javascript
