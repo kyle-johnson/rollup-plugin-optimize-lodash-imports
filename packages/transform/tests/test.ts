@@ -174,6 +174,8 @@ describe("lodash transforms", () => {
       [`import _ from "lodash";`, 1],
       [`import fp from "lodash/fp";`, 1],
       [`import * as lodash from "lodash";`, 1],
+      [`import { chain } from "lodash";`, 1],
+      [`import { chain as c } from "lodash";`, 1],
       // supported or no-op cases
       [`import { isNil } from "lodash/isNil";`, 0],
       [`import { isNil } from "lodash/isNil.js";`, 0],

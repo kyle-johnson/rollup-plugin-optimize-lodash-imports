@@ -104,7 +104,7 @@ export function testX(x) {
 }
 ```
 
-The above code will not be optimized, and Rollup will print a warning.
+The above code will not be optimized, and the plugin prints a warning.
 
 To avoid this, always import the specific method(s) you need:
 
@@ -116,6 +116,10 @@ export function testX(x) {
   return isNil(x);
 }
 ```
+
+### `chain()` cannot be optimized
+
+The `chain()` method from `lodash` cannot be successfully imported from `"lodash/chain"` without also importing from `"lodash"`. Imports which include `chain()` are _not modified_ and the plugin prints a warning.
 
 ## Alternatives
 
