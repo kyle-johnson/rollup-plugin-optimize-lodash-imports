@@ -156,6 +156,10 @@ export function testX(x) {
 }
 ```
 
+### `chain()` cannot be optimized
+
+The `chain()` method from `lodash` cannot be successfully imported from `"lodash/chain"` without also importing from `"lodash"`. Imports which include `chain()` are _not modified_ and the plugin prints a warning.
+
 ## Alternatives
 
 [`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash) solves the issue for CommonJS outputs and modifies default imports as well. However, it doesn't enable transparent `lodash-es` use and may not make sense for projects using [@rollup/plugin-typescript](https://www.npmjs.com/package/@rollup/plugin-typescript) which don't wish to add a Babel step.
