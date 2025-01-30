@@ -1,5 +1,14 @@
 # @optimize-lodash/rollup-plugin
 
+## 5.0.1
+
+### Patch Changes
+
+- [#455](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/455) [`dbccec0`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/dbccec0631340c05f28a78afe7b353916f47fd89) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - `chain()` is no longer tranformed because it cannot be imported except from the base import; a warning is printed when a matching import is found and the import is left as-is
+
+- Updated dependencies [[`dbccec0`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/dbccec0631340c05f28a78afe7b353916f47fd89)]:
+  - @optimize-lodash/transform@3.0.5
+
 ## 5.0.0
 
 ### Major Changes
