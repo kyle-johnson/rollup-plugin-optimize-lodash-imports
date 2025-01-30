@@ -8,7 +8,7 @@ on:
   # allow manual runs
   workflow_dispatch:
 env:
-  PNPM_VERSION: 8.15.9
+  PNPM_VERSION: 9.15.4
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,7 +47,7 @@ jobs:
       matrix:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
         command: ["test:ci"]
-        node: [ 16, 18, 20 ]
+        node: [ 18, 20, 22 ]
         include:
           - package: "rollup-plugin"
             command: lint
