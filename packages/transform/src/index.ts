@@ -1,6 +1,7 @@
 import type { Node } from "acorn";
 import MagicString, { SourceMap } from "magic-string";
 import { walk } from "estree-walker";
+import type { ImportSpecifier } from "estree";
 
 import {
   isImportDeclaration,
@@ -33,7 +34,7 @@ export function transform({
   code,
   id,
   parse,
-  warn,
+  warn = console.error,
   useLodashEs,
   appendDotJs = true,
 }: {
@@ -80,34 +81,45 @@ export function transform({
         return;
       }
 
-      // transform specific "lodash" and "lodash/fp" imports such as:
-      // import { isNil } from "lodash";
-      if (isImportSpecifierArray(node.specifiers)) {
-        magicString = magicString ?? new MagicString(code);
-
-        // modify
-        const imports = useLodashEs
-          ? lodashSpecifiersToEs(node.source.value, node.specifiers)
-          : lodashSpecifiersToCjs(
-              node.source.value,
-              node.specifiers,
-              appendDotJs,
-            );
-
-        // write
-        magicString.overwrite(node.start, node.end, imports.join("\n"));
-
-        // no need to dig deeper
-        this.skip();
-      } else if (warn !== undefined) {
-        // help end-users benefit from this plugin (this behavior differs from
-        // babel-plugin-lodash which does optimize non-specific imports)
+      // if it's not in the form `import { ... } from "lodash"`, we can't do anything
+      if (!isImportSpecifierArray(node.specifiers)) {
+        // this behavior differs from babel-plugin-lodash
+        // which does optimize non-specific imports
         warn(
           `Detected a default lodash or lodash/fp import within ${id} on line ${
             node.loc?.start?.line ?? "unknown"
           }.\nThis import cannot be optimized by optimize-lodash-imports.`,
         );
+        this.skip();
+        return;
       }
+
+      // we can't optimize chain() -- it relies on a bare import from `lodash`
+      // to make various functions available
+      if (hasChainImport(node.specifiers)) {
+        warn(
+          `Detected an import of chain() from lodash within ${id}\nchain() is incompatible with optimize-lodash-imports`,
+        );
+        this.skip();
+        return;
+      }
+
+      magicString = magicString ?? new MagicString(code);
+
+      // modify
+      const imports = useLodashEs
+        ? lodashSpecifiersToEs(node.source.value, node.specifiers)
+        : lodashSpecifiersToCjs(
+            node.source.value,
+            node.specifiers,
+            appendDotJs,
+          );
+
+      // write
+      magicString.overwrite(node.start, node.end, imports.join("\n"));
+
+      // no need to dig deeper
+      this.skip();
     },
   });
 
@@ -123,4 +135,14 @@ export function transform({
       hires: true,
     }),
   };
+}
+
+/**
+ * Search the import for a reference to `chain()`. Does not check
+ * if the import is from `lodash` or another package.
+ *
+ * @returns true if `chain()` is imported
+ */
+function hasChainImport(specifiers: Array<ImportSpecifier>): boolean {
+  return specifiers.some(({ imported }) => imported.name === "chain");
 }
