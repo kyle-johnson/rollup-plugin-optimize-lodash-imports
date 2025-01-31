@@ -174,8 +174,8 @@ importers:
         version: 0.30.11
     devDependencies:
       '@tsconfig/node12':
-        specifier: 1.0.11
-        version: 1.0.11
+        specifier: 12.1.4
+        version: 12.1.4
       '@types/estree':
         specifier: 1.0.1
         version: 1.0.1
@@ -997,6 +997,9 @@ packages:
 
   '@tsconfig/node12@1.0.11':
     resolution: {integrity: sha512-cqefuRsh12pWyGsIoBKJA9luFu3mRxCA+ORZvA4ktLSzIuCUtWVxGIuXigEwO5/ywWFMZ2QEGKWvkZG1zDMTag==}
+
+  '@tsconfig/node12@12.1.4':
+    resolution: {integrity: sha512-0KoYJG4IOL99qNFpQEyLJ8ZKQ+xBVBrgpN63Hepk2WHqt9wBggSRQltrzVxk4e1ZTnEFCs+8CGefr2hevDg9vg==}
 
   '@tsconfig/node14@1.0.3':
     resolution: {integrity: sha512-ysT8mhdixWK6Hw3i1V2AeRqZ5WfXg1G43mqoYlM2nc6388Fq5jcXyr5mRsqViLx/GJYdoL0bfXD8nmF+Zn/Iow==}
@@ -4131,6 +4134,8 @@ snapshots:
   '@tsconfig/node10@1.0.11': {}
 
   '@tsconfig/node12@1.0.11': {}
+
+  '@tsconfig/node12@12.1.4': {}
 
   '@tsconfig/node14@1.0.3': {}
 

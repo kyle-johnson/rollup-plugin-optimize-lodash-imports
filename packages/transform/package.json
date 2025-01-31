@@ -40,7 +40,7 @@
     "preset": "ts-jest"
   },
   "devDependencies": {
-    "@tsconfig/node12": "1.0.11",
+    "@tsconfig/node12": "12.1.4",
     "@types/estree": "1.0.1",
     "@types/jest": "29.5.4",
     "@types/lodash": "4.17.14",
