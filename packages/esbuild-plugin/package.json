@@ -70,6 +70,6 @@
   },
   "dependencies": {
     "@optimize-lodash/transform": "workspace:*",
-    "acorn": "~8.12.1"
+    "acorn": "~8.14.0"
   }
 }
