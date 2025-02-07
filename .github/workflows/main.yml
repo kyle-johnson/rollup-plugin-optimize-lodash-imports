@@ -112,7 +112,6 @@ jobs:
       # changesets has to create a branch and open a PR
       contents: write
       pull-requests: write
-      workflow: write
       # provenance
       id-token: write
       attestations: write
