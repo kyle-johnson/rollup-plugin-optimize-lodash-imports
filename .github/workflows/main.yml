@@ -19,22 +19,15 @@ jobs:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - name: install pnpm
-        run: npm install -g pnpm@$PNPM_VERSION
-      - name: Month and Year (for cache busting)
-        id: month-and-year
-        shell: bash
-        run: |
-          echo "::set-output name=date::$(/bin/date -u \"+%Y%m\")"
-      - uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-${{ hashFiles('./pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node }}-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-
+          cache: pnpm
       - name: install deps
         run: pnpm --filter {./packages/${{ matrix.package }}}... install --frozen-lockfile
       - name: build
@@ -75,22 +68,15 @@ jobs:
             node: 20
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - name: install pnpm
-        run: npm install -g pnpm@$PNPM_VERSION
-      - name: Month and Year (for cache busting)
-        id: month-and-year
-        shell: bash
-        run: |
-          echo "::set-output name=date::$(/bin/date -u \"+%Y%m\")"
-      - uses: actions/cache@v4
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-10-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-${{ hashFiles('./pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-10-${{ github.workflow }}-${{ steps.month-and-year.outputs.date }}-
+          cache: pnpm
       - name: install deps
         run: pnpm --filter {./packages/${{ matrix.package }}}... install --frozen-lockfile
       - name: build deps
@@ -104,7 +90,7 @@ jobs:
           flags: ${{ matrix.package }}
           files: ./packages/${{ matrix.package }}/coverage/coverage-final.json
   release:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.repository == 'kyle-johnson/rollup-plugin-optimize-lodash-imports'
     needs: ["test", "build"]
     name: Release
     runs-on: ubuntu-latest
@@ -114,18 +100,21 @@ jobs:
       pull-requests: write
       # provenance
       id-token: write
-      attestations: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: install pnpm
-        run: npm install -g pnpm@$PNPM_VERSION
+          cache: pnpm
       - name: install deps
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: build all
         run: pnpm run -r build
       - name: write .npmrc
