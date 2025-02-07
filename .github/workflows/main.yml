@@ -109,10 +109,12 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     permissions:
+      # changesets has to create a branch and open a PR
       contents: write
-      issues: write
       pull-requests: write
+      # provenance
       id-token: write
+      attestations: write
     steps:
       - uses: actions/checkout@v4
         with:
