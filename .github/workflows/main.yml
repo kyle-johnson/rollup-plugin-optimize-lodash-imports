@@ -113,6 +113,7 @@ jobs:
       issues: write
       pull-requests: write
       id-token: write
+      workflow: write # required for the created PR to run flows!
     steps:
       - uses: actions/checkout@v4
         with:
