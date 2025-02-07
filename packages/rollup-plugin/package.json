@@ -51,7 +51,7 @@
     "@rollup/plugin-terser": "0.4.4",
     "@tsconfig/node18": "18.2.4",
     "@types/estree": "1.0.1",
-    "@types/jest": "29.5.4",
+    "@types/jest": "29.5.14",
     "@types/lodash": "4.17.15",
     "@types/node": "18.19.74",
     "@typescript-eslint/eslint-plugin": "7.18.0",
