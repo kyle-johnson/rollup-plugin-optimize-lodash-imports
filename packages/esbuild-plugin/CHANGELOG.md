@@ -1,5 +1,18 @@
 # @optimize-lodash/esbuild-plugin
 
+## 3.2.0
+
+### Minor Changes
+
+- [#461](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/461) [`f8ad561`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/f8ad561cd1cc0dfacb2a773c7075445db7bc6fbd) Thanks [@renovate](https://github.com/apps/renovate)! - feat(deps): update dependency acorn to ~8.14.0
+
+### Patch Changes
+
+- [`723e375`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/723e375c8b6fc32b865d069bc1d4639249de8681) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Add build provenance.
+
+- Updated dependencies [[`723e375`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/723e375c8b6fc32b865d069bc1d4639249de8681)]:
+  - @optimize-lodash/transform@3.0.6
+
 ## 3.1.0
 
 ### Minor Changes
