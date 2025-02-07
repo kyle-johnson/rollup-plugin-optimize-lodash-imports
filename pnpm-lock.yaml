@@ -85,7 +85,7 @@ importers:
   packages/rollup-plugin:
     dependencies:
       '@optimize-lodash/transform':
-        specifier: workspace:3.0.5
+        specifier: workspace:3.0.6
         version: link:../transform
       '@rollup/pluginutils':
         specifier: ^5.1.0
