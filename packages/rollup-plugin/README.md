@@ -120,7 +120,7 @@ parseOptions: (filename) => filename.endsWith(".jsx") ? { jsx: true } : {}
 
 ## Rolldown Compatibility
 
-For basic use, this plugin "just works" with [Rolldown](https://rolldown.rs/). There is [a small test suite verifying it]().
+For basic use, this plugin "just works" with [Rolldown](https://rolldown.rs/). There is [a small test suite verifying it](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/rollup-plugin/tests/rolldown).
 
 If you're relying on Rolldown to handle ts/tsx internally, you may need to use `parseOptions` to configure `lang` or [other parsing options](https://github.com/rolldown/rolldown/blob/f46e1d61d0de6f1d6c1968f3d20898e43fa3d2d7/packages/rolldown/src/binding.d.cts#L314):
 
