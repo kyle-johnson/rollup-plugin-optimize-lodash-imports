@@ -1,0 +1,12 @@
+import isNil from "lodash/isNil.js";
+import negate from "lodash/negate.js";
+import every from "lodash/fp/every.js";
+
+//#region tests/fixtures/standard-and-fp.js
+const everyNonNil = every(negate(isNil));
+function isNonNilArray(input) {
+	return Array.isArray(input) && everyNonNil(input);
+}
+
+//#endregion
+export { isNonNilArray };

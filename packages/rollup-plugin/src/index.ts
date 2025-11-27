@@ -24,6 +24,21 @@ export type OptimizeLodashOptions = {
    * by some bundling tools.
    */
   appendDotJs?: boolean;
+
+  /**
+   * Additional options to pass to rollup's internal parse() function. For example:
+   * `{ jsx: true }`
+   *
+   * Or, for rolldown:
+   * `{ lang: "ts" }`
+   *
+   * Alternatively: provide a function which takes the current filename and returns
+   * options. Example:
+   * `(filename) => ({ lang: filename.match(/\.(mts|ts)$) ? "ts" : "js" })`
+   */
+  parseOptions?:
+    | Record<string, unknown>
+    | ((id: string) => Record<string, unknown>);
 };
 
 const UNCHANGED = null;
@@ -58,6 +73,7 @@ export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
   exclude,
   useLodashEs,
   appendDotJs,
+  parseOptions,
 }: OptimizeLodashOptions = {}) => {
   const filter = createFilter(include, exclude);
 
@@ -79,6 +95,12 @@ export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
     },
     transform(code, id) {
       const warn = this.warn.bind(this);
+      let additionalOptions: Record<string, unknown> | undefined;
+      if (typeof parseOptions === "function") {
+        additionalOptions = parseOptions(id);
+      } else if (parseOptions) {
+        additionalOptions = parseOptions;
+      }
       const parse = this.parse.bind(this);
 
       // honor include/exclude
@@ -89,7 +111,10 @@ export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
       return lodashTransform({
         code,
         id,
-        parse,
+        parse: additionalOptions
+          ? // eslint-disable-next-line unicorn/prevent-abbreviations
+            (...args) => parse(...args, additionalOptions)
+          : parse,
         warn,
         useLodashEs,
         appendDotJs,

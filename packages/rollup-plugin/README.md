@@ -4,6 +4,7 @@
 ![node-current](https://img.shields.io/node/v/@optimize-lodash/rollup-plugin)
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/rollup-plugin/peer/rollup)
 ![compatible with Vite 3.x](https://img.shields.io/badge/vite-%3E%3D3.x-blue)
+![compatible with rolldown](https://img.shields.io/badge/rolldown-compatible-blue)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/main.yml?branch=main)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
 [![license](https://img.shields.io/npm/l/@optimize-lodash/rollup-plugin)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/LICENSE)
 [![Codecov](https://img.shields.io/codecov/c/github/kyle-johnson/rollup-plugin-optimize-lodash-imports?flag=rollup-plugin&label=coverage)](https://app.codecov.io/gh/kyle-johnson/rollup-plugin-optimize-lodash-imports/)
@@ -104,6 +105,36 @@ Default: `true`
 If `true`, the plugin will append `.js` to the end of CommonJS lodash imports.
 
 Set to `false` if you don't want the `.js` suffix added (prior to v3.x, this was the default).
+
+### `parseOptions`
+
+Type: `Record<string, unknown> |((id: string) => Record<string, unknown>)`<br>
+Default: `undefined`
+
+If defined as a static object, this is passed to rollup's internal `parse` method. This can be combined with [`jsx.mode`](https://rollupjs.org/configuration-options/#jsx) to enable jsx parsing: `parseOptions: { jsx: true }`
+
+If defined as a function, it is called with the filename. For instance, opt-in to jsx parsing:
+
+```
+parseOptions: (filename) => filename.endsWith(".jsx") ? { jsx: true } : {}
+```
+
+## Rolldown Compatibility
+
+For basic use, this plugin "just works" with [Rolldown](https://rolldown.rs/). There is [a small test suite verifying it](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/rollup-plugin/tests/rolldown).
+
+If you're relying on Rolldown to handle ts/tsx internally, you may need to use `parseOptions` to configure `lang` or [other parsing options](https://github.com/rolldown/rolldown/blob/f46e1d61d0de6f1d6c1968f3d20898e43fa3d2d7/packages/rolldown/src/binding.d.cts#L314):
+
+```javascript
+optimizeLodashImports({
+  // static
+  parseOptions: { lang: "ts" },
+  // or, dynamically by filename
+  parseOptions: (filename) => ({
+    lang: filename.endsWith(".ts") ? "ts" : "js",
+  }),
+});
+```
 
 ## Vite Compatibility
 
