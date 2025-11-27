@@ -1,17 +1,10 @@
 import type { Node } from "acorn";
-import MagicString, { SourceMap } from "magic-string";
+import MagicString, { type SourceMap } from "magic-string";
 import { walk } from "estree-walker";
-import type { ImportSpecifier } from "estree";
 
-import {
-  isImportDeclaration,
-  isImportSpecifierArray,
-  isProgram,
-} from "./guards";
-import { lodashSpecifiersToEs } from "./lodash-specifiers-to-es";
-import { lodashSpecifiersToCjs } from "./lodash-specifiers-to-cjs";
+import { isImportDeclaration, isProgram } from "./guards";
+import { computeTransform } from "./compute-transform";
 
-// acorn adds these
 declare module "estree" {
   interface BaseNodeWithoutComments {
     // added by acorn
@@ -69,56 +62,27 @@ export function transform({
         return;
       }
 
-      // skip any nodes that aren't imports (this skips most everything)
+      // skip any nodes that aren't imports
       if (!isImportDeclaration(node)) {
         this.skip();
         return;
       }
 
-      // narrow-in on lodash imports we care about
-      if (node.source.value !== "lodash" && node.source.value !== "lodash/fp") {
+      // only process lodash imports
+      const base = node.source.value;
+      if (base !== "lodash" && base !== "lodash/fp") {
         this.skip();
         return;
       }
 
-      // if it's not in the form `import { ... } from "lodash"`, we can't do anything
-      if (!isImportSpecifierArray(node.specifiers)) {
-        // this behavior differs from babel-plugin-lodash
-        // which does optimize non-specific imports
-        warn(
-          `Detected a default lodash or lodash/fp import within ${id} on line ${
-            node.loc?.start?.line ?? "unknown"
-          }.\nThis import cannot be optimized by optimize-lodash-imports.`,
-        );
-        this.skip();
-        return;
+      const result = computeTransform(node, base, useLodashEs, appendDotJs, id);
+      if (result.action === "warn") {
+        warn(result.message);
+      } else if (result.action === "transform") {
+        magicString = magicString ?? new MagicString(code);
+        magicString.overwrite(node.start, node.end, result.imports);
       }
 
-      // we can't optimize chain() -- it relies on a bare import from `lodash`
-      // to make various functions available
-      if (hasChainImport(node.specifiers)) {
-        warn(
-          `Detected an import of chain() from lodash within ${id}\nchain() is incompatible with optimize-lodash-imports`,
-        );
-        this.skip();
-        return;
-      }
-
-      magicString = magicString ?? new MagicString(code);
-
-      // modify
-      const imports = useLodashEs
-        ? lodashSpecifiersToEs(node.source.value, node.specifiers)
-        : lodashSpecifiersToCjs(
-            node.source.value,
-            node.specifiers,
-            appendDotJs,
-          );
-
-      // write
-      magicString.overwrite(node.start, node.end, imports.join("\n"));
-
-      // no need to dig deeper
       this.skip();
     },
   });
@@ -135,14 +99,4 @@ export function transform({
       hires: true,
     }),
   };
-}
-
-/**
- * Search the import for a reference to `chain()`. Does not check
- * if the import is from `lodash` or another package.
- *
- * @returns true if `chain()` is imported
- */
-function hasChainImport(specifiers: Array<ImportSpecifier>): boolean {
-  return specifiers.some(({ imported }) => imported.name === "chain");
 }

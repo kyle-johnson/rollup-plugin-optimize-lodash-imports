@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`rollup default lodash import with useLodashEs, transforms to namespace import 1`] = `
+"import * as _ from 'lodash-es';
+
+function isNonNilArray(input) {
+  return Array.isArray(input) && _.every(input, _.negate(_.isNil));
+}
+
+export { isNonNilArray };
+"
+`;
+
+exports[`rollup mixed default + named lodash import with useLodashEs, transforms to namespace + named imports 1`] = `
+"import * as _ from 'lodash-es';
+import { negate, isNil } from 'lodash-es';
+
+function isNonNilArray(input) {
+  return Array.isArray(input) && _.every(input, negate(isNil));
+}
+
+export { isNonNilArray };
+"
+`;
+
 exports[`rollup named lodash and lodash/fp imports with plugin & cjs output 1`] = `
 "'use strict';
 

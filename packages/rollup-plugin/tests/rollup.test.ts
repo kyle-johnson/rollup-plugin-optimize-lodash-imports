@@ -96,4 +96,49 @@ describe("rollup", () => {
       expect(code).toMatchSnapshot();
     });
   });
+
+  describe("default lodash import", () => {
+    const DEFAULT_IMPORT = `${__dirname}/fixtures/default-import.js`;
+
+    test("without useLodashEs, warns and keeps original import", async () => {
+      const code = await wrapperRollupGenerate(DEFAULT_IMPORT, {}, "cjs");
+      // import should remain unchanged
+      expect(code).toMatch(/["']lodash["']/g);
+    });
+
+    test("with useLodashEs, transforms to namespace import", async () => {
+      const code = await wrapperRollupGenerate(
+        DEFAULT_IMPORT,
+        { useLodashEs: true },
+        "es",
+      );
+      // should be transformed to lodash-es namespace import
+      expect(code).toMatch(/import \* as _ from ["']lodash-es["']/);
+      expect(code).not.toMatch(/from ["']lodash["'];/g);
+      expect(code).toMatchSnapshot();
+    });
+  });
+
+  describe("mixed default + named lodash import", () => {
+    const MIXED_IMPORT = `${__dirname}/fixtures/mixed-import.js`;
+
+    test("without useLodashEs, warns and keeps original import", async () => {
+      const code = await wrapperRollupGenerate(MIXED_IMPORT, {}, "cjs");
+      // import should remain unchanged
+      expect(code).toMatch(/["']lodash["']/g);
+    });
+
+    test("with useLodashEs, transforms to namespace + named imports", async () => {
+      const code = await wrapperRollupGenerate(
+        MIXED_IMPORT,
+        { useLodashEs: true },
+        "es",
+      );
+      // should be transformed to lodash-es imports
+      expect(code).toMatch(/import \* as _ from ["']lodash-es["']/);
+      expect(code).toMatch(/from ["']lodash-es["']/);
+      expect(code).not.toMatch(/from ["']lodash["'];/g);
+      expect(code).toMatchSnapshot();
+    });
+  });
 });

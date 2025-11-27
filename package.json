@@ -13,6 +13,9 @@
       "ignoreMissing": [
         "vue"
       ]
-    }
+    },
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
