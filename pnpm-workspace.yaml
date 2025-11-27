@@ -1,2 +1,5 @@
 packages:
-  - 'packages/**'
+  - "packages/**"
+
+# 30 days
+minimumReleaseAge: 43200
