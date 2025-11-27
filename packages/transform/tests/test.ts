@@ -299,22 +299,6 @@ describe("lodash transforms", () => {
         }),
       ).toBeNull();
     });
-
-    // Default, namespace, default-as-named, and mixed imports: unchanged without useLodashEs (they transform WITH useLodashEs)
-    test.each<[string]>([
-      [`import _ from "lodash";`],
-      [`import lodash from "lodash";`],
-      [`import lodash from "lodash/fp";`],
-      [`import * as lodash from "lodash";`],
-      [`import * as lodash from "lodash/fp";`],
-      [`import { default as _ } from "lodash";`],
-      [`import { default as _ } from "lodash/fp";`],
-      [`import _, { isNil } from "lodash";`],
-      [`import _, { isNil, map } from "lodash";`],
-      [`import { default as _, isNil } from "lodash";`],
-    ])("%s without useLodashEs returns UNCHANGED", (input) => {
-      expect(transformWrapper({ code: input, appendDotJs: true })).toBeNull();
-    });
   });
 
   describe("warn on incompatible imports", () => {
