@@ -19,7 +19,7 @@ const transformWrapper = ({
   appendDotJs,
 }: {
   code: string;
-  useLodashEs?: true;
+  useLodashEs?: boolean;
   appendDotJs: boolean;
 }) =>
   transform({
@@ -27,7 +27,7 @@ const transformWrapper = ({
     id: "id-only-matters-for-sourcemap",
     parse,
     warn: warnMock,
-    useLodashEs,
+    useLodashEs: useLodashEs ? true : undefined,
     appendDotJs,
   });
 
@@ -54,7 +54,9 @@ describe("lodash transforms", () => {
     expect(parseMock).not.toHaveBeenCalled();
   });
 
-  test.each<[string, { cjs: string; cjsNoAppend: string; es: string }]>([
+  test.each<
+    [string, { cjs: string | null; cjsNoAppend: string | null; es: string }]
+  >([
     [
       `import { isNil } from 'lodash';`,
       {
@@ -103,8 +105,135 @@ describe("lodash transforms", () => {
         es: `import { some } from "lodash-es/fp";`,
       },
     ],
+    [
+      `import _ from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";`,
+      },
+    ],
+    [
+      `import lodash from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as lodash from "lodash-es";`,
+      },
+    ],
+    [
+      `import fp from 'lodash/fp';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as fp from "lodash-es/fp";`,
+      },
+    ],
+    [
+      `import * as _ from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";`,
+      },
+    ],
+    [
+      `import * as lodash from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as lodash from "lodash-es";`,
+      },
+    ],
+    [
+      `import * as fp from 'lodash/fp';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as fp from "lodash-es/fp";`,
+      },
+    ],
+    [
+      `import { default as _ } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";`,
+      },
+    ],
+    [
+      `import { default as lodash } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as lodash from "lodash-es";`,
+      },
+    ],
+    [
+      `import { default as fp } from 'lodash/fp';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as fp from "lodash-es/fp";`,
+      },
+    ],
+    [
+      `import { default as _, isNil } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";`,
+      },
+    ],
+    [
+      `import { default as _, isNil, map } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";\nimport { map } from "lodash-es";`,
+      },
+    ],
+    [
+      `import _, { isNil } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";`,
+      },
+    ],
+    [
+      `import _, { isNil, map } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";\nimport { map } from "lodash-es";`,
+      },
+    ],
+    [
+      `import _, { isNil as nil } from 'lodash';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as _ from "lodash-es";\nimport { isNil as nil } from "lodash-es";`,
+      },
+    ],
+    [
+      `import fp, { every } from 'lodash/fp';`,
+      {
+        cjs: UNCHANGED,
+        cjsNoAppend: UNCHANGED,
+        es: `import * as fp from "lodash-es/fp";\nimport { every } from "lodash-es/fp";`,
+      },
+    ],
   ])("%s", (input, expectedOutput) => {
-    expect.assertions(3 * 4); // 3 keys, 4 assertions per key
+    // sanity check our loop below!
+    const expectedTransformeds = Object.values(expectedOutput).filter(
+      (output) => output !== UNCHANGED,
+    ).length;
+    const expectedUnchanged = Object.values(expectedOutput).filter(
+      (output) => output === UNCHANGED,
+    ).length;
+    expect.assertions(expectedTransformeds * 5 + expectedUnchanged * 1);
 
     const output = {
       cjs: transformWrapper({ code: input, appendDotJs: true }),
@@ -117,11 +246,19 @@ describe("lodash transforms", () => {
     };
 
     for (const key of ["cjs", "es", "cjsNoAppend"] as const) {
+      warnMock.mockReset();
+
+      const expected = expectedOutput[key];
+      if (expected === UNCHANGED) {
+        expect(output[key]).toEqual(UNCHANGED);
+        continue;
+      }
+
       expect(output[key]).not.toEqual(UNCHANGED);
       const { code, map } = output[key] as CodeWithSourcemap;
 
       // verify actual output matches our expectation
-      expect(code).toEqual(expectedOutput[key]);
+      expect(code).toEqual(expected);
 
       // verify the output is parsable code
       expect(() =>
@@ -130,100 +267,9 @@ describe("lodash transforms", () => {
 
       // verify sourcemap exists
       expect(map.toString().length).toBeGreaterThan(0);
+
+      expect(warnMock).not.toHaveBeenCalled();
     }
-  });
-
-  describe("default/namespace import to lodash-es with useLodashEs", () => {
-    test.each<[string, string]>([
-      // Single default imports
-      [`import _ from 'lodash';`, `import * as _ from "lodash-es";`],
-      [`import lodash from 'lodash';`, `import * as lodash from "lodash-es";`],
-      [`import fp from 'lodash/fp';`, `import * as fp from "lodash-es/fp";`],
-      // Namespace imports
-      [`import * as _ from 'lodash';`, `import * as _ from "lodash-es";`],
-      [`import * as lodash from 'lodash';`, `import * as lodash from "lodash-es";`],
-      [`import * as fp from 'lodash/fp';`, `import * as fp from "lodash-es/fp";`],
-      // Default-as-named imports: `import { default as _ }`
-      [`import { default as _ } from 'lodash';`, `import * as _ from "lodash-es";`],
-      [`import { default as lodash } from 'lodash';`, `import * as lodash from "lodash-es";`],
-      [`import { default as fp } from 'lodash/fp';`, `import * as fp from "lodash-es/fp";`],
-      // Mixed default-as-named + other named imports
-      [
-        `import { default as _, isNil } from 'lodash';`,
-        `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";`,
-      ],
-      [
-        `import { default as _, isNil, map } from 'lodash';`,
-        `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";\nimport { map } from "lodash-es";`,
-      ],
-      // Mixed default + named imports
-      [
-        `import _, { isNil } from 'lodash';`,
-        `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";`,
-      ],
-      [
-        `import _, { isNil, map } from 'lodash';`,
-        `import * as _ from "lodash-es";\nimport { isNil } from "lodash-es";\nimport { map } from "lodash-es";`,
-      ],
-      [
-        `import _, { isNil as nil } from 'lodash';`,
-        `import * as _ from "lodash-es";\nimport { isNil as nil } from "lodash-es";`,
-      ],
-      [
-        `import fp, { every } from 'lodash/fp';`,
-        `import * as fp from "lodash-es/fp";\nimport { every } from "lodash-es/fp";`,
-      ],
-    ])("%s", (input, expectedOutput) => {
-      const result = transformWrapper({
-        code: input,
-        useLodashEs: true,
-        appendDotJs: true,
-      });
-
-      expect(result).not.toBeNull();
-      const { code, map } = result as CodeWithSourcemap;
-      expect(code).toEqual(expectedOutput);
-
-      // verify the output is parsable
-      expect(() =>
-        acorn.parse(code, { ecmaVersion: "latest", sourceType: "module" }),
-      ).not.toThrow();
-
-      // verify sourcemap exists
-      expect(map.toString().length).toBeGreaterThan(0);
-    });
-
-    test("default import without useLodashEs still returns UNCHANGED", () => {
-      const result = transformWrapper({
-        code: `import _ from 'lodash';`,
-        appendDotJs: true,
-      });
-      expect(result).toBeNull();
-    });
-
-    test("mixed import without useLodashEs still returns UNCHANGED", () => {
-      const result = transformWrapper({
-        code: `import _, { isNil } from 'lodash';`,
-        appendDotJs: true,
-      });
-      expect(result).toBeNull();
-    });
-
-    test("namespace import without useLodashEs still returns UNCHANGED", () => {
-      const result = transformWrapper({
-        code: `import * as _ from 'lodash';`,
-        appendDotJs: true,
-      });
-      expect(result).toBeNull();
-    });
-
-    test("default-as-named import without useLodashEs still returns UNCHANGED", () => {
-      const result = transformWrapper({
-        code: `import { default as _ } from 'lodash';`,
-        appendDotJs: true,
-      });
-      expect(result).toBeNull();
-    });
   });
 
   describe("don't change code that should not be changed", () => {
@@ -281,57 +327,27 @@ describe("lodash transforms", () => {
       [`import { isNil } from "lodash/isNil.js";`, 0],
       [`import { isNil } from "lodash-es";`, 0],
       [`import { every } from "lodash/fp";`, 0],
-    ])("%s", (input, expectWarnings) => {
+      // default imports warn if useLodashEs is not true
+      [`import lodash from "lodash";`, 1],
+      [`import _ from "lodash";`, 1],
+      [`import fp from "lodash/fp";`, 1],
+      [`import * as lodash from "lodash";`, 1],
+      [`import * as _ from "lodash/fp";`, 1],
+      [`import { default as _ } from "lodash";`, 1],
+      [`import { default as _, isNil } from "lodash";`, 1],
+      [`import _, { isNil } from "lodash";`, 1],
+    ])("%s (warnings: %d)", (input, expectWarnings) => {
       void transformWrapper({ code: input, appendDotJs: true });
       expect(warnMock).toHaveBeenCalledTimes(expectWarnings);
     });
 
-    // Default, namespace, default-as-named, and mixed imports warn only without useLodashEs
-    test.each<[string]>([
-      [`import lodash from "lodash";`],
-      [`import _ from "lodash";`],
-      [`import fp from "lodash/fp";`],
-      [`import * as lodash from "lodash";`],
-      [`import * as _ from "lodash/fp";`],
-      [`import { default as _ } from "lodash";`],
-      [`import { default as _, isNil } from "lodash";`],
-      [`import _, { isNil } from "lodash";`],
-    ])("%s warns without useLodashEs", (input) => {
-      warnMock.mockReset();
-      void transformWrapper({ code: input, appendDotJs: true });
-      expect(warnMock).toHaveBeenCalledTimes(1);
-    });
-
-    test.each<[string]>([
-      [`import lodash from "lodash";`],
-      [`import _ from "lodash";`],
-      [`import fp from "lodash/fp";`],
-      [`import * as lodash from "lodash";`],
-      [`import * as _ from "lodash/fp";`],
-      [`import { default as _ } from "lodash";`],
-      [`import { default as _, isNil } from "lodash";`],
-      [`import _, { isNil } from "lodash";`],
-    ])("%s does NOT warn with useLodashEs", (input) => {
-      warnMock.mockReset();
-      void transformWrapper({ code: input, useLodashEs: true, appendDotJs: true });
-      expect(warnMock).not.toHaveBeenCalled();
-    });
-
     // chain() in mixed imports still warns with useLodashEs
-    test("mixed import with chain warns with useLodashEs", () => {
-      warnMock.mockReset();
+    test.each([
+      [`import _, { chain } from "lodash";`],
+      [`import { default as _, chain } from "lodash";`],
+    ])("mixed import with chain warns with useLodashEs: %s", (code) => {
       void transformWrapper({
-        code: `import _, { chain } from "lodash";`,
-        useLodashEs: true,
-        appendDotJs: true,
-      });
-      expect(warnMock).toHaveBeenCalledTimes(1);
-    });
-
-    test("default-as-named import with chain warns with useLodashEs", () => {
-      warnMock.mockReset();
-      void transformWrapper({
-        code: `import { default as _, chain } from "lodash";`,
+        code,
         useLodashEs: true,
         appendDotJs: true,
       });
