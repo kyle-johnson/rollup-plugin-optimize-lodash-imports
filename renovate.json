@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     ":pinOnlyDevDependencies",
     ":dependencyDashboard",
     ":prHourlyLimit4",
@@ -12,34 +12,56 @@
     ":semanticCommits"
   ],
   "prConcurrentLimit": 5,
-  "stabilityDays": 5,
+  "minimumReleaseAge": "5 days",
   "packageRules": [
     {
-      "matchPackageNames": ["estree-walker"],
+      "matchPackageNames": [
+        "estree-walker"
+      ],
       "allowedVersions": "< 3.0.0"
     },
     {
-      "matchPackageNames": ["@types/node"],
-      "extends": [":disableMajorUpdates"]
+      "matchPackageNames": [
+        "@types/node"
+      ],
+      "extends": [
+        ":disableMajorUpdates"
+      ]
     },
     {
-      "matchPackageNames": ["rollup"],
-      "extends": ["schedule:monthly"]
+      "matchPackageNames": [
+        "rollup"
+      ],
+      "extends": [
+        "schedule:monthly"
+      ]
     },
     {
-      "matchPackagePatterns": ["eslint"],
-      "excludePackagePatterns": ["jest"],
-      "extends": ["schedule:monthly"],
-      "groupName": "eslint packages"
+      "extends": [
+        "schedule:monthly"
+      ],
+      "groupName": "eslint packages",
+      "matchPackageNames": [
+        "/eslint/",
+        "!/jest/"
+      ]
     },
     {
-      "matchPackagePatterns": ["jest"],
-      "extends": ["schedule:monthly"],
-      "groupName": "jest packages"
+      "extends": [
+        "schedule:monthly"
+      ],
+      "groupName": "jest packages",
+      "matchPackageNames": [
+        "/jest/"
+      ]
     },
     {
-      "matchPackageNames": ["esbuild"],
-      "extends": ["schedule:monthly"]
+      "matchPackageNames": [
+        "esbuild"
+      ],
+      "extends": [
+        "schedule:monthly"
+      ]
     }
   ]
 }
