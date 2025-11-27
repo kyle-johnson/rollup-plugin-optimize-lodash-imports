@@ -1,5 +1,15 @@
 # @optimize-lodash/rollup-plugin
 
+## 5.1.0
+
+### Minor Changes
+
+- [#487](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/487) [`f61e91a`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/f61e91a0e84b6df39f0764dd0bd06e1a03fb43d3) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Support Rollup's JSX mode and improve Rolldown support with a new option: `parseOptions`.
+
+  This allows setting `jsx: true` for rollup's new JSX mode or to specify the `lang` setting in Rolldown.
+
+  Added a test suite for Rolldown which includes a TypeScript example.
+
 ## 5.0.2
 
 ### Patch Changes
