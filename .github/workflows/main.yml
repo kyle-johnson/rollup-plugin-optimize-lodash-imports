@@ -43,6 +43,9 @@ jobs:
         node: [18, 20, 22]
         include:
           - package: "rollup-plugin"
+            command: "test:rolldown"
+            node: 20
+          - package: "rollup-plugin"
             command: lint
             node: 20
           - package: "transform"

@@ -105,6 +105,34 @@ If `true`, the plugin will append `.js` to the end of CommonJS lodash imports.
 
 Set to `false` if you don't want the `.js` suffix added (prior to v3.x, this was the default).
 
+### `parseOptions`
+
+Type: `Record<string, unknown> |((id: string) => Record<string, unknown>)`<br>
+Default: `undefined`
+
+If defined as a static object, this is passed to rollup's internal `parse` method. This can be combined with [`jsx.mode`](https://rollupjs.org/configuration-options/#jsx) to enable jsx parsing: `parseOptions: { jsx: true }`
+
+If defined as a function, it is called with the filename. For instance, opt-in to jsx parsing:
+
+```
+parseOptions: (filename) => filename.endsWith(".jsx") ? { jsx: true } : {}
+```
+
+## Rolldown Compatibility
+
+For basic use, this plugin "just works" with [Rolldown](https://rolldown.rs/). There is [a small test suite verifying it]().
+
+If you're relying on Rolldown to handle ts/tsx internally, you may need to use `parseOptions` to configure `lang` or [other parsing options](https://github.com/rolldown/rolldown/blob/f46e1d61d0de6f1d6c1968f3d20898e43fa3d2d7/packages/rolldown/src/binding.d.cts#L314):
+
+```javascript
+optimizeLodashImports({
+  // static
+  parseOptions: { lang: "ts" },
+  // or, dynamically by filename
+  parseOptions: (filename) => ({ lang: filename.endsWith(".ts") ? "ts" : "js" })
+})
+```
+
 ## Vite Compatibility
 
 This plugin "just works" as a [Vite 3.x plugin](https://vitejs.dev/guide/api-plugin.html#rollup-plugin-compatibility). Simply add it to `plugins` in your [Vite config](https://vitejs.dev/config/):
