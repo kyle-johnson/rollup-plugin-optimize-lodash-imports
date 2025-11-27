@@ -11,6 +11,8 @@ env:
   PNPM_VERSION: 10.23.0
 jobs:
   build:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 3
     strategy:
@@ -33,6 +35,8 @@ jobs:
       - name: build
         run: pnpm --filter {./packages/${{ matrix.package }}}... run build
   test:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 2
     strategy:
@@ -116,14 +120,11 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
+          registry-url: "https://registry.npmjs.org"
       - name: install deps
         run: pnpm install --frozen-lockfile --ignore-scripts
       - name: build all
         run: pnpm run -r build
-      - name: write .npmrc
-        run: printf "//registry.npmjs.org/:_authToken=%s" "$NPM_TOKEN" > ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Changesets
         id: Changesets
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
