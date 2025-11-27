@@ -127,6 +127,7 @@ jobs:
         run: pnpm run -r build
       - name: write .npmrc
         run: echo "@optimize-lodash:registry=https://registry.npmjs.org" > ~/.npmrc
+      - run: npm -v
       - name: Changesets
         id: Changesets
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
