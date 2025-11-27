@@ -52,8 +52,7 @@ export function transform({
     throw error;
   }
 
-  // source map generation
-  let magicString: MagicString | undefined;
+  const transforms: Array<{ start: number; end: number; code: string }> = [];
 
   walk(ast, {
     enter(node) {
@@ -79,16 +78,24 @@ export function transform({
       if (result.action === "warn") {
         warn(result.message);
       } else if (result.action === "transform") {
-        magicString = magicString ?? new MagicString(code);
-        magicString.overwrite(node.start, node.end, result.imports);
+        transforms.push({
+          start: node.start,
+          end: node.end,
+          code: result.imports.join("\n"),
+        });
       }
 
       this.skip();
     },
   });
 
-  if (!magicString) {
+  if (transforms.length === 0) {
     return UNCHANGED;
+  }
+
+  const magicString = new MagicString(code); // preserve source map
+  for (const transform of transforms) {
+    magicString.overwrite(transform.start, transform.end, transform.code);
   }
 
   return {

@@ -75,7 +75,7 @@ export function computeTransform(
 ):
   | { action: "skip" }
   | { action: "warn"; message: string }
-  | { action: "transform"; imports: string } {
+  | { action: "transform"; imports: Array<string> } {
   const isFp = base === "lodash/fp";
   const namedImports = getNamedImports(node.specifiers);
   const lineInfo = `on line ${node.loc?.start?.line ?? "unknown"}`;
@@ -98,10 +98,8 @@ export function computeTransform(
       action: "transform",
       imports:
         namedImports.length > 0
-          ? [namespaceImport, ...lodashSpecifiersToEs(base, namedImports)].join(
-              "\n",
-            )
-          : namespaceImport,
+          ? [namespaceImport, ...lodashSpecifiersToEs(base, namedImports)]
+          : [namespaceImport],
     };
   }
 
@@ -116,7 +114,9 @@ export function computeTransform(
     const localName = node.specifiers[0].local.name;
     return {
       action: "transform",
-      imports: `import * as ${localName} from "lodash-es${isFp ? "/fp" : ""}";`,
+      imports: [
+        `import * as ${localName} from "lodash-es${isFp ? "/fp" : ""}";`,
+      ],
     };
   }
 
@@ -147,11 +147,8 @@ export function computeTransform(
       action: "transform",
       imports:
         otherNamedImports.length > 0
-          ? [
-              namespaceImport,
-              ...lodashSpecifiersToEs(base, otherNamedImports),
-            ].join("\n")
-          : namespaceImport,
+          ? [namespaceImport, ...lodashSpecifiersToEs(base, otherNamedImports)]
+          : [namespaceImport],
     };
   }
 
@@ -162,9 +159,8 @@ export function computeTransform(
 
   return {
     action: "transform",
-    imports: (useLodashEs
+    imports: useLodashEs
       ? lodashSpecifiersToEs(base, node.specifiers)
-      : lodashSpecifiersToCjs(base, node.specifiers, appendDotJs)
-    ).join("\n"),
+      : lodashSpecifiersToCjs(base, node.specifiers, appendDotJs),
   };
 }
