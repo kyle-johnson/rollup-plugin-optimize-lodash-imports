@@ -129,8 +129,10 @@ optimizeLodashImports({
   // static
   parseOptions: { lang: "ts" },
   // or, dynamically by filename
-  parseOptions: (filename) => ({ lang: filename.endsWith(".ts") ? "ts" : "js" })
-})
+  parseOptions: (filename) => ({
+    lang: filename.endsWith(".ts") ? "ts" : "js",
+  }),
+});
 ```
 
 ## Vite Compatibility
