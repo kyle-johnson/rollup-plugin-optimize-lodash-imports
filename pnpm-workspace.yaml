@@ -1,23 +1,27 @@
 packages:
   - "packages/**"
 
-# 30 days
-minimumReleaseAge: 43200
+catalog:
+  prettier: 3.6.2
+  depcheck: 1.4.7
+  eslint: 8.57.1
+  eslint-plugin-jest: 29.0.1
+  eslint-config-prettier: 10.1.8
+  "@types/jest": 29.5.14
+  jest: 29.7.0
+  ts-jest: 29.4.5
+  typescript: 5.9.3
+  lodash: 4.17.21
+  "@types/lodash": 4.17.20
+  "@tsconfig/node12": 12.1.5
+  "@tsconfig/node16": 16.1.5
+  "@tsconfig/node18": 18.2.4
+  "@typescript-eslint/eslint-plugin": 8.47.0
+  "@typescript-eslint/parser": 8.47.0
+
+minimumReleaseAge: 43200 # 30 days
 minimumReleaseAgeExclude:
   - rolldown
-  - "@rolldown/pluginutils"
-  - "@oxc-project/types"
-  - "@rolldown/binding-darwin-x64"
-  - "@rolldown/binding-win32-x64-msvc"
-  - "@rolldown/binding-linux-x64-gnu"
-  - "@rolldown/binding-linux-x64-musl"
-  - "@rolldown/binding-freebsd-x64"
-  - "@rolldown/binding-win32-ia32-msvc"
-  - "@rolldown/binding-linux-arm-gnueabihf"
-  - "@rolldown/binding-linux-arm64-gnu"
-  - "@rolldown/binding-darwin-arm64"
-  - "@rolldown/binding-linux-arm64-musl"
-  - "@rolldown/binding-openharmony-arm64"
-  - "@rolldown/binding-win32-arm64-msvc"
-  - "@rolldown/binding-android-arm64"
-  - "@rolldown/binding-wasm32-wasi"
+  - "@oxc-project/*"
+  - "@rolldown/*"
+  - "@typescript-eslint/*"

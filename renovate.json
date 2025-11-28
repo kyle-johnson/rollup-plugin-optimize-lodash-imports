@@ -12,56 +12,33 @@
     ":semanticCommits"
   ],
   "prConcurrentLimit": 5,
-  "minimumReleaseAge": "5 days",
+  "minimumReleaseAge": "30 days",
   "packageRules": [
     {
-      "matchPackageNames": [
-        "estree-walker"
-      ],
+      "matchPackageNames": ["estree-walker"],
       "allowedVersions": "< 3.0.0"
     },
     {
-      "matchPackageNames": [
-        "@types/node"
-      ],
-      "extends": [
-        ":disableMajorUpdates"
-      ]
+      "matchPackageNames": ["@types/node"],
+      "extends": [":disableMajorUpdates"]
     },
     {
-      "matchPackageNames": [
-        "rollup"
-      ],
-      "extends": [
-        "schedule:monthly"
-      ]
+      "matchPackageNames": ["rollup"],
+      "extends": ["schedule:monthly"]
     },
     {
-      "extends": [
-        "schedule:monthly"
-      ],
+      "extends": ["schedule:monthly", ":disableMajorUpdates"],
       "groupName": "eslint packages",
-      "matchPackageNames": [
-        "/eslint/",
-        "!/jest/"
-      ]
+      "matchPackageNames": ["/eslint/", "!/jest/"]
     },
     {
-      "extends": [
-        "schedule:monthly"
-      ],
+      "extends": ["schedule:monthly", ":disableMajorUpdates"],
       "groupName": "jest packages",
-      "matchPackageNames": [
-        "/jest/"
-      ]
+      "matchPackageNames": ["/jest/"]
     },
     {
-      "matchPackageNames": [
-        "esbuild"
-      ],
-      "extends": [
-        "schedule:monthly"
-      ]
+      "matchPackageNames": ["esbuild"],
+      "extends": ["schedule:monthly"]
     }
   ]
 }
