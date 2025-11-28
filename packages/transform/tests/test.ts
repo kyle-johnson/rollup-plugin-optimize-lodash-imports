@@ -21,10 +21,12 @@ const transformWrapper = ({
   code,
   useLodashEs,
   appendDotJs,
+  optimizeModularizedImports,
 }: {
   code: string;
   useLodashEs?: true;
   appendDotJs: boolean;
+  optimizeModularizedImports?: boolean;
 }) =>
   transform({
     code,
@@ -33,6 +35,7 @@ const transformWrapper = ({
     warn: warnMock,
     useLodashEs,
     appendDotJs,
+    optimizeModularizedImports,
   });
 
 test("when parse throws, transform throws", () => {
@@ -228,4 +231,14 @@ test("warn on unknown lodash.* packages", () => {
   expect(warnMock).toHaveBeenCalledWith(
     expect.stringContaining("unknown lodash method package"),
   );
+});
+
+test("when optimizeModularizedImports is false, lodash.* imports are not transformed", () => {
+  const result = transformWrapper({
+    code: `import isNil from "lodash.isnil";`,
+    appendDotJs: true,
+    optimizeModularizedImports: false,
+  });
+  expect(result).toEqual(UNCHANGED);
+  expect(warnMock).not.toHaveBeenCalled();
 });

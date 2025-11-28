@@ -151,6 +151,15 @@ If defined as a function, it is called with the filename. For instance, opt-in t
 parseOptions: (filename) => filename.endsWith(".jsx") ? { jsx: true } : {}
 ```
 
+### `optimizeModularizedImports`
+
+Type: `boolean`<br>
+Default: `true`
+
+When `true`, imports from individual lodash method packages (e.g., `lodash.isnil`, `lodash.kebabcase`) are transformed to optimized imports from `lodash` or `lodash-es`.
+
+Set to `false` if you need to disable this behavior (prior to 6.x, this transformation did not ooccur).
+
 ## Vite Compatibility
 
 This plugin "just works" as a [Vite plugin](https://vitejs.dev/guide/api-plugin.html#rollup-plugin-compatibility). Simply add it to `plugins` in your [Vite config](https://vitejs.dev/config/):

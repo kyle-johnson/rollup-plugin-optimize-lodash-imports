@@ -121,6 +121,15 @@ If `true`, the plugin will append `.js` to the end of CommonJS lodash imports.
 
 Set to `false` if you don't want the `.js` suffix added (prior to v2.x, this was the default).
 
+### `optimizeModularizedImports`
+
+Type: `boolean`<br>
+Default: `true`
+
+When `true`, imports from individual lodash method packages (e.g., `lodash.isnil`, `lodash.kebabcase`) are transformed to optimized imports from `lodash` or `lodash-es`.
+
+Set to `false` if you need to disable this behavior (prior to 6.x, this transformation did not ooccur).
+
 ## Limitations
 
 ### Default imports are not optimized

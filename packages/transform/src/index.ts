@@ -39,6 +39,7 @@ export function transform({
   warn = console.error,
   useLodashEs,
   appendDotJs = true,
+  optimizeModularizedImports = true,
 }: {
   code: string;
   id: string;
@@ -46,6 +47,7 @@ export function transform({
   warn?: WarnFunction;
   useLodashEs?: true;
   appendDotJs?: boolean;
+  optimizeModularizedImports?: boolean;
 }): CodeWithSourcemap | UNCHANGED {
   // before parsing, check if we can skip the whole file
   if (!code.includes("lodash")) {
@@ -80,7 +82,7 @@ export function transform({
       const sourceValue = node.source.value as string;
 
       // Check for lodash.methodname packages first (e.g., "lodash.isnil")
-      if (sourceValue.startsWith("lodash.")) {
+      if (optimizeModularizedImports && sourceValue.startsWith("lodash.")) {
         const methodFromPackage = getLodashMethodFromPackage(sourceValue);
         if (!methodFromPackage) {
           warn(

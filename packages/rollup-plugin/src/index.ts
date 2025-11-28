@@ -26,6 +26,13 @@ export type OptimizeLodashOptions = {
   appendDotJs?: boolean;
 
   /**
+   * Default: true. When true, imports from individual lodash method packages
+   * (e.g., lodash.isnil, lodash.kebabcase) are transformed to optimized imports.
+   * Set to false to disable this behavior.
+   */
+  optimizeModularizedImports?: boolean;
+
+  /**
    * Additional options to pass to rollup's internal parse() function. For example:
    * `{ jsx: true }`
    *
@@ -73,6 +80,7 @@ export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
   exclude,
   useLodashEs,
   appendDotJs,
+  optimizeModularizedImports,
   parseOptions,
 }: OptimizeLodashOptions = {}) => {
   const filter = createFilter(include, exclude);
@@ -118,6 +126,7 @@ export const optimizeLodashImports: PluginImpl<OptimizeLodashOptions> = ({
         warn,
         useLodashEs,
         appendDotJs,
+        optimizeModularizedImports,
       });
     },
   };
