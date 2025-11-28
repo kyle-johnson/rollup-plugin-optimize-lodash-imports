@@ -1,11 +1,13 @@
 import path from "path";
 import { readFileSync } from "fs";
+import { fileURLToPath } from "url";
 
-import acorn from "acorn";
-import { tsPlugin } from "acorn-typescript";
 import * as esbuild from "esbuild";
+import { parseSync } from "oxc-parser";
 
-import { lodashOptimizeImports } from "../src";
+import { lodashOptimizeImports } from "../src/index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 describe("esbuild sanity check", () => {
   // esbuild is under ongoing development, so this test may give an indicator of
@@ -29,21 +31,20 @@ describe("esbuild sanity check", () => {
   );
 });
 
-describe("acorn-typescript sanity check", () => {
+describe("oxc-parser sanity check", () => {
   test("parses TypeScript", () => {
-    expect(() =>
-      // @ts-expect-error some odd type issues, maybe due to differing acorn versions
-      acorn.Parser.extend(tsPlugin()).parse(
-        readFileSync(
-          path.resolve(__dirname, "fixtures", "standard-and-fp.ts"),
-        ).toString(),
-        {
-          ecmaVersion: "latest",
-          sourceType: "module",
-          locations: true,
-        },
-      ),
-    ).not.toThrow();
+    const result = parseSync(
+      "standard-and-fp.ts",
+      readFileSync(
+        path.resolve(__dirname, "fixtures", "standard-and-fp.ts"),
+      ).toString(),
+      {
+        sourceType: "module",
+        lang: "ts",
+      },
+    );
+    expect(result.errors).toHaveLength(0);
+    expect(result.program.type).toBe("Program");
   });
 });
 

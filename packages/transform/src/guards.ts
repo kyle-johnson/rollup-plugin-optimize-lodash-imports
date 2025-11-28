@@ -21,10 +21,16 @@ export function isImportSpecifierArray(
   return items.every((item) => item.type === "ImportSpecifier");
 }
 
+export function isImportDefaultSpecifier(
+  item: ImportDeclaration["specifiers"][number],
+): item is ImportDefaultSpecifier {
+  return item.type === "ImportDefaultSpecifier";
+}
+
 export function isSingleDefaultImport(
   items: ImportDeclaration["specifiers"],
 ): items is [ImportDefaultSpecifier] {
-  return items.length === 1 && items[0].type === "ImportDefaultSpecifier";
+  return items.length === 1 && isImportDefaultSpecifier(items[0]);
 }
 
 export function isSingleNamespaceImport(

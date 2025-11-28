@@ -4,7 +4,12 @@ import type {
   ImportDefaultSpecifier,
 } from "estree";
 
-import { isImportSpecifierArray, isSingleNamespaceImport } from "./guards";
+import {
+  isImportSpecifierArray,
+  isSingleDefaultImport,
+  isSingleNamespaceImport,
+} from "./guards";
+import { getLodashMethodFromPackage } from "./lodash-method-packages";
 import { lodashSpecifiersToEs } from "./lodash-specifiers-to-es";
 import { lodashSpecifiersToCjs } from "./lodash-specifiers-to-cjs";
 
@@ -68,17 +73,66 @@ export function getNamedImports(
 
 export function computeTransform(
   node: ImportDeclaration,
-  base: "lodash" | "lodash/fp",
+  sourceValue: string,
   useLodashEs: boolean | undefined,
   appendDotJs: boolean,
   id: string,
+  optimizeModularizedImports: boolean = true,
 ):
   | { action: "skip" }
   | { action: "warn"; message: string }
   | { action: "transform"; imports: Array<string> } {
+  const lineInfo = `on line ${node.loc?.start?.line ?? "unknown"}`;
+
+  // ============================================================
+  // Handle lodash.methodname packages (e.g., "lodash.isnil")
+  // ============================================================
+  if (optimizeModularizedImports && sourceValue.startsWith("lodash.")) {
+    const methodFromPackage = getLodashMethodFromPackage(sourceValue);
+    if (!methodFromPackage) {
+      return {
+        action: "warn",
+        message:
+          `Detected an import from unknown lodash method package "${sourceValue}" within ${id} ${lineInfo}.\n` +
+          `This package is not recognized and will not be optimized.`,
+      };
+    }
+
+    if (!isSingleDefaultImport(node.specifiers)) {
+      return {
+        action: "warn",
+        message:
+          `Detected an unexpected import style from ${sourceValue} within ${id} ${lineInfo}.\n` +
+          `Expected a default import like: import ${methodFromPackage} from "${sourceValue}";`,
+      };
+    }
+
+    // Create synthetic specifier to reuse existing transform functions
+    const syntheticSpecifier = [
+      {
+        imported: { name: methodFromPackage },
+        local: { name: node.specifiers[0].local.name },
+      },
+    ];
+
+    return {
+      action: "transform",
+      imports: useLodashEs
+        ? lodashSpecifiersToEs("lodash", syntheticSpecifier)
+        : lodashSpecifiersToCjs("lodash", syntheticSpecifier, appendDotJs),
+    };
+  }
+
+  // ============================================================
+  // Handle standard lodash / lodash/fp imports
+  // ============================================================
+  if (sourceValue !== "lodash" && sourceValue !== "lodash/fp") {
+    return { action: "skip" };
+  }
+
+  const base = sourceValue as "lodash" | "lodash/fp";
   const isFp = base === "lodash/fp";
   const namedImports = getNamedImports(node.specifiers);
-  const lineInfo = `on line ${node.loc?.start?.line ?? "unknown"}`;
 
   // Default import: `import _ from 'lodash'` or `import _, { isNil } from 'lodash'`
   const defaultImport = getDefaultImport(node.specifiers);

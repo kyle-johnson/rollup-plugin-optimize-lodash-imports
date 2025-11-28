@@ -1,5 +1,28 @@
 # @optimize-lodash/rollup-plugin
 
+## 6.0.0
+
+### Major Changes
+
+- [#499](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/499) [`1a0e21f`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/1a0e21fa74293afd4780e2f0ce5cb1e2be80107e) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Rewrite ["modularized" lodash packages](https://www.npmjs.com/search?q=keywords%3Alodash-modularized) such as `lodash.isnil` / `lodash.camelcase` / `lodash.clonedeep` to use the standard `lodash` / `lodash-es` packages. This enables tree-shaking of modularized imports for significant size savings.
+
+  This feature can be disabled by setting `optimizeModularizedImports` to `false` (it is on by default).
+
+### Patch Changes
+
+- Updated dependencies [[`1a0e21f`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/1a0e21fa74293afd4780e2f0ce5cb1e2be80107e)]:
+  - @optimize-lodash/transform@4.0.0
+
+## 5.1.0
+
+### Minor Changes
+
+- [#487](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/487) [`f61e91a`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/f61e91a0e84b6df39f0764dd0bd06e1a03fb43d3) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Support Rollup's JSX mode and improve Rolldown support with a new option: `parseOptions`.
+
+  This allows setting `jsx: true` for rollup's new JSX mode or to specify the `lang` setting in Rolldown.
+
+  Added a test suite for Rolldown which includes a TypeScript example.
+
 ## 5.0.2
 
 ### Patch Changes

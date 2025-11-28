@@ -28,6 +28,7 @@ const wrapperRollupGenerate = async (
     external,
     plugins:
       pluginOptions !== false ? [optimizeLodashImports(pluginOptions)] : [],
+    jsx: { mode: "preserve" },
   });
   const { output } = await bundle.generate({
     format: rollupOutputFormat,
@@ -49,7 +50,6 @@ describe("rollup", () => {
 
   describe("named lodash and lodash/fp imports", () => {
     test("without plugin", async () => {
-      expect.assertions(3);
       const code = await wrapperRollupGenerate(STANDARD_AND_FP, false, "cjs");
 
       // ensure all imports remained untouched
@@ -63,7 +63,6 @@ describe("rollup", () => {
     test.each<[OutputOptions["format"]]>([["cjs"], ["es"]])(
       "with plugin & %s output",
       async (outputFormat) => {
-        expect.assertions(3);
         const code = await wrapperRollupGenerate(
           STANDARD_AND_FP,
           {},
@@ -74,13 +73,16 @@ describe("rollup", () => {
         expect(code).not.toMatch(/["']lodash["']/g);
         expect(code).not.toMatch(/["']lodash\/fp["']/g);
 
+        expect(code).toMatch(/["']lodash\/fp\/every\.js["']/g);
+        expect(code).toMatch(/["']lodash\/isNil\.js["']/g);
+        expect(code).toMatch(/["']lodash\/negate\.js["']/g);
+
         // full snapshot
         expect(code).toMatchSnapshot();
       },
     );
 
     test("with plugin, ES output, & useLodashEs", async () => {
-      expect.assertions(4);
       const code = await wrapperRollupGenerate(
         STANDARD_AND_FP,
         { useLodashEs: true },
@@ -90,6 +92,41 @@ describe("rollup", () => {
       // ensure all imports became more specific
       expect(code).not.toMatch(/["']lodash["']/g);
       expect(code).not.toMatch(/["']lodash\/fp["']/g);
+      expect(code).toMatch(/["']lodash-es["']/g);
+
+      // full snapshot
+      expect(code).toMatchSnapshot();
+    });
+
+    test("with plugin, ES output, JSX input (static parseOptions)", async () => {
+      const code = await wrapperRollupGenerate(
+        `${__dirname}/fixtures/Component.jsx`,
+        { useLodashEs: true, parseOptions: { jsx: true } },
+        "es",
+      );
+
+      // ensure all imports became more specific
+      expect(code).not.toMatch(/["']lodash["']/g);
+      expect(code).toMatch(/["']lodash-es["']/g);
+
+      // full snapshot
+      expect(code).toMatchSnapshot();
+    });
+
+    test("with plugin, ES output, JSX input (dynamic parseOptions)", async () => {
+      const code = await wrapperRollupGenerate(
+        `${__dirname}/fixtures/Component.jsx`,
+        {
+          useLodashEs: true,
+          // dynamically opt-in based on the filename
+          parseOptions: (filename) =>
+            filename.endsWith(".jsx") ? { jsx: true } : {},
+        },
+        "es",
+      );
+
+      // ensure all imports became more specific
+      expect(code).not.toMatch(/["']lodash["']/g);
       expect(code).toMatch(/["']lodash-es["']/g);
 
       // full snapshot

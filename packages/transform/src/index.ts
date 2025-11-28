@@ -30,6 +30,7 @@ export function transform({
   warn = console.error,
   useLodashEs,
   appendDotJs = true,
+  optimizeModularizedImports = true,
 }: {
   code: string;
   id: string;
@@ -37,6 +38,7 @@ export function transform({
   warn?: WarnFunction;
   useLodashEs?: true;
   appendDotJs?: boolean;
+  optimizeModularizedImports?: boolean;
 }): CodeWithSourcemap | UNCHANGED {
   // before parsing, check if we can skip the whole file
   if (!code.includes("lodash")) {
@@ -47,7 +49,6 @@ export function transform({
   try {
     ast = parse(code);
   } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     (error as Error).message += ` in ${id}`;
     throw error;
   }
@@ -67,14 +68,23 @@ export function transform({
         return;
       }
 
-      // only process lodash imports
-      const base = node.source.value;
-      if (base !== "lodash" && base !== "lodash/fp") {
+      const sourceValue = node.source.value as string;
+
+      // Early exit: not a lodash-related import
+      if (!sourceValue.startsWith("lodash")) {
         this.skip();
         return;
       }
 
-      const result = computeTransform(node, base, useLodashEs, appendDotJs, id);
+      const result = computeTransform(
+        node,
+        sourceValue,
+        useLodashEs,
+        appendDotJs,
+        id,
+        optimizeModularizedImports,
+      );
+
       if (result.action === "warn") {
         warn(result.message);
       } else if (result.action === "transform") {
@@ -93,7 +103,7 @@ export function transform({
     return UNCHANGED;
   }
 
-  const magicString = new MagicString(code); // preserve source map
+  const magicString = new MagicString(code);
   for (const transform of transforms) {
     magicString.overwrite(transform.start, transform.end, transform.code);
   }

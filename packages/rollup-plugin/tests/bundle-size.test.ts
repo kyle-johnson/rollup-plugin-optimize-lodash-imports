@@ -13,17 +13,21 @@ import commonjs from "@rollup/plugin-commonjs";
 
 import { optimizeLodashImports } from "../src";
 
-const STANDARD_AND_FP = `${__dirname}/fixtures/standard-and-fp.js`;
-
 const wrapperRollup = async (
   input: string,
   enableLodashOptimization: boolean,
   enableTerser: boolean,
+  optimizeModularizedImports: boolean,
 ) => {
   // nodeResolve + commonjs = baked in lodash
   const plugins = [nodeResolve(), commonjs()];
   if (enableLodashOptimization) {
-    plugins.push(optimizeLodashImports({ exclude: /node_modules/ }));
+    plugins.push(
+      optimizeLodashImports({
+        exclude: /node_modules/,
+        optimizeModularizedImports,
+      }),
+    );
   }
   if (enableTerser) {
     plugins.push(terser());
@@ -37,31 +41,58 @@ const wrapperRollup = async (
 };
 
 describe("output size is reduced for bundled lodash", () => {
-  test.each<[boolean]>([[false], [true]])(
-    "enableTerser: %p",
-    async (enableTerser) => {
-      expect.assertions(2);
-      const [unoptimized, optimized] = await Promise.all(
-        [false, true].map((enableLodashOptimization) =>
-          wrapperRollup(
-            STANDARD_AND_FP,
-            enableLodashOptimization,
-            enableTerser,
-          ),
+  test.each([
+    {
+      fixture: "standard-and-fp.js",
+      enableTerser: false,
+      optimizeModularizedImports: true,
+    },
+    {
+      fixture: "standard-and-fp.js",
+      enableTerser: true,
+      optimizeModularizedImports: true,
+    },
+    {
+      fixture: "mixed-lodash.js",
+      enableTerser: true,
+      optimizeModularizedImports: false,
+    },
+    {
+      fixture: "mixed-lodash.js",
+      enableTerser: true,
+      optimizeModularizedImports: true,
+    },
+  ] as const)(
+    "fixture: $fixtureName, enableTerser: $enableTerser",
+    async ({ fixture, enableTerser, optimizeModularizedImports }) => {
+      const fixturePath = `${__dirname}/fixtures/${fixture}`;
+      const [unoptimized, optimized] = await Promise.all([
+        wrapperRollup(
+          fixturePath,
+          false,
+          enableTerser,
+          optimizeModularizedImports,
         ),
-      );
+        wrapperRollup(
+          fixturePath,
+          true,
+          enableTerser,
+          optimizeModularizedImports,
+        ),
+      ]);
 
       const improvementPercentage =
         (unoptimized.length - optimized.length) / unoptimized.length;
+
       console.log(
-        `Terser: ${enableTerser ? "yes" : "no"}\nOptimized: ${
+        `Fixture: ${fixture}\nTerser: ${enableTerser ? "yes" : "no"}\nModularized import optimization: ${optimizeModularizedImports ? "yes" : "no"}\nOptimized: ${
           optimized.length
         }\nUnoptimized: ${unoptimized.length}\nSize reduction: ${Math.round(
           improvementPercentage * 100,
         )}%`,
       );
 
-      // we expect over a 50% improvement
+      // we expect over a 50% improvement for our fixtures
       expect(unoptimized.length).toBeGreaterThan(optimized.length);
       expect(improvementPercentage).toBeGreaterThan(0.5);
     },

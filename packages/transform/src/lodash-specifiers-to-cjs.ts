@@ -1,12 +1,17 @@
 import type { ImportSpecifier } from "estree";
 
+export type MinimalImportSpecifier = {
+  local: Pick<ImportSpecifier["local"], "name">;
+  imported: Pick<ImportSpecifier["imported"], "name">;
+};
+
 /**
  * Turns a generic lodash import into a specific import using the CommonJS
  * lodash package.
  */
 export function lodashSpecifiersToCjs(
   base: "lodash" | "lodash/fp",
-  specifiers: Array<ImportSpecifier>,
+  specifiers: ReadonlyArray<MinimalImportSpecifier>,
   appendDotJs: boolean,
 ): Array<string> {
   return specifiers.map(

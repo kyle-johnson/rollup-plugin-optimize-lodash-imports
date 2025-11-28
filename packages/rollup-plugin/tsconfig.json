@@ -1,6 +1,15 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
+  "compilerOptions": {
+    "isolatedModules": true
+  },
 
   "include": ["src/**/*", "tests/*", "jest.config.ts"],
-  "exclude": ["node_modules", "dist", "tests/fixtures"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "tests/fixtures",
+    "tests/__snapshots__",
+    "tests/rolldown"
+  ]
 }

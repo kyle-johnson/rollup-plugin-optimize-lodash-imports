@@ -12,15 +12,18 @@ _**This is a proof of concept! esbuild loader plugins are "greedy" and need addi
 
 There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash. Minifiers, even with dead-code elimination, cannot currently solve this problem. With this plugin, bundled code output will _only_ include the specific lodash methods your code requires.
 
-There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship CommonJS and ES builds: the ES build will be transformed to import from `lodash-es`.
+There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship ESM: transform all your `lodash` imports to use `lodash-es` which is tree-shakable.
 
-Versions of this plugin _before_ 3.x did not support Typescript. 3.x and later support Typescript, although Typescript support is considered experimental.
+Versions of this plugin _before_ 3.x did not support Typescript.
+
+4.x versions use [oxc-parser](https://www.npmjs.com/package/oxc-parser).
 
 ### This input
 
 ```javascript
 import { isNil, isString } from "lodash";
 import { padStart as padStartFp } from "lodash/fp";
+import kebabCase from "lodash.kebabcase";
 ```
 
 ### Becomes this output
@@ -29,31 +32,62 @@ import { padStart as padStartFp } from "lodash/fp";
 import isNil from "lodash/isNil.js";
 import isString from "lodash/isString.js";
 import padStartFp from "lodash/fp/padStart.js";
+import kebabCase from "lodash/kebabCase.js";
 ```
 
 ## `useLodashEs` for ES Module Output
 
-While `lodash-es` is not usable from CommonJS modules, some projects use Rollup to create two outputs: one for ES and one for CommonJS.
+While `lodash-es` is not usable in CommonJS modules, some projects only need ESM output or build both CommonJS and ESM outputs.
 
-In this case, you can offer your users the best of both:
+In these cases, you can optimize by transforming `lodash` imports to `lodash-es` imports:
 
 ### Your source input
 
 ```javascript
 import { isNil } from "lodash";
+import kebabCase from "lodash.kebabcase";
 ```
 
 #### CommonJS output
 
 ```javascript
 import isNil from "lodash/isNil.js";
+import kebabCase from "lodash/kebabCase.js";
 ```
 
 #### ES output (with `useLodashEs: true`)
 
 ```javascript
 import { isNil } from "lodash-es";
+import { kebabCase } from "lodash-es";
 ```
+
+## Individual `lodash.*` Method Packages
+
+Imports from individual lodash method packages like `lodash.isnil` or `lodash.flattendeep` are transformed to use the optimized import path of `lodash` or `lodash-es`, consolidating your lodash usage to a single, tree-shakable ESM package.
+
+### Your source input
+
+```javascript
+import isNil from "lodash.isnil";
+import flattenDeep from "lodash.flattendeep";
+```
+
+#### CommonJS output
+
+```javascript
+import isNil from "lodash/isNil.js";
+import flattenDeep from "lodash/flattenDeep.js";
+```
+
+#### ES output (with `useLodashEs: true`)
+
+```javascript
+import { isNil } from "lodash-es";
+import { flattenDeep } from "lodash-es";
+```
+
+Aliased local names are supported (`import checkNull from "lodash.isnil"` becomes `import checkNull from "lodash/isNil.js"`).
 
 ## Usage
 
@@ -88,6 +122,15 @@ Default: `true`
 If `true`, the plugin will append `.js` to the end of CommonJS lodash imports.
 
 Set to `false` if you don't want the `.js` suffix added (prior to v2.x, this was the default).
+
+### `optimizeModularizedImports`
+
+Type: `boolean`<br>
+Default: `true`
+
+When `true`, imports from individual lodash method packages (e.g., `lodash.isnil`, `lodash.kebabcase`) are transformed to optimized imports from `lodash` or `lodash-es`.
+
+Set to `false` if you need to disable this behavior (prior to 6.x, this transformation did not ooccur).
 
 ## Limitations
 

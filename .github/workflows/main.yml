@@ -4,13 +4,13 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
-  # allow manual runs
-  workflow_dispatch:
+permissions: {}
 env:
   PNPM_VERSION: 10.23.0
 jobs:
   build:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 3
     strategy:
@@ -19,7 +19,9 @@ jobs:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
         name: Install pnpm
         with:
           version: ${{ env.PNPM_VERSION }}
@@ -33,16 +35,21 @@ jobs:
       - name: build
         run: pnpm --filter {./packages/${{ matrix.package }}}... run build
   test:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 2
     strategy:
       max-parallel: 4
       matrix:
-        package: ["rollup-plugin", "transform", "esbuild-plugin"]
+        package: ["rollup-plugin", "transform"]
         command: ["test:ci"]
         node: [18, 20, 22]
         include:
           - package: "rollup-plugin"
+            command: "test:rolldown"
+            node: 20
+          - package: "rollup-plugin"
             command: lint
             node: 20
           - package: "transform"
@@ -65,9 +72,14 @@ jobs:
             node: 20
           - package: "transform"
             command: "type-check"
+            node: 20
+          - package: "esbuild-plugin"
+            command: "test:ci" # we don't support nodejs < 20 anymore
             node: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
         name: Install pnpm
         with:
@@ -85,7 +97,7 @@ jobs:
         run: pnpm --filter {./packages/${{ matrix.package }}} run ${{ matrix.command }}
       - name: coverage
         uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
-        if: matrix.command == 'test:ci' && matrix.node == '16'
+        if: matrix.command == 'test:ci' && matrix.node == '20'
         with:
           flags: ${{ matrix.package }}
           files: ./packages/${{ matrix.package }}/coverage/coverage-final.json
@@ -113,14 +125,14 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+      - run: npm install -g npm@latest
       - name: install deps
         run: pnpm install --frozen-lockfile --ignore-scripts
       - name: build all
         run: pnpm run -r build
       - name: write .npmrc
-        run: printf "//registry.npmjs.org/:_authToken=%s" "$NPM_TOKEN" > ~/.npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: echo "@optimize-lodash:registry=https://registry.npmjs.org" > ~/.npmrc
       - name: Changesets
         id: Changesets
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba # v1.5.3
@@ -132,3 +144,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"
+          # Use OIDC for npm authentication instead of NPM_TOKEN
+          NPM_TOKEN: "" # https://github.com/changesets/changesets/issues/1152#issuecomment-3190884868
