@@ -1,7 +1,11 @@
-/* eslint-disable jest/no-conditional-expect */
 import * as acorn from "acorn";
 
-import { CodeWithSourcemap, transform, UNCHANGED, WarnFunction } from "../src";
+import {
+  type CodeWithSourcemap,
+  transform,
+  UNCHANGED,
+  type WarnFunction,
+} from "../src";
 
 const warnMock: jest.MockedFunction<WarnFunction> = jest.fn();
 beforeEach(() => {
@@ -17,10 +21,12 @@ const transformWrapper = ({
   code,
   useLodashEs,
   appendDotJs,
+  optimizeModularizedImports,
 }: {
   code: string;
   useLodashEs?: true;
   appendDotJs: boolean;
+  optimizeModularizedImports?: boolean;
 }) =>
   transform({
     code,
@@ -29,6 +35,7 @@ const transformWrapper = ({
     warn: warnMock,
     useLodashEs,
     appendDotJs,
+    optimizeModularizedImports,
   });
 
 test("when parse throws, transform throws", () => {
@@ -101,6 +108,33 @@ describe("lodash transforms", () => {
         cjs: `import some from "lodash/fp/some.js";`,
         cjsNoAppend: `import some from "lodash/fp/some";`,
         es: `import { some } from "lodash-es/fp";`,
+      },
+    ],
+    [
+      // typical
+      `import isNil from "lodash.isnil";`,
+      {
+        cjs: `import isNil from "lodash/isNil.js";`,
+        cjsNoAppend: `import isNil from "lodash/isNil";`,
+        es: `import { isNil } from "lodash-es";`,
+      },
+    ],
+    [
+      // custom alias
+      `import checkNil from "lodash.isnil";`,
+      {
+        cjs: `import checkNil from "lodash/isNil.js";`,
+        cjsNoAppend: `import checkNil from "lodash/isNil";`,
+        es: `import { isNil as checkNil } from "lodash-es";`,
+      },
+    ],
+    [
+      // Multiple separate imports in same file
+      `import isNil from "lodash.isnil";\nimport isString from "lodash.isstring";`,
+      {
+        cjs: `import isNil from "lodash/isNil.js";\nimport isString from "lodash/isString.js";`,
+        cjsNoAppend: `import isNil from "lodash/isNil";\nimport isString from "lodash/isString";`,
+        es: `import { isNil } from "lodash-es";\nimport { isString } from "lodash-es";`,
       },
     ],
   ])("%s", (input, expectedOutput) => {
@@ -186,4 +220,25 @@ describe("lodash transforms", () => {
       expect(warnMock).toHaveBeenCalledTimes(expectWarnings);
     });
   });
+});
+
+test("warn on unknown lodash.* packages", () => {
+  transformWrapper({
+    code: 'import foo from "lodash.notarealmethod";',
+    appendDotJs: true,
+  });
+  expect(warnMock).toHaveBeenCalledTimes(1);
+  expect(warnMock).toHaveBeenCalledWith(
+    expect.stringContaining("unknown lodash method package"),
+  );
+});
+
+test("when optimizeModularizedImports is false, lodash.* imports are not transformed", () => {
+  const result = transformWrapper({
+    code: `import isNil from "lodash.isnil";`,
+    appendDotJs: true,
+    optimizeModularizedImports: false,
+  });
+  expect(result).toEqual(UNCHANGED);
+  expect(warnMock).not.toHaveBeenCalled();
 });

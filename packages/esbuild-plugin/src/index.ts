@@ -67,12 +67,19 @@ const selectLoader = (path: string): Loader => {
 export type PluginOptions = {
   useLodashEs?: true;
   appendDotJs?: boolean;
+  /**
+   * Default: true. When true, imports from individual lodash method packages
+   * (e.g., lodash.isnil, lodash.kebabcase) are transformed to optimized imports.
+   * Set to false to disable this behavior.
+   */
+  optimizeModularizedImports?: boolean;
 };
 
 // TODO: filter https://golang.org/pkg/regexp/
 export function lodashOptimizeImports({
   useLodashEs,
   appendDotJs = true,
+  optimizeModularizedImports,
 }: PluginOptions = {}): Plugin {
   const cache = new Map<
     string,
@@ -102,6 +109,7 @@ export function lodashOptimizeImports({
             parse: createParse(path),
             useLodashEs,
             appendDotJs,
+            optimizeModularizedImports,
           });
           if (result === UNCHANGED) {
             cache.set(path, { input, output: UNCHANGED });
