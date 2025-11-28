@@ -82,8 +82,8 @@ importers:
         specifier: 'catalog:'
         version: 16.1.5
       '@types/estree':
-        specifier: 1.0.1
-        version: 1.0.1
+        specifier: 1.0.8
+        version: 1.0.8
       '@types/jest':
         specifier: 'catalog:'
         version: 29.5.14
@@ -158,8 +158,8 @@ importers:
         specifier: 'catalog:'
         version: 18.2.4
       '@types/estree':
-        specifier: 1.0.1
-        version: 1.0.1
+        specifier: 1.0.8
+        version: 1.0.8
       '@types/jest':
         specifier: 'catalog:'
         version: 29.5.14
@@ -234,8 +234,8 @@ importers:
         specifier: 1.0.11
         version: 1.0.11
       '@types/estree':
-        specifier: 1.0.1
-        version: 1.0.1
+        specifier: 1.0.8
+        version: 1.0.8
       '@types/jest':
         specifier: 'catalog:'
         version: 29.5.14
@@ -1236,9 +1236,6 @@ packages:
 
   '@types/babel__traverse@7.18.2':
     resolution: {integrity: sha512-FcFaxOr2V5KZCviw1TnutEMVUVsGt4D2hP1TAfXZAMKuHYW3xQhe3jTxNPWutgCJ3/X1c5yX8ZoGVEItxKbwBg==}
-
-  '@types/estree@1.0.1':
-    resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
@@ -4019,7 +4016,7 @@ snapshots:
 
   '@rollup/pluginutils@5.3.0(rollup@4.52.5)':
     dependencies:
-      '@types/estree': 1.0.1
+      '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.3
     optionalDependencies:
@@ -4140,8 +4137,6 @@ snapshots:
   '@types/babel__traverse@7.18.2':
     dependencies:
       '@babel/types': 7.25.2
-
-  '@types/estree@1.0.1': {}
 
   '@types/estree@1.0.8': {}
 
@@ -5195,7 +5190,7 @@ snapshots:
 
   is-reference@1.2.1:
     dependencies:
-      '@types/estree': 1.0.1
+      '@types/estree': 1.0.8
 
   is-stream@2.0.1: {}
 

@@ -52,7 +52,7 @@
     "@rollup/plugin-node-resolve": "16.0.0",
     "@rollup/plugin-terser": "0.4.4",
     "@tsconfig/node18": "catalog:",
-    "@types/estree": "1.0.1",
+    "@types/estree": "1.0.8",
     "@types/jest": "catalog:",
     "@types/lodash": "catalog:",
     "@types/node": "18.19.74",
