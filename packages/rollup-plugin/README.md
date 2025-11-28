@@ -10,17 +10,18 @@
 [![Codecov](https://img.shields.io/codecov/c/github/kyle-johnson/rollup-plugin-optimize-lodash-imports?flag=rollup-plugin&label=coverage)](https://app.codecov.io/gh/kyle-johnson/rollup-plugin-optimize-lodash-imports/)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kyle-johnson/rollup-plugin-optimize-lodash-imports)
 
-There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash. Minifiers, even with dead-code elimination, cannot currently solve this problem. Check out the test showing that even with terser as a minifier, [this plugin can still reduce bundle size by 70%](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/bundle-size.test.ts) for [an example input](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/fixtures/standard-and-fp.js). With this plugin, bundled code output will _only_ include the specific lodash methods your code requires.
+There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](https://github.com/lodash/lodash/issues/3839) [surrounding](https://github.com/rollup/rollup/issues/1403) [tree-shaking](https://github.com/rollup/rollup/issues/691) of lodash. Minifiers, even with dead-code elimination, cannot currently solve this problem. Check out the test showing [this plugin can reduce bundle size by 70%](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/bundle-size.test.ts) for [an example input](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/tests/fixtures/standard-and-fp.js) (and that's with a minifier enabled!). With this plugin, bundled code output will _only_ include the specific lodash methods your code requires.
 
-There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship CommonJS and ES builds: the ES build will be transformed to import from `lodash-es`.
+There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship ESM: transform all your `lodash` imports to use `lodash-es` which is tree-shakable.
 
-Note: versions of this plugin prior to 5.x supported NodeJS 12 and Rollup 2.x - 3.x. If you need support for these older versions, please use the 4.x release. [Rollup 4.x contains significant performance improvements](https://github.com/rollup/rollup/releases/tag/v4.0.0) over previous versions and is highly recommended.
+Version 6.x introduces a new feature: imports of ["modularized" lodash packages](https://www.npmjs.com/search?q=keywords%3Alodash-modularized), such as [`lodash.camelcase`](https://www.npmjs.com/package/lodash.camelcase) are rewritten to use optimized imports of `lodash` or `lodash-es`. This can *significantly* reduce bundle size when using third-party dependencies that require these modularized imports: you no longer have to ship copies of the same lodash functions simply because one comes from `lodash` and another from `lodash.camelcase`. Applying this to [`kebabCase`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/a05bd96a451cf2b4eb7065c83bfe25969ab5282a/packages/rollup-plugin/tests/fixtures/mixed-lodash.js) saves ~3.5kB after minification.
 
 ### This input
 
 ```javascript
 import { isNil, isString } from "lodash";
 import { padStart as padStartFp } from "lodash/fp";
+import kebabCase from "lodash.kebabcase";
 ```
 
 ### Becomes this output
@@ -29,35 +30,39 @@ import { padStart as padStartFp } from "lodash/fp";
 import isNil from "lodash/isNil.js";
 import isString from "lodash/isString.js";
 import padStartFp from "lodash/fp/padStart.js";
+import kebabCase from "lodash/kebabCase.js";
 ```
 
 ## `useLodashEs` for ES Module Output
 
-While `lodash-es` is not usable from CommonJS modules, some projects use Rollup to create two outputs: one for ES and one for CommonJS.
+While `lodash-es` is not usable in CommonJS modules, some projects only need ESM output or build both CommonJS and ESM outputs.
 
-In this case, you can offer your users the best of both:
+In these cases, you can optimize by transforming `lodash` imports to `lodash-es` imports:
 
 ### Your source input
 
 ```javascript
 import { isNil } from "lodash";
+import kebabCase from "lodash.kebabcase";
 ```
 
 #### CommonJS output
 
 ```javascript
 import isNil from "lodash/isNil.js";
+import kebabCase from "lodash/kebabCase.js";
 ```
 
 #### ES output (with `useLodashEs: true`)
 
 ```javascript
 import { isNil } from "lodash-es";
+import { kebabCase } from "lodash-es";
 ```
 
 ## Individual `lodash.*` Method Packages
 
-The plugin also optimizes imports from individual lodash method packages like `lodash.isnil` or `lodash.flattendeep`. These are transformed to use the optimized import path, consolidating your lodash usage.
+Imports from individual lodash method packages like `lodash.isnil` or `lodash.flattendeep` are transformed to use the optimized import path of `lodash` or `lodash-es`, consolidating your lodash usage to a single, tree-shakable ESM package.
 
 ### Your source input
 
@@ -80,18 +85,7 @@ import { isNil } from "lodash-es";
 import { flattenDeep } from "lodash-es";
 ```
 
-Aliased local names are preserved (e.g., `import checkNull from "lodash.isnil"` becomes `import checkNull from "lodash/isNil.js"`).
-
-### Unknown package warnings
-
-If the plugin encounters an unrecognized `lodash.*` package (one that doesn't match a known lodash method), it will emit a warning and leave the import unchanged:
-
-```javascript
-// This triggers a warning - "notarealmethod" is not a lodash method
-import foo from "lodash.notarealmethod";
-```
-
-This helps catch typos like `lodash.isnil` vs `lodash.isnill`.
+Aliased local names are supported (`import checkNull from "lodash.isnil"` becomes `import checkNull from "lodash/isNil.js"`).
 
 ## Usage
 
@@ -146,7 +140,7 @@ Set to `false` if you don't want the `.js` suffix added (prior to v3.x, this was
 
 ### `parseOptions`
 
-Type: `Record<string, unknown> |((id: string) => Record<string, unknown>)`<br>
+Type: `Record<string, unknown> | ((id: string) => Record<string, unknown>)`<br>
 Default: `undefined`
 
 If defined as a static object, this is passed to rollup's internal `parse` method. This can be combined with [`jsx.mode`](https://rollupjs.org/configuration-options/#jsx) to enable jsx parsing: `parseOptions: { jsx: true }`
@@ -157,26 +151,9 @@ If defined as a function, it is called with the filename. For instance, opt-in t
 parseOptions: (filename) => filename.endsWith(".jsx") ? { jsx: true } : {}
 ```
 
-## Rolldown Compatibility
-
-For basic use, this plugin "just works" with [Rolldown](https://rolldown.rs/). There is [a small test suite verifying it](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/rollup-plugin/tests/rolldown).
-
-If you're relying on Rolldown to handle ts/tsx internally, you may need to use `parseOptions` to configure `lang` or [other parsing options](https://github.com/rolldown/rolldown/blob/f46e1d61d0de6f1d6c1968f3d20898e43fa3d2d7/packages/rolldown/src/binding.d.cts#L314):
-
-```javascript
-optimizeLodashImports({
-  // static
-  parseOptions: { lang: "ts" },
-  // or, dynamically by filename
-  parseOptions: (filename) => ({
-    lang: filename.endsWith(".ts") ? "ts" : "js",
-  }),
-});
-```
-
 ## Vite Compatibility
 
-This plugin "just works" as a [Vite 3.x plugin](https://vitejs.dev/guide/api-plugin.html#rollup-plugin-compatibility). Simply add it to `plugins` in your [Vite config](https://vitejs.dev/config/):
+This plugin "just works" as a [Vite plugin](https://vitejs.dev/guide/api-plugin.html#rollup-plugin-compatibility). Simply add it to `plugins` in your [Vite config](https://vitejs.dev/config/):
 
 ```javascript
 import { defineConfig } from "vite";
@@ -196,6 +173,23 @@ Example Vite output for a use of [kebabCase](https://lodash.com/docs/4.17.15#keb
 | `dist/assets/index.497fb95b.js 212.88 KiB / gzip: 71.58 KiB` | `dist/assets/index.54b72c40.js 146.31 KiB / gzip: 47.81 KiB` |
 
 A ~23 KiB reduction in compressed size!
+
+## Rolldown Compatibility
+
+For basic use, this plugin "just works" with [Rolldown](https://rolldown.rs/). There is [a small test suite verifying it](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/tree/main/packages/rollup-plugin/tests/rolldown).
+
+If you're relying on Rolldown to handle ts/tsx internally, you may need to use `parseOptions` to configure `lang` or [other parsing options](https://github.com/rolldown/rolldown/blob/f46e1d61d0de6f1d6c1968f3d20898e43fa3d2d7/packages/rolldown/src/binding.d.cts#L314):
+
+```javascript
+optimizeLodashImports({
+  // static
+  parseOptions: { lang: "ts" },
+  // or, dynamically by filename
+  parseOptions: (filename) => ({
+    lang: filename.endsWith(".ts") ? "ts" : "js",
+  }),
+});
+```
 
 ## Limitations
 
@@ -228,6 +222,10 @@ export function testX(x) {
 ### `chain()` cannot be optimized
 
 The `chain()` method from `lodash` cannot be successfully imported from `"lodash/chain"` without also importing from `"lodash"`. Imports which include `chain()` are _not modified_ and the plugin prints a warning.
+
+## NodeJS 12 and Rollup 2.x / 3.x support
+
+versions of this plugin prior to 5.x supported NodeJS 12 and Rollup 2.x - 3.x. If you need support for these older versions, please use the 4.x release.
 
 ## Alternatives
 
