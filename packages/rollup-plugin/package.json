@@ -66,6 +66,7 @@
     "gen-esm-wrapper": "1.1.3",
     "jest": "catalog:",
     "lodash": "catalog:",
+    "lodash.kebabcase": "4.1.1",
     "prettier": "catalog:",
     "rolldown": "1.0.0-beta.51",
     "@rolldown/binding-wasm32-wasi": "1.0.0-beta.51",

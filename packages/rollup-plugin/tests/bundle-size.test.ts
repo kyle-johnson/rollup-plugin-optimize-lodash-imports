@@ -13,8 +13,6 @@ import commonjs from "@rollup/plugin-commonjs";
 
 import { optimizeLodashImports } from "../src";
 
-const STANDARD_AND_FP = `${__dirname}/fixtures/standard-and-fp.js`;
-
 const wrapperRollup = async (
   input: string,
   enableLodashOptimization: boolean,
@@ -37,24 +35,37 @@ const wrapperRollup = async (
 };
 
 describe("output size is reduced for bundled lodash", () => {
-  test.each<[boolean]>([[false], [true]])(
-    "enableTerser: %p",
-    async (enableTerser) => {
-      expect.assertions(2);
-      const [unoptimized, optimized] = await Promise.all(
-        [false, true].map((enableLodashOptimization) =>
-          wrapperRollup(
-            STANDARD_AND_FP,
-            enableLodashOptimization,
-            enableTerser,
-          ),
-        ),
-      );
+  test.each([
+    {
+      fixture: "standard-and-fp.js",
+      enableTerser: false,
+    },
+    {
+      fixture: "standard-and-fp.js",
+      enableTerser: true,
+    },
+    {
+      fixture: "mixed-lodash.js",
+      enableTerser: false,
+    },
+    {
+      fixture: "mixed-lodash.js",
+      enableTerser: true,
+    },
+  ])(
+    "fixture: $fixtureName, enableTerser: $enableTerser",
+    async ({ fixture, enableTerser }) => {
+      const fixturePath = `${__dirname}/fixtures/${fixture}`;
+      const [unoptimized, optimized] = await Promise.all([
+        wrapperRollup(fixturePath, false, enableTerser),
+        wrapperRollup(fixturePath, true, enableTerser),
+      ]);
 
       const improvementPercentage =
         (unoptimized.length - optimized.length) / unoptimized.length;
+
       console.log(
-        `Terser: ${enableTerser ? "yes" : "no"}\nOptimized: ${
+        `Fixture: ${fixture}\nTerser: ${enableTerser ? "yes" : "no"}\nOptimized: ${
           optimized.length
         }\nUnoptimized: ${unoptimized.length}\nSize reduction: ${Math.round(
           improvementPercentage * 100,
