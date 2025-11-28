@@ -22,20 +22,3 @@ export function getLodashMethodFromPackage(source: string): string | undefined {
   }
   return METHOD_MAP.get(source.slice(PREFIX_LENGTH));
 }
-
-/**
- * Check if a source looks like a lodash method package but isn't recognized.
- * Used for warning about unknown packages.
- */
-export function isUnknownLodashMethodPackage(source: string): boolean {
-  if (!source.startsWith("lodash.")) {
-    return false;
-  }
-  const lowercaseMethod = source.slice(7);
-  // Must look like a method name (no slashes, not empty)
-  return (
-    lowercaseMethod.length > 0 &&
-    !lowercaseMethod.includes("/") &&
-    !METHOD_MAP.has(lowercaseMethod)
-  );
-}

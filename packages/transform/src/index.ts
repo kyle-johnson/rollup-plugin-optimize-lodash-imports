@@ -1,5 +1,5 @@
 import type { Node } from "acorn";
-import MagicString, { SourceMap } from "magic-string";
+import MagicString, { type SourceMap } from "magic-string";
 import { walk } from "estree-walker";
 import type { ImportSpecifier } from "estree";
 
@@ -9,10 +9,7 @@ import {
   isProgram,
   isSingleDefaultImport,
 } from "./guards";
-import {
-  getLodashMethodFromPackage,
-  isUnknownLodashMethodPackage,
-} from "./lodash-method-packages";
+import { getLodashMethodFromPackage } from "./lodash-method-packages";
 import { lodashSpecifiersToEs } from "./lodash-specifiers-to-es";
 import { lodashSpecifiersToCjs } from "./lodash-specifiers-to-cjs";
 
@@ -107,14 +104,16 @@ export function transform({
         }
 
         // Create synthetic specifier to reuse existing transform functions
-        const syntheticSpecifier = {
-          imported: { name: methodFromPackage },
-          local: { name: node.specifiers[0].local.name },
-        };
+        const syntheticSpecifier = [
+          {
+            imported: { name: methodFromPackage },
+            local: { name: node.specifiers[0].local.name },
+          },
+        ];
 
         const imports = useLodashEs
-          ? lodashSpecifiersToEs("lodash", [syntheticSpecifier])
-          : lodashSpecifiersToCjs("lodash", [syntheticSpecifier], appendDotJs);
+          ? lodashSpecifiersToEs("lodash", syntheticSpecifier)
+          : lodashSpecifiersToCjs("lodash", syntheticSpecifier, appendDotJs);
 
         magicString = magicString ?? new MagicString(code);
         magicString.overwrite(node.start, node.end, imports.join("\n"));
@@ -186,6 +185,6 @@ export function transform({
  *
  * @returns true if `chain()` is imported
  */
-function hasChainImport(specifiers: Array<ImportSpecifier>): boolean {
+function hasChainImport(specifiers: ReadonlyArray<ImportSpecifier>): boolean {
   return specifiers.some(({ imported }) => imported.name === "chain");
 }

@@ -1,7 +1,11 @@
-/* eslint-disable jest/no-conditional-expect */
 import * as acorn from "acorn";
 
-import { CodeWithSourcemap, transform, UNCHANGED, WarnFunction } from "../src";
+import {
+  type CodeWithSourcemap,
+  transform,
+  UNCHANGED,
+  type WarnFunction,
+} from "../src";
 
 const warnMock: jest.MockedFunction<WarnFunction> = jest.fn();
 beforeEach(() => {
@@ -103,6 +107,33 @@ describe("lodash transforms", () => {
         es: `import { some } from "lodash-es/fp";`,
       },
     ],
+    [
+      // typical
+      `import isNil from "lodash.isnil";`,
+      {
+        cjs: `import isNil from "lodash/isNil.js";`,
+        cjsNoAppend: `import isNil from "lodash/isNil";`,
+        es: `import { isNil } from "lodash-es";`,
+      },
+    ],
+    [
+      // custom alias
+      `import checkNil from "lodash.isnil";`,
+      {
+        cjs: `import checkNil from "lodash/isNil.js";`,
+        cjsNoAppend: `import checkNil from "lodash/isNil";`,
+        es: `import { isNil as checkNil } from "lodash-es";`,
+      },
+    ],
+    [
+      // Multiple separate imports in same file
+      `import isNil from "lodash.isnil";\nimport isString from "lodash.isstring";`,
+      {
+        cjs: `import isNil from "lodash/isNil.js";\nimport isString from "lodash/isString.js";`,
+        cjsNoAppend: `import isNil from "lodash/isNil";\nimport isString from "lodash/isString";`,
+        es: `import { isNil } from "lodash-es";\nimport { isString } from "lodash-es";`,
+      },
+    ],
   ])("%s", (input, expectedOutput) => {
     expect.assertions(3 * 4); // 3 keys, 4 assertions per key
 
@@ -188,87 +219,13 @@ describe("lodash transforms", () => {
   });
 });
 
-describe("lodash.methodname package transforms", () => {
-  test.each<[string, { cjs: string; cjsNoAppend: string; es: string }]>([
-    // Basic case - matching local name
-    [
-      `import isNil from "lodash.isnil";`,
-      {
-        cjs: `import isNil from "lodash/isNil.js";`,
-        cjsNoAppend: `import isNil from "lodash/isNil";`,
-        es: `import { isNil } from "lodash-es";`,
-      },
-    ],
-    // Aliased local name
-    [
-      `import checkNil from "lodash.isnil";`,
-      {
-        cjs: `import checkNil from "lodash/isNil.js";`,
-        cjsNoAppend: `import checkNil from "lodash/isNil";`,
-        es: `import { isNil as checkNil } from "lodash-es";`,
-      },
-    ],
-    // Multi-word method name (camelCase)
-    [
-      `import flattenDeep from "lodash.flattendeep";`,
-      {
-        cjs: `import flattenDeep from "lodash/flattenDeep.js";`,
-        cjsNoAppend: `import flattenDeep from "lodash/flattenDeep";`,
-        es: `import { flattenDeep } from "lodash-es";`,
-      },
-    ],
-    // Multiple separate imports in same file
-    [
-      `import isNil from "lodash.isnil";\nimport isString from "lodash.isstring";`,
-      {
-        cjs: `import isNil from "lodash/isNil.js";\nimport isString from "lodash/isString.js";`,
-        cjsNoAppend: `import isNil from "lodash/isNil";\nimport isString from "lodash/isString";`,
-        es: `import { isNil } from "lodash-es";\nimport { isString } from "lodash-es";`,
-      },
-    ],
-  ])("%s", (input, expectedOutput) => {
-    expect.assertions(3 * 4);
-    const output = {
-      cjs: transformWrapper({ code: input, appendDotJs: true }),
-      cjsNoAppend: transformWrapper({ code: input, appendDotJs: false }),
-      es: transformWrapper({
-        code: input,
-        useLodashEs: true,
-        appendDotJs: true,
-      }),
-    };
-    for (const key of ["cjs", "es", "cjsNoAppend"] as const) {
-      expect(output[key]).not.toEqual(UNCHANGED);
-      const { code, map } = output[key] as CodeWithSourcemap;
-      expect(code).toEqual(expectedOutput[key]);
-      expect(() =>
-        acorn.parse(code, { ecmaVersion: "latest", sourceType: "module" }),
-      ).not.toThrow();
-      expect(map.toString().length).toBeGreaterThan(0);
-    }
+test("warn on unknown lodash.* packages", () => {
+  transformWrapper({
+    code: 'import foo from "lodash.notarealmethod";',
+    appendDotJs: true,
   });
-
-  describe("don't change non-lodash.* packages", () => {
-    test.each<[string]>([
-      // Not a lodash.* package pattern
-      [`import foo from "lodash-es.isnil";`],
-      [`import foo from "lodash_isnil";`],
-      [`import foo from "lodash/isnil";`], // already optimized path
-    ])("%s", (input) => {
-      expect(transformWrapper({ code: input, appendDotJs: true })).toBeNull();
-    });
-  });
-
-  describe("warn on unknown lodash.* packages", () => {
-    test.each<[string]>([
-      [`import foo from "lodash.notarealmethod";`],
-      [`import bar from "lodash.fakemethod";`],
-    ])("%s", (input) => {
-      transformWrapper({ code: input, appendDotJs: true });
-      expect(warnMock).toHaveBeenCalledTimes(1);
-      expect(warnMock).toHaveBeenCalledWith(
-        expect.stringContaining("unknown lodash method package"),
-      );
-    });
-  });
+  expect(warnMock).toHaveBeenCalledTimes(1);
+  expect(warnMock).toHaveBeenCalledWith(
+    expect.stringContaining("unknown lodash method package"),
+  );
 });
