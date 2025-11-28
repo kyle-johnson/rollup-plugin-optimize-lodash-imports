@@ -73,7 +73,7 @@
     "rollup": "4.52.5",
     "ts-jest": "catalog:",
     "typescript": "catalog:",
-    "tsx": "4.20.6"
+    "tsx": "catalog:"
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.1.0",

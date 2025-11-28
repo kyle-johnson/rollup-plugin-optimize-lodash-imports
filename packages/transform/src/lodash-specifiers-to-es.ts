@@ -1,4 +1,4 @@
-import type { ImportSpecifier } from "estree";
+import type { MinimalImportSpecifier } from "./lodash-specifiers-to-cjs";
 
 /**
  * Turns a generic lodash import into a specific import referencing the "lodash-es"
@@ -9,7 +9,7 @@ import type { ImportSpecifier } from "estree";
  */
 export function lodashSpecifiersToEs(
   base: string,
-  specifiers: Array<ImportSpecifier>,
+  specifiers: ReadonlyArray<MinimalImportSpecifier>,
 ): Array<string> {
   const isFp = base.endsWith("fp");
   return specifiers.map(

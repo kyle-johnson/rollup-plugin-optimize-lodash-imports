@@ -17,11 +17,17 @@ const wrapperRollup = async (
   input: string,
   enableLodashOptimization: boolean,
   enableTerser: boolean,
+  optimizeModularizedImports: boolean,
 ) => {
   // nodeResolve + commonjs = baked in lodash
   const plugins = [nodeResolve(), commonjs()];
   if (enableLodashOptimization) {
-    plugins.push(optimizeLodashImports({ exclude: /node_modules/ }));
+    plugins.push(
+      optimizeLodashImports({
+        exclude: /node_modules/,
+        optimizeModularizedImports,
+      }),
+    );
   }
   if (enableTerser) {
     plugins.push(terser());
@@ -39,40 +45,54 @@ describe("output size is reduced for bundled lodash", () => {
     {
       fixture: "standard-and-fp.js",
       enableTerser: false,
+      optimizeModularizedImports: true,
     },
     {
       fixture: "standard-and-fp.js",
       enableTerser: true,
-    },
-    {
-      fixture: "mixed-lodash.js",
-      enableTerser: false,
+      optimizeModularizedImports: true,
     },
     {
       fixture: "mixed-lodash.js",
       enableTerser: true,
+      optimizeModularizedImports: false,
     },
-  ])(
+    {
+      fixture: "mixed-lodash.js",
+      enableTerser: true,
+      optimizeModularizedImports: true,
+    },
+  ] as const)(
     "fixture: $fixtureName, enableTerser: $enableTerser",
-    async ({ fixture, enableTerser }) => {
+    async ({ fixture, enableTerser, optimizeModularizedImports }) => {
       const fixturePath = `${__dirname}/fixtures/${fixture}`;
       const [unoptimized, optimized] = await Promise.all([
-        wrapperRollup(fixturePath, false, enableTerser),
-        wrapperRollup(fixturePath, true, enableTerser),
+        wrapperRollup(
+          fixturePath,
+          false,
+          enableTerser,
+          optimizeModularizedImports,
+        ),
+        wrapperRollup(
+          fixturePath,
+          true,
+          enableTerser,
+          optimizeModularizedImports,
+        ),
       ]);
 
       const improvementPercentage =
         (unoptimized.length - optimized.length) / unoptimized.length;
 
       console.log(
-        `Fixture: ${fixture}\nTerser: ${enableTerser ? "yes" : "no"}\nOptimized: ${
+        `Fixture: ${fixture}\nTerser: ${enableTerser ? "yes" : "no"}\nModularized import optimization: ${optimizeModularizedImports ? "yes" : "no"}\nOptimized: ${
           optimized.length
         }\nUnoptimized: ${unoptimized.length}\nSize reduction: ${Math.round(
           improvementPercentage * 100,
         )}%`,
       );
 
-      // we expect over a 50% improvement
+      // we expect over a 50% improvement for our fixtures
       expect(unoptimized.length).toBeGreaterThan(optimized.length);
       expect(improvementPercentage).toBeGreaterThan(0.5);
     },
