@@ -1,5 +1,24 @@
 # @optimize-lodash/esbuild-plugin
 
+## 4.0.0
+
+### Major Changes
+
+- [#499](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/499) [`1a0e21f`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/1a0e21fa74293afd4780e2f0ce5cb1e2be80107e) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Rewrite ["modularized" lodash packages](https://www.npmjs.com/search?q=keywords%3Alodash-modularized) such as `lodash.isnil` / `lodash.camelcase` / `lodash.clonedeep` to use the standard `lodash` / `lodash-es` packages. This enables tree-shaking of modularized imports for significant size savings.
+
+  This feature can be disabled by setting `optimizeModularizedImports` to `false` (it is on by default).
+
+- [#497](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/pull/497) [`0464016`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/04640166c88d765cc8eac591d177acaf37ea0322) Thanks [@kyle-johnson](https://github.com/kyle-johnson)! - Replace acorn with oxc-parser. This is a significant speed increase (if you're using esbuild, that's what you want, no?) and doesn't require special typescript handling.
+
+  No longer distributing cjs, just esm.
+
+  Package requirement is node 20+. It may work with older versions, but I don't have time/interest in validating that.
+
+### Patch Changes
+
+- Updated dependencies [[`1a0e21f`](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/commit/1a0e21fa74293afd4780e2f0ce5cb1e2be80107e)]:
+  - @optimize-lodash/transform@4.0.0
+
 ## 3.2.0
 
 ### Minor Changes
