@@ -71,6 +71,9 @@ importers:
       acorn:
         specifier: ~8.14.0
         version: 8.14.0
+      acorn-typescript:
+        specifier: 1.4.13
+        version: 1.4.13(acorn@8.14.0)
     devDependencies:
       '@tsconfig/node16':
         specifier: 'catalog:'
@@ -93,9 +96,6 @@ importers:
       '@typescript-eslint/parser':
         specifier: 'catalog:'
         version: 8.47.0(eslint@8.57.1)(typescript@5.9.3)
-      acorn-typescript:
-        specifier: 1.4.13
-        version: 1.4.13(acorn@8.14.0)
       depcheck:
         specifier: 'catalog:'
         version: 1.4.7
