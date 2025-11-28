@@ -4,9 +4,6 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
-  # allow manual runs
-  workflow_dispatch:
 permissions: {}
 env:
   PNPM_VERSION: 10.23.0
@@ -45,7 +42,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        package: ["rollup-plugin", "transform", "esbuild-plugin"]
+        package: ["rollup-plugin", "transform"]
         command: ["test:ci"]
         node: [18, 20, 22]
         include:
@@ -75,6 +72,9 @@ jobs:
             node: 20
           - package: "transform"
             command: "type-check"
+            node: 20
+          - package: "esbuild-plugin"
+            command: "test:ci" # we don't support nodejs < 20 anymore
             node: 20
     steps:
       - uses: actions/checkout@v4

@@ -14,7 +14,9 @@ There are [multiple](https://github.com/webpack/webpack/issues/6925) [issues](ht
 
 There is also an option to use [lodash-es](https://www.npmjs.com/package/lodash-es) for projects which ship ESM: transform all your `lodash` imports to use `lodash-es` which is tree-shakable.
 
-Versions of this plugin _before_ 3.x did not support Typescript. 3.x and later support Typescript, although Typescript support is considered experimental.
+Versions of this plugin _before_ 3.x did not support Typescript.
+
+4.x versions use [oxc-parser](https://www.npmjs.com/package/oxc-parser).
 
 ### This input
 
