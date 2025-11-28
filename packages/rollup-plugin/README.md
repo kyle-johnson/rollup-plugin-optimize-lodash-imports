@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@optimize-lodash/rollup-plugin)](https://www.npmjs.com/package/@optimize-lodash/rollup-plugin)
 ![node-current](https://img.shields.io/node/v/@optimize-lodash/rollup-plugin)
 ![npm peer dependency version](https://img.shields.io/npm/dependency-version/@optimize-lodash/rollup-plugin/peer/rollup)
-![compatible with Vite 3.x](https://img.shields.io/badge/vite-%3E%3D3.x-blue)
+![compatible with Vite](https://img.shields.io/badge/vite-%3E%3D3.x-blue)
 ![compatible with rolldown](https://img.shields.io/badge/rolldown-compatible-blue)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kyle-johnson/rollup-plugin-optimize-lodash-imports/main.yml?branch=main)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/actions)
 [![license](https://img.shields.io/npm/l/@optimize-lodash/rollup-plugin)](https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports/blob/main/packages/rollup-plugin/LICENSE)
@@ -229,6 +229,6 @@ versions of this plugin prior to 5.x supported NodeJS 12 and Rollup 2.x - 3.x. I
 
 ## Alternatives
 
-[`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash) solves the issue for CommonJS outputs and modifies default imports as well. However, it doesn't enable transparent `lodash-es` use and may not make sense for projects using [@rollup/plugin-typescript](https://www.npmjs.com/package/@rollup/plugin-typescript) which don't wish to add a Babel step.
+[`babel-plugin-lodash`](https://www.npmjs.com/package/babel-plugin-lodash) solves the issue for CommonJS outputs and modifies default imports as well. However, it doesn't enable transparent `lodash-es` use and may not make sense for projects using [@rollup/plugin-typescript](https://www.npmjs.com/package/@rollup/plugin-typescript) which don't wish to add a Babel step. It also does not modify modularized package imports (`lodash.isnil`, etc).
 
 Other alternatives include `eslint-plugin-lodash` with the [`import-scope` rule enabled](https://github.com/wix/eslint-plugin-lodash/blob/HEAD/docs/rules/import-scope.md). This works for CommonJS outputs, but may require manual effort to stay on top of imports.
