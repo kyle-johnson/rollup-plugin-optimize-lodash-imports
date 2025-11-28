@@ -1,5 +1,3 @@
-import type { ImportSpecifier } from "estree";
-
 import type { MinimalImportSpecifier } from "./lodash-specifiers-to-cjs";
 
 /**
