@@ -23,5 +23,7 @@ minimumReleaseAge: 43200 # 30 days
 minimumReleaseAgeExclude:
   - rolldown
   - "@oxc-project/*"
+  - "oxc-parser"
+  - "@oxc-parser/*"
   - "@rolldown/*"
   - "@typescript-eslint/*"

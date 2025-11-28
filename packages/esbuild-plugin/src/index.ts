@@ -1,28 +1,45 @@
 import fs from "fs";
 
-import * as acorn from "acorn";
 import { Loader, Plugin } from "esbuild";
 import {
   ParseFunction,
   transform,
   UNCHANGED,
 } from "@optimize-lodash/transform";
-import { tsPlugin } from "acorn-typescript";
+import { parseSync, type ParserOptions } from "oxc-parser";
 
-const wrappedParse: ParseFunction = (code) =>
-  acorn.parse(code, {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    locations: true,
-  });
+const getLang = (path: string): ParserOptions["lang"] => {
+  const extension = path.split(".").at(-1);
+  switch (extension) {
+    case "ts":
+    case "mts": {
+      return "ts";
+    }
+    case "tsx": {
+      return "tsx";
+    }
+    case "jsx": {
+      return "jsx";
+    }
+    default: {
+      return "js";
+    }
+  }
+};
 
-const wrappedTypescriptParse: ParseFunction = (code) =>
-  // @ts-expect-error type issues, probably due to differing acorn versions
-  acorn.Parser.extend(tsPlugin()).parse(code, {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    locations: true,
-  });
+const createParse =
+  (path: string): ParseFunction =>
+  (code) => {
+    const result = parseSync(path, code, {
+      sourceType: "module",
+      lang: getLang(path),
+    });
+    if (result.errors.length > 0) {
+      throw new Error(result.errors[0].message);
+    }
+    // oxc-parser returns ESTree-compatible AST
+    return result.program as ReturnType<ParseFunction>;
+  };
 
 const selectLoader = (path: string): Loader => {
   const extension = path.split(".").at(-1);
@@ -47,11 +64,6 @@ const selectLoader = (path: string): Loader => {
   }
 };
 
-// eslint-disable-next-line unicorn/prefer-set-has -- faster than Set for a small number of items
-const TS_EXTENSIONS = ["ts", "tsx", "mts"];
-const isTypescriptPath = (path: string): boolean =>
-  TS_EXTENSIONS.includes(path.split(".").at(-1)!);
-
 export type PluginOptions = {
   useLodashEs?: true;
   appendDotJs?: boolean;
@@ -72,7 +84,7 @@ export function lodashOptimizeImports({
     name: "lodash-optimize-imports",
     setup(build) {
       build.onLoad(
-        { filter: /\.(mjs|mts|js|ts|jsx|tsx)$/ },
+        { filter: /\.(mjs|mts|js|cjs|ts|jsx|tsx)$/ },
         async ({ path }) => {
           const input = await fs.promises.readFile(path, "utf8");
           const cached = cache.get(path); // TODO: unit test the cache
@@ -87,11 +99,7 @@ export function lodashOptimizeImports({
           const result = transform({
             code: input,
             id: path,
-            // acorn is far more battle-tested than acorn-typescript,
-            // so we only use acorn-typescript when we have to
-            parse: isTypescriptPath(path)
-              ? wrappedTypescriptParse
-              : wrappedParse,
+            parse: createParse(path),
             useLodashEs,
             appendDotJs,
           });

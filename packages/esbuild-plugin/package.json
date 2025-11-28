@@ -14,7 +14,11 @@
     "type": "git",
     "url": "https://github.com/kyle-johnson/rollup-plugin-optimize-lodash-imports.git"
   },
-  "main": "dist/index.js",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -30,8 +34,8 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "lint": "eslint .",
-    "test": "jest",
-    "test:ci": "jest --coverage --ci",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --ci",
     "build": "rm -rf dist && tsc -p tsconfig.dist.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -40,12 +44,25 @@
   "jest": {
     "coverageDirectory": "coverage",
     "testEnvironment": "node",
-    "preset": "ts-jest",
-    "testTimeout": 10000
+    "preset": "ts-jest/presets/default-esm",
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
+    "testTimeout": 10000,
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    }
   },
   "peerDependencies": {
-    "esbuild": ">= 0.8.47",
-    "acorn-typescript": "^1.4.13"
+    "esbuild": ">= 0.8.47"
   },
   "devDependencies": {
     "@tsconfig/node16": "catalog:",
@@ -53,9 +70,9 @@
     "@types/jest": "catalog:",
     "@types/lodash": "catalog:",
     "@types/node": "16.18.125",
+    "@oxc-parser/binding-wasm32-wasi": "0.96.0",
     "@typescript-eslint/eslint-plugin": "catalog:",
     "@typescript-eslint/parser": "catalog:",
-    "acorn-typescript": "1.4.13",
     "depcheck": "catalog:",
     "esbuild": "0.25.0",
     "eslint": "catalog:",
@@ -70,6 +87,6 @@
   },
   "dependencies": {
     "@optimize-lodash/transform": "workspace:*",
-    "acorn": "~8.14.0"
+    "oxc-parser": "^0.96.0"
   }
 }
