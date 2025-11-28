@@ -7,6 +7,7 @@ on:
 
   # allow manual runs
   workflow_dispatch:
+permissions: {}
 env:
   PNPM_VERSION: 10.23.0
 jobs:
@@ -21,7 +22,9 @@ jobs:
         package: ["rollup-plugin", "transform", "esbuild-plugin"]
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
         name: Install pnpm
         with:
           version: ${{ env.PNPM_VERSION }}
@@ -75,6 +78,8 @@ jobs:
             node: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
         name: Install pnpm
         with:
@@ -92,7 +97,7 @@ jobs:
         run: pnpm --filter {./packages/${{ matrix.package }}} run ${{ matrix.command }}
       - name: coverage
         uses: codecov/codecov-action@5a1091511ad55cbe89839c7260b706298ca349f7 # v5.5.1
-        if: matrix.command == 'test:ci' && matrix.node == '16'
+        if: matrix.command == 'test:ci' && matrix.node == '20'
         with:
           flags: ${{ matrix.package }}
           files: ./packages/${{ matrix.package }}/coverage/coverage-final.json
