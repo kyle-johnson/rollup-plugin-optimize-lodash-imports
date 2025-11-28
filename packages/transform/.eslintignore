@@ -3,3 +3,5 @@ dist
 .eslintrc.js
 tests/fixtures
 coverage
+scripts
+src/lodash-methods.generated.ts

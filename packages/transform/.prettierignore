@@ -2,3 +2,4 @@ tests/fixtures
 dist/
 coverage/
 CHANGELOG.md
+src/lodash-methods.generated.ts

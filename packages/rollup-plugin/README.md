@@ -55,6 +55,44 @@ import isNil from "lodash/isNil.js";
 import { isNil } from "lodash-es";
 ```
 
+## Individual `lodash.*` Method Packages
+
+The plugin also optimizes imports from individual lodash method packages like `lodash.isnil` or `lodash.flattendeep`. These are transformed to use the optimized import path, consolidating your lodash usage.
+
+### Your source input
+
+```javascript
+import isNil from "lodash.isnil";
+import flattenDeep from "lodash.flattendeep";
+```
+
+#### CommonJS output
+
+```javascript
+import isNil from "lodash/isNil.js";
+import flattenDeep from "lodash/flattenDeep.js";
+```
+
+#### ES output (with `useLodashEs: true`)
+
+```javascript
+import { isNil } from "lodash-es";
+import { flattenDeep } from "lodash-es";
+```
+
+Aliased local names are preserved (e.g., `import checkNull from "lodash.isnil"` becomes `import checkNull from "lodash/isNil.js"`).
+
+### Unknown package warnings
+
+If the plugin encounters an unrecognized `lodash.*` package (one that doesn't match a known lodash method), it will emit a warning and leave the import unchanged:
+
+```javascript
+// This triggers a warning - "notarealmethod" is not a lodash method
+import foo from "lodash.notarealmethod";
+```
+
+This helps catch typos like `lodash.isnil` vs `lodash.isnill`.
+
 ## Usage
 
 ```javascript

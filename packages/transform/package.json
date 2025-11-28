@@ -29,6 +29,7 @@
     "lint": "eslint .",
     "test": "jest",
     "test:ci": "jest --coverage --ci",
+    "generate:lodash-methods": "tsx scripts/generate-lodash-methods.ts",
     "build": "rm -rf dist && tsc -p tsconfig.dist.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -56,7 +57,8 @@
     "jest": "catalog:",
     "prettier": "catalog:",
     "ts-jest": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "tsx": "catalog:"
   },
   "dependencies": {
     "estree-walker": "^2.0.2",

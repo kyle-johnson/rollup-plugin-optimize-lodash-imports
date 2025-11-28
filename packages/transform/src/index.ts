@@ -7,7 +7,12 @@ import {
   isImportDeclaration,
   isImportSpecifierArray,
   isProgram,
+  isSingleDefaultImport,
 } from "./guards";
+import {
+  getLodashMethodFromPackage,
+  isUnknownLodashMethodPackage,
+} from "./lodash-method-packages";
 import { lodashSpecifiersToEs } from "./lodash-specifiers-to-es";
 import { lodashSpecifiersToCjs } from "./lodash-specifiers-to-cjs";
 
@@ -75,8 +80,50 @@ export function transform({
         return;
       }
 
+      const sourceValue = node.source.value as string;
+
+      // Check for lodash.methodname packages first (e.g., "lodash.isnil")
+      if (sourceValue.startsWith("lodash.")) {
+        const methodFromPackage = getLodashMethodFromPackage(sourceValue);
+        if (!methodFromPackage) {
+          warn(
+            `Detected an import from unknown lodash method package "${sourceValue}" within ${id} on line ${
+              node.loc?.start?.line ?? "unknown"
+            }.\nThis package is not recognized and will not be optimized.`,
+          );
+          this.skip();
+          return;
+        }
+
+        // this shouldn't exist in the wild with these packages, but be safe...
+        if (!isSingleDefaultImport(node.specifiers)) {
+          warn(
+            `Detected an unexpected import style from ${sourceValue} within ${id} on line ${
+              node.loc?.start?.line ?? "unknown"
+            }.\nExpected a default import like: import ${methodFromPackage} from "${sourceValue}";`,
+          );
+          this.skip();
+          return;
+        }
+
+        // Create synthetic specifier to reuse existing transform functions
+        const syntheticSpecifier = {
+          imported: { name: methodFromPackage },
+          local: { name: node.specifiers[0].local.name },
+        };
+
+        const imports = useLodashEs
+          ? lodashSpecifiersToEs("lodash", [syntheticSpecifier])
+          : lodashSpecifiersToCjs("lodash", [syntheticSpecifier], appendDotJs);
+
+        magicString = magicString ?? new MagicString(code);
+        magicString.overwrite(node.start, node.end, imports.join("\n"));
+        this.skip();
+        return;
+      }
+
       // narrow-in on lodash imports we care about
-      if (node.source.value !== "lodash" && node.source.value !== "lodash/fp") {
+      if (sourceValue !== "lodash" && sourceValue !== "lodash/fp") {
         this.skip();
         return;
       }
@@ -108,12 +155,8 @@ export function transform({
 
       // modify
       const imports = useLodashEs
-        ? lodashSpecifiersToEs(node.source.value, node.specifiers)
-        : lodashSpecifiersToCjs(
-            node.source.value,
-            node.specifiers,
-            appendDotJs,
-          );
+        ? lodashSpecifiersToEs(sourceValue, node.specifiers)
+        : lodashSpecifiersToCjs(sourceValue, node.specifiers, appendDotJs);
 
       // write
       magicString.overwrite(node.start, node.end, imports.join("\n"));
