@@ -146,8 +146,8 @@ importers:
         specifier: 1.0.0-beta.51
         version: 1.0.0-beta.51
       '@rollup/plugin-commonjs':
-        specifier: 28.0.2
-        version: 28.0.2(rollup@4.52.5)
+        specifier: 28.0.9
+        version: 28.0.9(rollup@4.52.5)
       '@rollup/plugin-node-resolve':
         specifier: 16.0.0
         version: 16.0.0(rollup@4.52.5)
@@ -1038,8 +1038,8 @@ packages:
   '@rolldown/pluginutils@1.0.0-beta.51':
     resolution: {integrity: sha512-51/8cNXMrqWqX3o8DZidhwz1uYq0BhHDDSfVygAND1Skx5s1TDw3APSSxCMcFFedwgqGcx34gRouwY+m404BBQ==}
 
-  '@rollup/plugin-commonjs@28.0.2':
-    resolution: {integrity: sha512-BEFI2EDqzl+vA1rl97IDRZ61AIwGH093d9nz8+dThxJNH8oSoB7MjWvPCX3dkaK1/RCJ/1v/R1XB15FuSs0fQw==}
+  '@rollup/plugin-commonjs@28.0.9':
+    resolution: {integrity: sha512-PIR4/OHZ79romx0BVVll/PkwWpJ7e5lsqFa3gFfcrFPWwLXLV39JVUzQV9RKjWerE7B845Hqjj9VYlQeieZ2dA==}
     engines: {node: '>=16.0.0 || 14 >= 14.17'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0||^4.0.0
@@ -3987,7 +3987,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.0-beta.51': {}
 
-  '@rollup/plugin-commonjs@28.0.2(rollup@4.52.5)':
+  '@rollup/plugin-commonjs@28.0.9(rollup@4.52.5)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
       commondir: 1.0.1
