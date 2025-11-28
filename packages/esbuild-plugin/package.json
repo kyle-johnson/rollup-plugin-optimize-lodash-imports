@@ -55,7 +55,6 @@
     "@types/node": "16.18.125",
     "@typescript-eslint/eslint-plugin": "catalog:",
     "@typescript-eslint/parser": "catalog:",
-    "acorn-typescript": "1.4.13",
     "depcheck": "catalog:",
     "esbuild": "0.25.0",
     "eslint": "catalog:",
@@ -70,6 +69,7 @@
   },
   "dependencies": {
     "@optimize-lodash/transform": "workspace:*",
-    "acorn": "~8.14.0"
+    "acorn": "~8.14.0",
+    "acorn-typescript": "1.4.13"
   }
 }
