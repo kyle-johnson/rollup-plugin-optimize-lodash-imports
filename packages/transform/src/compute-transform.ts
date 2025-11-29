@@ -77,7 +77,7 @@ export function computeTransform(
   useLodashEs: boolean | undefined,
   appendDotJs: boolean,
   id: string,
-  optimizeModularizedImports: boolean = true,
+  optimizeModularizedImports: boolean,
 ):
   | { action: "skip" }
   | { action: "warn"; message: string }
@@ -130,8 +130,7 @@ export function computeTransform(
     return { action: "skip" };
   }
 
-  const base = sourceValue as "lodash" | "lodash/fp";
-  const isFp = base === "lodash/fp";
+  const isFp = sourceValue === "lodash/fp";
   const namedImports = getNamedImports(node.specifiers);
 
   // Default import: `import _ from 'lodash'` or `import _, { isNil } from 'lodash'`
@@ -152,7 +151,10 @@ export function computeTransform(
       action: "transform",
       imports:
         namedImports.length > 0
-          ? [namespaceImport, ...lodashSpecifiersToEs(base, namedImports)]
+          ? [
+              namespaceImport,
+              ...lodashSpecifiersToEs(sourceValue, namedImports),
+            ]
           : [namespaceImport],
     };
   }
@@ -201,7 +203,10 @@ export function computeTransform(
       action: "transform",
       imports:
         otherNamedImports.length > 0
-          ? [namespaceImport, ...lodashSpecifiersToEs(base, otherNamedImports)]
+          ? [
+              namespaceImport,
+              ...lodashSpecifiersToEs(sourceValue, otherNamedImports),
+            ]
           : [namespaceImport],
     };
   }
@@ -214,7 +219,7 @@ export function computeTransform(
   return {
     action: "transform",
     imports: useLodashEs
-      ? lodashSpecifiersToEs(base, node.specifiers)
-      : lodashSpecifiersToCjs(base, node.specifiers, appendDotJs),
+      ? lodashSpecifiersToEs(sourceValue, node.specifiers)
+      : lodashSpecifiersToCjs(sourceValue, node.specifiers, appendDotJs),
   };
 }
