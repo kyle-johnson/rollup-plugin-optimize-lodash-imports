@@ -28,3 +28,5 @@ minimumReleaseAgeExclude:
   - "@oxc-parser/*"
   - "@rolldown/*"
   - "@typescript-eslint/*"
+  # Renovate security update: esbuild@0.28.1
+  - esbuild@0.28.1
