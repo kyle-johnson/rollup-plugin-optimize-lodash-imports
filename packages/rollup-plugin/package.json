@@ -70,7 +70,7 @@
     "prettier": "catalog:",
     "rolldown": "1.0.0-beta.51",
     "@rolldown/binding-wasm32-wasi": "1.0.0-beta.51",
-    "rollup": "4.52.5",
+    "rollup": "4.59.0",
     "ts-jest": "catalog:",
     "typescript": "catalog:",
     "tsx": "catalog:"
