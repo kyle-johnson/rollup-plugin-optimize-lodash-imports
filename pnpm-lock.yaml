@@ -40,8 +40,8 @@ catalogs:
       specifier: 29.7.0
       version: 29.7.0
     lodash:
-      specifier: 4.17.21
-      version: 4.17.21
+      specifier: 4.18.1
+      version: 4.18.1
     prettier:
       specifier: 3.6.2
       version: 3.6.2
@@ -122,7 +122,7 @@ importers:
         version: 29.7.0(@types/node@16.18.125)(supports-color@8.1.1)(ts-node@10.9.2(@types/node@16.18.125)(typescript@5.9.3))
       lodash:
         specifier: 'catalog:'
-        version: 4.17.21
+        version: 4.18.1
       prettier:
         specifier: 'catalog:'
         version: 3.6.2
@@ -198,7 +198,7 @@ importers:
         version: 29.7.0(@types/node@18.19.74)(supports-color@8.1.1)(ts-node@10.9.2(@types/node@18.19.74)(typescript@5.9.3))
       lodash:
         specifier: 'catalog:'
-        version: 4.17.21
+        version: 4.18.1
       lodash.kebabcase:
         specifier: 4.1.1
         version: 4.1.1
@@ -1406,6 +1406,7 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@vue/compiler-core@3.4.35':
     resolution: {integrity: sha512-gKp0zGoLnMYtw4uS/SJRRO7rsVggLjvot3mcctlMXunYNsX+aRJDqqw/lV5/gHK91nvaAAlWFgdVl020AW1Prg==}
@@ -2386,8 +2387,8 @@ packages:
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
@@ -4715,7 +4716,7 @@ snapshots:
       is-core-module: 2.15.0
       js-yaml: 3.14.1
       json5: 2.2.3
-      lodash: 4.17.21
+      lodash: 4.18.1
       minimatch: 7.4.6
       multimatch: 5.0.0
       please-upgrade-node: 3.2.0
@@ -4851,7 +4852,7 @@ snapshots:
       esquery: 1.6.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
-      lodash: 4.17.21
+      lodash: 4.18.1
       pluralize: 8.0.0
       read-pkg-up: 7.0.1
       regexp-tree: 0.1.27
@@ -5831,7 +5832,7 @@ snapshots:
 
   lodash.startcase@4.4.0: {}
 
-  lodash@4.17.21: {}
+  lodash@4.18.1: {}
 
   lru-cache@5.1.1:
     dependencies:
